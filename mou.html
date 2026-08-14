@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MOU Performance — Retail (Apr–Jul 26)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+:root{
+  --bg:#f7f9fb; --panel:#ffffff;
+  --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
+  --text:#0f2337; --text-dim:#516b82; --text-dim2:#7c93a8;
+  --ms:#1f8f6f; --hsd:#c47a12; --amber-line:#c47a12;
+  --excellent:#1d9a5b; --good:#2f8fbf; --fair:#c99a1c; --poor:#d84a42; --na:#94a3b3;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:
+    radial-gradient(ellipse 1200px 600px at 15% -10%, rgba(31,143,111,0.05), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 100% 0%, rgba(196,122,18,0.05), transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; padding:28px 28px 60px;
+}
+.wrap{max-width:1320px; margin:0 auto;}
+
+.mou-link{display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; color:#fff; background:linear-gradient(90deg,#1f8f6f,#38b08a); padding:9px 16px; border-radius:8px; margin-bottom:10px; transition:.2s;}
+.mou-link:hover{filter:brightness(1.06); transform:translateY(-1px);}
+
+.topbar{display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid var(--border-2); padding-bottom:20px; margin-bottom:18px; flex-wrap:wrap; gap:16px;}
+.brand-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:var(--amber-line); text-transform:uppercase; margin-bottom:8px;}
+h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:42px; letter-spacing:.01em; line-height:1;}
+h1 span{color:var(--text-dim2); font-weight:500;}
+.date-badge{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--text); background:#fff; border:1px solid var(--border-2); padding:8px 14px; border-radius:8px;}
+.date-badge b{color:var(--amber-line); font-weight:600;}
+
+.settings{display:flex; gap:8px; align-items:center; background:#fff; border:1px solid var(--border-2); border-radius:10px; padding:10px 12px; margin-bottom:14px; flex-wrap:wrap;}
+.settings input{flex:1; min-width:220px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 10px; border-radius:6px;}
+.settings button{background:var(--amber-line); color:#fff; border:none; font-weight:700; font-size:12px; padding:9px 16px; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace;}
+.settings .status{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim2);}
+.settings .status.ok{color:var(--excellent);} .settings .status.err{color:var(--poor);}
+.toggle-settings-row{text-align:right; margin-bottom:10px;}
+.toggle-settings-row button{background:none; border:1px solid var(--border-2); color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:10.5px; padding:5px 10px; border-radius:6px; cursor:pointer;}
+
+.section-label{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dim2); margin:30px 0 12px; display:flex; align-items:center; gap:10px;}
+.section-label::after{content:''; flex:1; height:1px; background:var(--border);}
+
+.grid{display:grid; gap:16px;}
+.grid-hero{grid-template-columns:1fr 1.4fr;}
+@media(max-width:900px){.grid-hero{grid-template-columns:1fr;}}
+
+.card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:22px; position:relative; overflow:hidden; box-shadow:0 2px 14px rgba(15,35,55,0.05);}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--ms), var(--hsd)); opacity:.85;}
+.card-title{font-size:13px; font-weight:600; color:var(--text); margin-bottom:2px;}
+.card-sub{font-size:11px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; margin-bottom:14px;}
+
+/* Score hero */
+.score-hero{display:flex; align-items:center; gap:24px; flex-wrap:wrap;}
+.score-ring-wrap{position:relative; flex-shrink:0;}
+.score-num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+.score-num .n{font-family:'Big Shoulders Display'; font-size:40px; font-weight:700; line-height:1;}
+.score-num .l{font-size:10px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; text-transform:uppercase; margin-top:2px;}
+.score-meta{flex:1; min-width:180px;}
+.score-meta .row{display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px;}
+.score-meta .row:last-child{border-bottom:none;}
+.score-meta .row b{font-family:'IBM Plex Mono',monospace; font-size:14px;}
+
+/* Criterion distribution */
+.crit-bars{display:flex; flex-direction:column; gap:10px;}
+.crit-row{display:flex; align-items:center; gap:10px;}
+.crit-label{width:110px; font-size:12.5px; font-weight:600; display:flex; align-items:center; gap:7px;}
+.crit-dot{width:10px;height:10px;border-radius:3px; flex-shrink:0;}
+.crit-track{flex:1; height:16px; background:rgba(15,35,55,0.06); border-radius:5px; overflow:hidden;}
+.crit-fill{height:100%; border-radius:5px; width:0%; transition:width 1s cubic-bezier(.16,1,.3,1);}
+.crit-count{width:34px; text-align:right; font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600;}
+
+/* Filter chips */
+.filter-bar{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px;}
+.chip-filter{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; padding:6px 14px; border-radius:20px; border:1px solid var(--border-2); background:#fff; color:var(--text-dim); cursor:pointer; transition:.15s;}
+.chip-filter.active{color:#fff; border-color:transparent;}
+.search-input{flex:1; min-width:200px; padding:8px 12px; border:1px solid var(--border-2); border-radius:20px; font-size:12.5px; font-family:'Inter'; color:var(--text);}
+
+/* Table */
+.table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:10px;}
+table{width:100%; border-collapse:collapse; font-size:13px;}
+thead th{background:#f2f5f8; text-align:left; padding:10px 12px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); cursor:pointer; white-space:nowrap; border-bottom:1px solid var(--border-2); user-select:none;}
+thead th:hover{color:var(--text);}
+thead th.sorted::after{content:' ▾'; color:var(--amber-line);}
+tbody td{padding:11px 12px; border-bottom:1px solid var(--border); vertical-align:middle;}
+tbody tr:hover{background:#fafbfc;}
+tbody tr:last-child td{border-bottom:none;}
+.param-cell{max-width:340px; font-weight:500; line-height:1.35;}
+.num-cell{font-family:'IBM Plex Mono',monospace; text-align:right; white-space:nowrap;}
+.badge{display:inline-block; padding:4px 12px; border-radius:20px; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; color:#fff; white-space:nowrap;}
+.badge.excellent{background:var(--excellent);} .badge.good{background:var(--good);} .badge.fair{background:var(--fair);}
+.badge.poor{background:var(--poor);} .badge.na{background:var(--na);}
+
+.focus-list{display:flex; flex-direction:column; gap:10px;}
+.focus-item{display:flex; align-items:center; gap:16px; padding:14px 16px; border-radius:10px; background:#fafbfc; border:1px solid var(--border); border-left:5px solid var(--poor);}
+.focus-item .fi-rank{font-family:'Big Shoulders Display'; font-size:22px; font-weight:700; color:var(--text-dim2); width:28px; flex-shrink:0; text-align:center;}
+.focus-item .fi-body{flex:1; min-width:0;}
+.focus-item .fi-param{font-size:13.5px; font-weight:600; color:var(--text); line-height:1.35;}
+.focus-item .fi-meta{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--text-dim2); margin-top:4px;}
+.focus-item .fi-badge{flex-shrink:0;}
+.focus-empty{text-align:center; padding:24px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:13px;}
+
+footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:11px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+.loading-veil{position:fixed; inset:0; background:var(--bg); z-index:50; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; font-family:'IBM Plex Mono',monospace; color:var(--text-dim); transition:opacity .4s;}
+.loading-veil.hide{opacity:0; pointer-events:none;}
+.spinner{width:34px;height:34px;border:3px solid var(--border-2); border-top-color:var(--amber-line); border-radius:50%; animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="loading-veil" id="veil"><div class="spinner"></div><div>Loading live data…</div></div>
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-eyebrow">Retail &middot; MOU Performance Review</div>
+      <h1>MOU Performance <span>— Apr–Jul 2026</span></h1>
+    </div>
+    <div style="text-align:right;">
+      <a href="index.html" class="mou-link">← Daily Sales</a><br>
+      <div class="date-badge">Period <b>Apr – Jul 2026</b></div>
+    </div>
+  </div>
+
+  <div class="settings" id="settingsBar" style="display:none;">
+    <input type="text" id="csvUrlInput" placeholder="Paste your MOU data CSV raw link here…">
+    <button id="loadBtn">Load &amp; Save</button>
+    <span class="status" id="statusMsg">Not connected</span>
+  </div>
+  <div class="toggle-settings-row">
+    <button id="toggleSettings">⚙ Data source settings</button>
+  </div>
+
+  <div class="section-label">Overall Performance</div>
+  <div class="grid grid-hero">
+    <div class="card">
+      <div class="card-title">Overall Score</div>
+      <div class="card-sub">Applicable weightage vs score achieved</div>
+      <div class="score-hero">
+        <div class="score-ring-wrap" id="scoreRingWrap"></div>
+        <div class="score-meta">
+          <div class="row"><span>Applicable Weightage</span><b id="scoreWeightage">—</b></div>
+          <div class="row"><span>Score Achieved</span><b id="scoreAchieved">—</b></div>
+          <div class="row"><span>Total Parameters</span><b id="scoreTotalParams">—</b></div>
+          <div class="row"><span>Applicable Parameters</span><b id="scoreApplicable">—</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Rating Distribution</div>
+      <div class="card-sub">Count of parameters by achievement level</div>
+      <div class="crit-bars" id="critBars"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Needs Attention</div>
+  <div class="card" id="focusCard">
+    <div class="card-title">Parameters Below Excellent</div>
+    <div class="card-sub" id="focusSub">Sorted worst-first — these are pulling the overall score down</div>
+    <div id="focusList" class="focus-list"></div>
+  </div>
+
+  <div class="section-label">Full Parameter-wise Detail</div>
+  <div class="card">
+    <div class="filter-bar">
+      <button class="chip-filter active" data-filter="All" style="background:var(--text); color:#fff; border-color:var(--text);">All</button>
+      <button class="chip-filter" data-filter="Excellent" style="border-color:var(--excellent); color:var(--excellent);">Excellent</button>
+      <button class="chip-filter" data-filter="Good" style="border-color:var(--good); color:var(--good);">Good</button>
+      <button class="chip-filter" data-filter="Fair" style="border-color:var(--fair); color:var(--fair);">Fair</button>
+      <button class="chip-filter" data-filter="Poor" style="border-color:var(--poor); color:var(--poor);">Poor</button>
+      <button class="chip-filter" data-filter="NA" style="border-color:var(--na); color:var(--na);">NA</button>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search parameter…">
+    </div>
+    <div class="table-wrap">
+      <table id="mouTable">
+        <thead>
+          <tr>
+            <th data-key="sr">#</th>
+            <th data-key="parameter">Parameter</th>
+            <th data-key="unit">Unit</th>
+            <th data-key="weightage">Weight</th>
+            <th data-key="annualTarget">Annual Tgt</th>
+            <th data-key="cumTarget">Cum. Tgt (Apr-Jul)</th>
+            <th data-key="actual">Actual</th>
+            <th data-key="rating">Rating</th>
+            <th data-key="score">Score</th>
+          </tr>
+        </thead>
+        <tbody id="mouTbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <span>Source: live MOU data feed &middot; Retail MOU Performance — Apr-Jul 2026</span>
+    <span id="lastUpdated"></span>
+  </footer>
+</div>
+
+<script>
+const LS_KEY = 'mou_dashboard_csv_url';
+const DEFAULT_CSV_URL = ''; // filled in once repo file link is known
+let ROWS = [];
+let sortKey = 'sr', sortDir = 1;
+let activeFilter = 'All';
+let searchTerm = '';
+
+function num(v){ if(v===null||v===undefined||v==='') return null; const n = parseFloat(String(v).replace(/,/g,'')); return isNaN(n) ? null : n; }
+function fmt(n){ if(n===null||n===undefined||isNaN(n)) return '—'; return Number(n).toLocaleString('en-IN',{maximumFractionDigits:2}); }
+function ratingClass(r){
+  const k = (r||'').trim().toLowerCase();
+  if(k==='excellent') return 'excellent';
+  if(k==='good') return 'good';
+  if(k==='fair') return 'fair';
+  if(k==='poor') return 'poor';
+  return 'na';
+}
+function ratingColorVar(cls){ return {excellent:'var(--excellent)',good:'var(--good)',fair:'var(--fair)',poor:'var(--poor)',na:'var(--na)'}[cls]; }
+
+let overall = {weightage:null, score:null, total:0, applicable:0};
+
+function parseCSV(text){
+  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true}).data;
+  ROWS = [];
+  let headerIdx = 0;
+  for(let i=0;i<parsed.length;i++){
+    if(parsed[i].some(c=>String(c).trim().toLowerCase()==='parameter')){ headerIdx = i; break; }
+  }
+  for(let i=headerIdx+1;i<parsed.length;i++){
+    const r = parsed[i];
+    if(!r || r.length<2) continue;
+    const first = String(r[0]||'').trim();
+    if(first.toLowerCase().startsWith('overall performance')){
+      overall.weightage = num(r[3]);
+      overall.score = num(r[7]);
+      continue;
+    }
+    if(first==='' ) continue;
+    const sr = num(r[0]);
+    if(sr===null) continue;
+    ROWS.push({
+      sr: sr,
+      parameter: String(r[1]||'').trim(),
+      unit: String(r[2]||'').trim(),
+      weightage: num(r[3]),
+      annualTarget: num(r[4]),
+      cumTarget: num(r[5]),
+      level1: num(r[6]),
+      actual: num(r[7]),
+      criterionFactor: num(r[8]),
+      rating: String(r[9]||'').trim(),
+      interScore: num(r[10]),
+      intraScore: num(r[11])
+    });
+  }
+}
+
+function ring(pct, color){
+  const r=54, c=2*Math.PI*r, off = c - (Math.min(Math.max(pct,0),100)/100)*c;
+  return `<svg width="140" height="140" viewBox="0 0 140 140">
+    <circle cx="70" cy="70" r="${r}" fill="none" stroke="rgba(15,35,55,0.08)" stroke-width="12"/>
+    <circle cx="70" cy="70" r="${r}" fill="none" stroke="${color}" stroke-width="12" stroke-linecap="round"
+      stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${off}"
+      transform="rotate(-90 70 70)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1);"/>
+  </svg>`;
+}
+
+function renderFocusList(){
+  const severityOrder = {poor:0, fair:1, good:2, na:3};
+  const flagged = ROWS.filter(r => ratingClass(r.rating) !== 'excellent');
+  flagged.sort((a,b)=> severityOrder[ratingClass(a.rating)] - severityOrder[ratingClass(b.rating)]);
+  const el = document.getElementById('focusList');
+  document.getElementById('focusSub').textContent = `${flagged.length} of ${ROWS.length} parameters below Excellent — sorted worst-first`;
+  if(flagged.length===0){
+    el.innerHTML = `<div class="focus-empty">All parameters rated Excellent 🎉</div>`;
+    return;
+  }
+  el.innerHTML = flagged.map((r,i)=>{
+    const cls = ratingClass(r.rating);
+    const borderColor = ratingColorVar(cls);
+    return `<div class="focus-item" style="border-left-color:${borderColor}">
+      <div class="fi-rank">${i+1}</div>
+      <div class="fi-body">
+        <div class="fi-param">${r.parameter}</div>
+        <div class="fi-meta">Target ${fmt(r.cumTarget)} ${r.unit} &middot; Actual ${fmt(r.actual)} ${r.unit} &middot; Weight ${fmt(r.weightage)} &middot; Score ${fmt(r.intraScore)}</div>
+      </div>
+      <div class="fi-badge"><span class="badge ${cls}">${r.rating||'NA'}</span></div>
+    </div>`;
+  }).join('');
+}
+
+function renderHero(){
+  const applicable = ROWS.filter(r=>r.rating && r.rating.toUpperCase()!=='NA');
+  overall.total = ROWS.length;
+  overall.applicable = applicable.length;
+  const pct = overall.weightage ? Math.min(100,(overall.score/overall.weightage)*100/1) : 0;
+  // score/weightage could exceed 100% (over-achievement) — cap ring visually at 100 but show real number
+  const wrap = document.getElementById('scoreRingWrap');
+  const color = pct>=100 ? 'var(--excellent)' : pct>=80 ? 'var(--good)' : pct>=60 ? 'var(--fair)' : 'var(--poor)';
+  wrap.innerHTML = ring(Math.min(pct,100), color) +
+    `<div class="score-num"><div class="n">${overall.score!==null?fmt(overall.score):'—'}</div><div class="l">of ${overall.weightage!==null?fmt(overall.weightage):'—'}</div></div>`;
+  requestAnimationFrame(()=> setTimeout(()=>{
+    wrap.querySelectorAll('circle[data-target]').forEach(c=> c.style.strokeDashoffset = c.getAttribute('data-target'));
+  },60));
+  document.getElementById('scoreWeightage').textContent = overall.weightage!==null ? fmt(overall.weightage) : '—';
+  document.getElementById('scoreAchieved').textContent = overall.score!==null ? fmt(overall.score) : '—';
+  document.getElementById('scoreTotalParams').textContent = overall.total;
+  document.getElementById('scoreApplicable').textContent = overall.applicable;
+
+  // criterion distribution
+  const counts = {Excellent:0,Good:0,Fair:0,Poor:0,NA:0};
+  ROWS.forEach(r=>{
+    const key = ['Excellent','Good','Fair','Poor'].find(k=>k.toLowerCase()===r.rating.toLowerCase());
+    if(key) counts[key]++; else counts.NA++;
+  });
+  const max = Math.max(...Object.values(counts),1);
+  const colors = {Excellent:'var(--excellent)',Good:'var(--good)',Fair:'var(--fair)',Poor:'var(--poor)',NA:'var(--na)'};
+  const cb = document.getElementById('critBars');
+  cb.innerHTML = Object.keys(counts).map(k=>`
+    <div class="crit-row">
+      <div class="crit-label"><span class="crit-dot" style="background:${colors[k]}"></span>${k}</div>
+      <div class="crit-track"><div class="crit-fill" style="background:${colors[k]}; width:0%" data-w="${(counts[k]/max)*100}"></div></div>
+      <div class="crit-count">${counts[k]}</div>
+    </div>`).join('');
+  requestAnimationFrame(()=> setTimeout(()=>{
+    cb.querySelectorAll('.crit-fill').forEach(f=> f.style.width = f.dataset.w+'%');
+  },80));
+}
+
+function renderTable(){
+  let rows = ROWS.filter(r=>{
+    if(activeFilter!=='All'){
+      const cls = ratingClass(r.rating);
+      if(activeFilter.toLowerCase() !== cls) return false;
+    }
+    if(searchTerm && !r.parameter.toLowerCase().includes(searchTerm.toLowerCase())) return false;
+    return true;
+  });
+  rows.sort((a,b)=>{
+    let av=a[sortKey], bv=b[sortKey];
+    if(sortKey==='parameter'||sortKey==='rating'||sortKey==='unit'){ av=(av||'').toString(); bv=(bv||'').toString(); return sortDir*av.localeCompare(bv); }
+    av = av===null?-Infinity:av; bv=bv===null?-Infinity:bv;
+    return sortDir*(av-bv);
+  });
+  const tbody = document.getElementById('mouTbody');
+  tbody.innerHTML = rows.map(r=>{
+    const cls = ratingClass(r.rating);
+    return `<tr>
+      <td class="num-cell">${r.sr}</td>
+      <td class="param-cell">${r.parameter}</td>
+      <td>${r.unit}</td>
+      <td class="num-cell">${fmt(r.weightage)}</td>
+      <td class="num-cell">${fmt(r.annualTarget)}</td>
+      <td class="num-cell">${fmt(r.cumTarget)}</td>
+      <td class="num-cell">${fmt(r.actual)}</td>
+      <td><span class="badge ${cls}">${r.rating||'NA'}</span></td>
+      <td class="num-cell">${fmt(r.intraScore)}</td>
+    </tr>`;
+  }).join('');
+}
+
+document.querySelectorAll('#mouTable thead th').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const key = th.dataset.key;
+    const map = {sr:'sr',parameter:'parameter',unit:'unit',weightage:'weightage',annualTarget:'annualTarget',cumTarget:'cumTarget',actual:'actual',rating:'rating',score:'intraScore'};
+    const k = map[key];
+    if(sortKey===k) sortDir *= -1; else { sortKey=k; sortDir=1; }
+    document.querySelectorAll('#mouTable thead th').forEach(t=>t.classList.remove('sorted'));
+    th.classList.add('sorted');
+    renderTable();
+  });
+});
+document.querySelectorAll('.chip-filter').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    activeFilter = btn.dataset.filter;
+    document.querySelectorAll('.chip-filter').forEach(b=>{
+      b.classList.remove('active');
+      b.style.background=''; b.style.color=b.style.borderColor; 
+    });
+    btn.classList.add('active');
+    btn.style.background = getComputedStyle(btn).borderColor;
+    btn.style.color = '#fff';
+    renderTable();
+  });
+});
+document.getElementById('searchInput').addEventListener('input', (e)=>{
+  searchTerm = e.target.value;
+  renderTable();
+});
+
+document.getElementById('toggleSettings').addEventListener('click', ()=>{
+  const bar = document.getElementById('settingsBar');
+  bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+});
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const url = document.getElementById('csvUrlInput').value.trim();
+  if(!url) return;
+  localStorage.setItem(LS_KEY, url);
+  loadFromUrl(url);
+});
+
+let autoRefreshTimer = null;
+const AUTO_REFRESH_MS = 30000;
+async function loadFromUrl(url, silent){
+  const statusEl = document.getElementById('statusMsg');
+  if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
+  try{
+    const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    parseCSV(text);
+    renderHero();
+    renderFocusList();
+    renderTable();
+    const now = new Date().toLocaleTimeString();
+    statusEl.textContent = 'Live · auto-refreshing every 30s · last update ' + now; statusEl.className='status ok';
+    document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
+    document.getElementById('veil').classList.add('hide');
+    if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(()=> loadFromUrl(url, true), AUTO_REFRESH_MS);
+  }catch(err){
+    statusEl.textContent = 'Could not load data: ' + err.message; statusEl.className='status err';
+    document.getElementById('veil').classList.add('hide');
+  }
+}
+
+window.addEventListener('load', ()=>{
+  const saved = localStorage.getItem(LS_KEY) || DEFAULT_CSV_URL;
+  if(saved){
+    document.getElementById('csvUrlInput').value = saved;
+    loadFromUrl(saved);
+  } else {
+    document.getElementById('veil').classList.add('hide');
+    document.getElementById('settingsBar').style.display='flex';
+  }
+});
+</script>
+</body>
+</html>
