@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Daily Sale Monitoring Dashboard — RSO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+:root{
+  --bg:#0a1826; --bg-2:#081420;
+  --panel:#0f2338; --panel-2:#132a42;
+  --border:rgba(255,255,255,0.08); --border-2:rgba(255,255,255,0.14);
+  --text:#eaf2f7; --text-dim:#8fa6bb; --text-dim2:#5f7d94;
+  --ms:#38b08a; --ms-glow:rgba(56,176,138,0.35);
+  --hsd:#e8a33d; --hsd-glow:rgba(232,163,61,0.35);
+  --good:#4ade80; --bad:#f2665e; --amber-line:#f2a93b;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:
+    radial-gradient(ellipse 1200px 600px at 15% -10%, rgba(56,176,138,0.08), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 100% 0%, rgba(232,163,61,0.07), transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; padding:28px 28px 60px;
+}
+.wrap{max-width:1320px; margin:0 auto;}
+.topbar{display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid var(--border-2); padding-bottom:20px; margin-bottom:18px; flex-wrap:wrap; gap:16px;}
+.brand-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:var(--amber-line); text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:8px;}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--good); box-shadow:0 0 0 0 rgba(74,222,128,.6); animation:pulse 2s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}70%{box-shadow:0 0 0 7px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:38px; letter-spacing:.01em; line-height:1;}
+h1 span{color:var(--text-dim2); font-weight:500;}
+.topbar-right{text-align:right;}
+.date-badge{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--text); background:var(--panel-2); border:1px solid var(--border-2); padding:8px 14px; border-radius:8px; display:inline-flex; gap:10px; align-items:center;}
+.date-badge b{color:var(--amber-line); font-weight:600;}
+.legend{display:flex; gap:16px; margin-top:10px; justify-content:flex-end; font-size:12px; color:var(--text-dim);}
+.legend span{display:inline-flex; align-items:center; gap:6px;}
+.dot{width:9px;height:9px;border-radius:2px;} .dot.ms{background:var(--ms);} .dot.hsd{background:var(--hsd);}
+
+/* settings bar */
+.settings{display:flex; gap:8px; align-items:center; background:var(--panel-2); border:1px solid var(--border-2); border-radius:10px; padding:10px 12px; margin-bottom:22px; flex-wrap:wrap;}
+.settings input{flex:1; min-width:220px; background:var(--bg-2); border:1px solid var(--border); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 10px; border-radius:6px;}
+.settings input::placeholder{color:var(--text-dim2);}
+.settings button{background:var(--amber-line); color:#0a1826; border:none; font-weight:700; font-size:12px; padding:9px 16px; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace;}
+.settings button:hover{filter:brightness(1.08);}
+.settings .status{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim2);}
+.settings .status.ok{color:var(--good);} .settings .status.err{color:var(--bad);}
+
+.section-label{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dim2); margin:34px 0 12px; display:flex; align-items:center; gap:10px;}
+.section-label::after{content:''; flex:1; height:1px; background:var(--border);}
+
+.grid{display:grid; gap:16px;}
+.grid-2{grid-template-columns:1fr 1fr;} .grid-3{grid-template-columns:repeat(3,1fr);}
+@media(max-width:1000px){.grid-2,.grid-3{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+.card{background:linear-gradient(180deg, var(--panel-2), var(--panel)); border:1px solid var(--border); border-radius:14px; padding:20px; position:relative; overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg, var(--ms), var(--hsd)); opacity:.55;}
+.card-title{font-size:13px; font-weight:600; color:var(--text); margin-bottom:2px;}
+.card-sub{font-size:11px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; margin-bottom:14px;}
+
+.hero-card .tabs{display:flex; gap:6px; margin-bottom:16px;}
+.tab-btn{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; background:transparent; border:1px solid var(--border-2); color:var(--text-dim); padding:6px 12px; border-radius:20px; cursor:pointer; transition:.2s;}
+.tab-btn.active{background:var(--amber-line); color:#0a1826; border-color:var(--amber-line); font-weight:600;}
+.tab-btn:hover:not(.active){border-color:var(--text-dim); color:var(--text);}
+.gauge-row{display:flex; gap:28px; align-items:center; flex-wrap:wrap;}
+.gauge-block{display:flex; align-items:center; gap:16px; flex:1; min-width:220px;}
+.gauge-svg{flex-shrink:0;}
+.gauge-num{font-family:'Big Shoulders Display'; font-size:30px; font-weight:700; line-height:1;}
+.gauge-label{font-size:11.5px; color:var(--text-dim); font-weight:600; margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em;}
+.gauge-meta{font-size:11.5px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; margin-top:4px;}
+.chip{display:inline-flex; align-items:center; gap:4px; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px; margin-top:6px;}
+.chip.up{color:var(--good); background:rgba(74,222,128,.12);} .chip.down{color:var(--bad); background:rgba(242,102,94,.12);}
+
+.bar-group{margin-bottom:16px;} .bar-group:last-child{margin-bottom:0;}
+.bar-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;}
+.bar-name{font-size:12px; color:var(--text-dim); font-weight:500;}
+.bar-val{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--text); font-weight:600;}
+.bar-track{height:9px; background:rgba(255,255,255,0.06); border-radius:6px; overflow:hidden; position:relative;}
+.bar-fill{height:100%; border-radius:6px; width:0%; transition:width 1.1s cubic-bezier(.16,1,.3,1);}
+.bar-fill.ms{background:linear-gradient(90deg,#237a5f,var(--ms)); box-shadow:0 0 12px var(--ms-glow);}
+.bar-fill.hsd{background:linear-gradient(90deg,#a9711f,var(--hsd)); box-shadow:0 0 12px var(--hsd-glow);}
+
+.tank-row{display:flex; gap:26px; align-items:flex-end; justify-content:center; padding:6px 0 4px;}
+.tank-item{text-align:center;}
+.tank-shell{width:64px; height:150px; border:2px solid var(--border-2); border-radius:8px 8px 4px 4px; position:relative; background:rgba(255,255,255,.03); overflow:hidden; margin:0 auto 10px;}
+.tank-fill{position:absolute; bottom:0; left:0; right:0; height:0%; transition:height 1.2s cubic-bezier(.16,1,.3,1);}
+.tank-fill.ms{background:linear-gradient(180deg, var(--ms), #1c5f49);} .tank-fill.hsd{background:linear-gradient(180deg, var(--hsd), #96660f);}
+.tank-fill::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.5);}
+.tank-pct{font-family:'Big Shoulders Display'; font-size:20px; font-weight:700;}
+.tank-cap{font-size:10.5px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; margin-top:2px;}
+.tank-name{font-size:11px; color:var(--text-dim); margin-top:6px; font-weight:600;}
+
+.stat-mini{text-align:center; padding:14px 8px; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:10px;}
+.stat-mini .lab{font-size:10px; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; font-family:'IBM Plex Mono',monospace;}
+.stat-pair{display:flex; justify-content:center; gap:14px;} .stat-pair div{flex:1;}
+.stat-pair .n{font-family:'Big Shoulders Display'; font-size:24px; font-weight:700;}
+.stat-pair .u{font-size:9.5px; color:var(--text-dim2); text-transform:uppercase;}
+
+.trend-card .trend-flow{display:flex; align-items:center; justify-content:center; gap:14px; margin-top:10px;}
+.trend-num{text-align:center;} .trend-num .n{font-family:'Big Shoulders Display'; font-size:32px; font-weight:700;}
+.trend-num .l{font-size:10px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; text-transform:uppercase;}
+.arrow-mid{display:flex; flex-direction:column; align-items:center; gap:2px;} .arrow-mid svg{width:26px; height:26px;}
+
+footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:11px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+.loading-veil{position:fixed; inset:0; background:var(--bg); z-index:50; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; font-family:'IBM Plex Mono',monospace; color:var(--text-dim); transition:opacity .4s; }
+.loading-veil.hide{opacity:0; pointer-events:none;}
+.spinner{width:34px;height:34px;border:3px solid var(--border-2); border-top-color:var(--amber-line); border-radius:50%; animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="loading-veil" id="veil"><div class="spinner"></div><div>Loading live data…</div></div>
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-eyebrow"><span class="pulse"></span>Regional Sales Office &middot; Live Snapshot</div>
+      <h1>Daily Sale Monitoring <span>— MS &amp; HSD</span></h1>
+    </div>
+    <div class="topbar-right">
+      <div class="date-badge">Reporting Date <b id="reportDate">—</b></div>
+      <div class="legend">
+        <span><span class="dot ms"></span>MS (Petrol)</span>
+        <span><span class="dot hsd"></span>HSD (Diesel)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings" id="settingsBar" style="display:none;">
+    <input type="text" id="csvUrlInput" placeholder="Paste your Google Sheet 'Publish to web' CSV link here…">
+    <button id="loadBtn">Load &amp; Save</button>
+    <span class="status" id="statusMsg">Not connected — using no data yet</span>
+  </div>
+  <div style="text-align:right; margin-bottom:10px;">
+    <button id="toggleSettings" style="background:none; border:1px solid var(--border-2); color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:10.5px; padding:5px 10px; border-radius:6px; cursor:pointer;">⚙ Data source settings</button>
+  </div>
+
+  <div class="section-label">Market Share</div>
+  <div class="grid grid-2">
+    <div class="card hero-card" id="cardIndustry">
+      <div class="card-title">Industry Market Share</div>
+      <div class="card-sub">RSO share vs total industry volume</div>
+      <div class="tabs">
+        <button class="tab-btn active" data-scope="industry" data-period="month">Current Month</button>
+        <button class="tab-btn" data-scope="industry" data-period="ytd">Cumulative</button>
+      </div>
+      <div class="gauge-row" id="gaugeIndustry"></div>
+    </div>
+    <div class="card hero-card" id="cardPSU">
+      <div class="card-title">PSU Market Share</div>
+      <div class="card-sub">RSO share among PSU oil companies</div>
+      <div class="tabs">
+        <button class="tab-btn active" data-scope="psu" data-period="month">Current Month</button>
+        <button class="tab-btn" data-scope="psu" data-period="ytd">Cumulative</button>
+      </div>
+      <div class="gauge-row" id="gaugePSU"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Sales Performance &amp; Target</div>
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Sales Performance</div>
+      <div class="card-sub" id="salesSub">Volumes in KL</div>
+      <div class="bar-group">
+        <div class="bar-head"><span class="bar-name">Sales (SAP) — Today</span><span class="bar-val" id="salesTodayVal"></span></div>
+        <div class="bar-track"><div class="bar-fill ms" id="salesTodayMS"></div></div>
+        <div class="bar-track" style="margin-top:5px;"><div class="bar-fill hsd" id="salesTodayHSD"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-head"><span class="bar-name">Cumulative — MS</span><span class="bar-val" id="cumValMS">MS <span class="chip up" id="cumGrMS"></span></span></div>
+        <div class="bar-track"><div class="bar-fill ms" id="cumMSCY"></div></div>
+        <div class="bar-track" style="margin-top:5px;"><div class="bar-fill ms" id="cumMSLY" style="opacity:.35"></div></div>
+        <div class="bar-head" style="margin-top:10px;"><span class="bar-name">Cumulative — HSD</span><span class="bar-val" id="cumValHSD">HSD <span class="chip up" id="cumGrHSD"></span></span></div>
+        <div class="bar-track"><div class="bar-fill hsd" id="cumHSDCY"></div></div>
+        <div class="bar-track" style="margin-top:5px;"><div class="bar-fill hsd" id="cumHSDLY" style="opacity:.35"></div></div>
+      </div>
+      <div class="card-sub" id="salesFooter" style="margin-top:8px; margin-bottom:0;"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" id="targetTitle">Target</div>
+      <div class="card-sub">Base volume, monthly target &amp; gap to close</div>
+      <div class="bar-group">
+        <div class="bar-head"><span class="bar-name" id="targetHeadMS"></span><span class="bar-val" id="targetGapMS"></span></div>
+        <div class="bar-track"><div class="bar-fill ms" id="targetBarMS"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-head"><span class="bar-name" id="targetHeadHSD"></span><span class="bar-val" id="targetGapHSD"></span></div>
+        <div class="bar-track"><div class="bar-fill hsd" id="targetBarHSD"></div></div>
+      </div>
+      <div style="display:flex; gap:14px; margin-top:16px;">
+        <div class="stat-mini" style="flex:1;"><div class="lab">Target Growth · MS</div><div class="n" id="tgGrowthMS" style="font-family:'Big Shoulders Display'; font-size:22px; color:var(--ms);"></div></div>
+        <div class="stat-mini" style="flex:1;"><div class="lab">Target Growth · HSD</div><div class="n" id="tgGrowthHSD" style="font-family:'Big Shoulders Display'; font-size:22px; color:var(--hsd);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Inventory &amp; Dryouts</div>
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="card-title">Tank Inventory</div>
+      <div class="card-sub">% of tankage filled — today vs previous reading</div>
+      <div class="tank-row">
+        <div class="tank-item"><div class="tank-shell"><div class="tank-fill ms" id="tankMS"></div></div><div class="tank-pct" id="tankMSPct"></div><div class="tank-cap" id="tankMSCap"></div><div class="tank-name" style="color:var(--ms);">MS</div></div>
+        <div class="tank-item"><div class="tank-shell"><div class="tank-fill hsd" id="tankHSD"></div></div><div class="tank-pct" id="tankHSDPct"></div><div class="tank-cap" id="tankHSDCap"></div><div class="tank-name" style="color:var(--hsd);">HSD</div></div>
+      </div>
+      <div class="card-sub" id="tankFooter" style="text-align:center; margin-top:6px; margin-bottom:0;"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dryouts</div>
+      <div class="card-sub" id="dryoutSub">Volume loss &amp; outlet count</div>
+      <div class="grid grid-2" style="gap:10px;">
+        <div class="stat-mini"><div class="lab">Vol. Loss MS</div><div class="n" id="dryVolMS" style="font-family:'Big Shoulders Display';font-size:26px;color:var(--bad);"></div><div class="u">KL</div></div>
+        <div class="stat-mini"><div class="lab">Vol. Loss HSD</div><div class="n" id="dryVolHSD" style="font-family:'Big Shoulders Display';font-size:26px;color:var(--bad);"></div><div class="u">KL</div></div>
+        <div class="stat-mini"><div class="lab">Dryout Outlets MS</div><div class="n" id="dryCntMS" style="font-family:'Big Shoulders Display';font-size:26px;"></div><div class="u">Nos.</div></div>
+        <div class="stat-mini"><div class="lab">Dryout Outlets HSD</div><div class="n" id="dryCntHSD" style="font-family:'Big Shoulders Display';font-size:26px;"></div><div class="u">Nos.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" id="commTitle">Commissioning</div>
+      <div class="card-sub">Outlet class-wise, Nos.</div>
+      <div class="grid grid-2" style="gap:8px;">
+        <div class="stat-mini"><div class="lab">A Class</div><div class="stat-pair"><div><div class="n" id="commA_MS" style="color:var(--ms)"></div></div><div><div class="n" id="commA_HSD" style="color:var(--hsd)"></div></div></div></div>
+        <div class="stat-mini"><div class="lab">B Class</div><div class="stat-pair"><div><div class="n" id="commB_MS" style="color:var(--ms)"></div></div><div><div class="n" id="commB_HSD" style="color:var(--hsd)"></div></div></div></div>
+        <div class="stat-mini"><div class="lab">D1 Class</div><div class="stat-pair"><div><div class="n" id="commD1_MS" style="color:var(--ms)"></div></div><div><div class="n" id="commD1_HSD" style="color:var(--hsd)"></div></div></div></div>
+        <div class="stat-mini"><div class="lab">Overall IOC</div><div class="stat-pair"><div><div class="n" id="commIOC_MS" style="color:var(--ms)"></div></div><div><div class="n" id="commIOC_HSD" style="color:var(--hsd)"></div></div></div></div>
+      </div>
+      <div class="card-sub" id="commFooter" style="text-align:center; margin-top:8px; margin-bottom:0;"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Outlet Health</div>
+  <div class="grid grid-3">
+    <div class="card trend-card">
+      <div class="card-title">YTS — Yet to Start</div><div class="card-sub">Outlet count, MS network</div>
+      <div class="trend-flow">
+        <div class="trend-num"><div class="n" id="ytsOld"></div><div class="l" id="ytsOldL"></div></div>
+        <div class="arrow-mid" id="ytsArrow"></div>
+        <div class="trend-num"><div class="n" id="ytsNew"></div><div class="l" id="ytsNewL"></div></div>
+      </div>
+    </div>
+    <div class="card trend-card">
+      <div class="card-title">NIL Selling Outlets</div><div class="card-sub">Outlet count, MS network</div>
+      <div class="trend-flow">
+        <div class="trend-num"><div class="n" id="nilOld"></div><div class="l" id="nilOldL"></div></div>
+        <div class="arrow-mid" id="nilArrow"></div>
+        <div class="trend-num"><div class="n" id="nilNew"></div><div class="l" id="nilNewL"></div></div>
+      </div>
+    </div>
+    <div class="card trend-card">
+      <div class="card-title">NFR Store Outlets</div><div class="card-sub">Outlet count, MS network</div>
+      <div class="trend-flow">
+        <div class="trend-num"><div class="n" id="nfrOld"></div><div class="l" id="nfrOldL"></div></div>
+        <div class="arrow-mid" id="nfrArrow"></div>
+        <div class="trend-num"><div class="n" id="nfrNew"></div><div class="l" id="nfrNewL"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Value Added Business</div>
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Lube Sales</div><div class="card-sub">CY vs LY, volumes in KL</div>
+      <div class="bar-group">
+        <div class="bar-head"><span class="bar-name">Month</span><span class="bar-val" id="lubeMonthVal"></span></div>
+        <div class="bar-track"><div class="bar-fill ms" id="lubeMonthCY"></div></div>
+        <div class="bar-track" style="margin-top:5px;"><div class="bar-fill ms" id="lubeMonthLY" style="opacity:.35"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-head"><span class="bar-name">Cumulative</span><span class="bar-val" id="lubeCumVal"></span></div>
+        <div class="bar-track"><div class="bar-fill ms" id="lubeCumCY"></div></div>
+        <div class="bar-track" style="margin-top:5px;"><div class="bar-fill ms" id="lubeCumLY" style="opacity:.35"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Xtrapower</div><div class="card-sub">CY vs LY growth, %</div>
+      <div class="bar-group">
+        <div class="bar-head"><span class="bar-name">Month</span><span class="bar-val" id="xpMonthVal"></span></div>
+        <div class="bar-track"><div class="bar-fill hsd" id="xpMonthCY"></div></div>
+        <div class="bar-track" style="margin-top:5px;"><div class="bar-fill hsd" id="xpMonthLY" style="opacity:.35"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-head"><span class="bar-name">Cumulative</span><span class="bar-val" id="xpCumVal"></span></div>
+        <div class="bar-track"><div class="bar-fill hsd" id="xpCumCY"></div></div>
+        <div class="bar-track" style="margin-top:5px;"><div class="bar-fill hsd" id="xpCumLY" style="opacity:.35"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Source: live Google Sheet feed &middot; Daily Sale Monitoring Dashboard — RSO</span>
+    <span id="lastUpdated"></span>
+  </footer>
+</div>
+
+<script>
+const LS_KEY = 'rso_dashboard_csv_url';
+const DEFAULT_CSV_URL = 'https://raw.githubusercontent.com/shivamindianoil-eng/rso-dashboard/refs/heads/main/data.csv';
+let RAW = {}; // key: "Section|||Parameter" -> {unit, ms, hsd}
+let reportDateStr = '—';
+
+function fmt(n){
+  if(n===undefined||n===null||isNaN(n)) return '—';
+  return Number(n).toLocaleString('en-IN', {maximumFractionDigits:2});
+}
+function num(v){ const n = parseFloat(String(v).replace(/,/g,'')); return isNaN(n) ? null : n; }
+
+function get(section, parameter){
+  return RAW[section+'|||'+parameter] || {ms:null, hsd:null, unit:''};
+}
+
+function parseCSV(text){
+  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true}).data;
+  RAW = {};
+  let curSection = '';
+  let startIdx = 0;
+  // find header row index (row containing 'Parameter')
+  for(let i=0;i<parsed.length;i++){
+    if(parsed[i].some(c => String(c).trim().toLowerCase()==='parameter')){ startIdx = i+1; 
+      const titleRow = parsed[0] ? parsed[0][0] : '';
+      const m = String(titleRow).match(/Dated\s+([\d\-A-Za-z]+)/i);
+      if(m) reportDateStr = m[1];
+      break;
+    }
+  }
+  for(let i=startIdx;i<parsed.length;i++){
+    const row = parsed[i];
+    if(!row || row.length<2) continue;
+    const [sec, param, unit, ms, hsd] = row;
+    if(sec && String(sec).trim()!=='') curSection = String(sec).trim();
+    if(!param || String(param).trim()==='') continue;
+    RAW[curSection+'|||'+String(param).trim()] = {unit:(unit||'').trim(), ms:num(ms), hsd:num(hsd)};
+  }
+}
+
+/* ===== gauges ===== */
+function ring(pct, color, glow){
+  const r=42, c=2*Math.PI*r, off = c - (Math.min(Math.max(pct,0),100)/100)*c;
+  return `<svg class="gauge-svg" width="104" height="104" viewBox="0 0 104 104">
+    <circle cx="52" cy="52" r="${r}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="9"/>
+    <circle cx="52" cy="52" r="${r}" fill="none" stroke="${color}" stroke-width="9" stroke-linecap="round"
+      stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${off}"
+      transform="rotate(-90 52 52)" style="filter:drop-shadow(0 0 6px ${glow}); transition:stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1);"/>
+  </svg>`;
+}
+function gaugeData(scope, period){
+  const sec = scope==='industry' ? 'Mkt Shr Ind' : 'Mkt Shr PSU';
+  const pfx = scope==='industry' ? 'IND' : 'PSU';
+  if(period==='month'){
+    const cur = get(sec, `${pfx} Abs Mkt Shr for month of Jul-26`);
+    const ly  = get(sec, `${pfx} Mkt Shr for month of Jul-25`);
+    const gr  = get(sec, `${pfx} Mkt Shr Gr. for month of Jul-26`);
+    return {ms:{cur:cur.ms, ly:ly.ms, gr:gr.ms}, hsd:{cur:cur.hsd, ly:ly.hsd, gr:gr.hsd}, label:'vs same period LY'};
+  } else {
+    const cur = get(sec, `${pfx} Abs Mkt Shr for month of Apr-Jul-26`);
+    const ly  = get(sec, pfx==='IND' ? `${pfx} Mkt Shr for month of Apr Jul-25` : `${pfx} Mkt Shr for month of Apr Jul-25`);
+    const gr  = get(sec, `${pfx} Mkt Shr Gr. for month of Apr Jul-25`);
+    return {ms:{cur:cur.ms, ly:ly.ms, gr:gr.ms}, hsd:{cur:cur.hsd, ly:ly.hsd, gr:gr.hsd}, label:'vs same period LY'};
+  }
+}
+function renderGauge(containerId, scope, period){
+  const d = gaugeData(scope, period);
+  const el = document.getElementById(containerId);
+  const block = (label,val,color,glow,gr,ly)=>`
+    <div class="gauge-block">
+      ${ring(val, color, glow)}
+      <div>
+        <div class="gauge-label" style="color:${color}">${label}</div>
+        <div class="gauge-num">${val===null?'—':val+'%'}</div>
+        <div class="chip ${gr>=0?'up':'down'}">${gr===null?'—':(gr>=0?'▲':'▼')+' '+Math.abs(gr)+' pp'}</div>
+        <div class="gauge-meta">${d.label}: ${ly===null?'—':ly+'%'}</div>
+      </div>
+    </div>`;
+  el.innerHTML = block('MS', d.ms.cur, 'var(--ms)', 'var(--ms-glow)', d.ms.gr, d.ms.ly) +
+                 block('HSD', d.hsd.cur, 'var(--hsd)', 'var(--hsd-glow)', d.hsd.gr, d.hsd.ly);
+  requestAnimationFrame(()=> setTimeout(()=>{
+    el.querySelectorAll('circle[data-target]').forEach(c=> c.style.strokeDashoffset = c.getAttribute('data-target'));
+  },60));
+}
+
+function setBar(id, pct){ const e=document.getElementById(id); if(e) e.style.width = Math.max(0,Math.min(100,pct))+'%'; }
+function setHeight(id, pct){ const e=document.getElementById(id); if(e) e.style.height = Math.max(0,Math.min(100,pct))+'%'; }
+function setText(id, txt){ const e=document.getElementById(id); if(e) e.textContent = txt; }
+
+function renderAll(){
+  document.getElementById('reportDate').textContent = reportDateStr;
+
+  renderGauge('gaugeIndustry','industry','month');
+  renderGauge('gaugePSU','psu','month');
+
+  // Sales performance
+  const today = get('Sales Performance', RAW_KEYS.salesToday);
+  const cum = get('Sales Performance', 'Cumulative Sales till '+RAW_KEYS.salesDate);
+  const ly = get('Sales Performance', RAW_KEYS.lyLabel);
+  const gr = get('Sales Performance', 'Growth');
+  const nozzle = get('Sales Performance', RAW_KEYS.nozzleToday);
+
+  setText('salesTodayVal', `${fmt(today.ms)} / ${fmt(today.hsd)} KL`);
+  const maxToday = Math.max(today.ms||0, today.hsd||0, 1);
+  setBar('salesTodayMS', (today.ms/maxToday)*100);
+  setBar('salesTodayHSD', (today.hsd/maxToday)*100);
+
+  setText('cumGrMS', gr.ms!==null ? (gr.ms>=0?'▲':'▼')+Math.abs(gr.ms)+'%' : '—');
+  setText('cumGrHSD', gr.hsd!==null ? (gr.hsd>=0?'▲':'▼')+Math.abs(gr.hsd)+'%' : '—');
+  document.getElementById('cumGrMS').className = 'chip '+(gr.ms>=0?'up':'down');
+  document.getElementById('cumGrHSD').className = 'chip '+(gr.hsd>=0?'up':'down');
+  const maxMS = Math.max(cum.ms||0, ly.ms||0, 1), maxHSD = Math.max(cum.hsd||0, ly.hsd||0, 1);
+  setBar('cumMSCY', (cum.ms/maxMS)*100); setBar('cumMSLY', (ly.ms/maxMS)*100);
+  setBar('cumHSDCY', (cum.hsd/maxHSD)*100); setBar('cumHSDLY', (ly.hsd/maxHSD)*100);
+  setText('salesFooter', `Cumulative — solid = CY ${fmt(cum.ms)} / ${fmt(cum.hsd)} KL · faded = LY ${fmt(ly.ms)} / ${fmt(ly.hsd)} KL · Nozzle sale today: ${fmt(nozzle.ms)} / ${fmt(nozzle.hsd)} KL`);
+
+  // Target
+  const base = get('Target', RAW_KEYS.baseVolume);
+  const target = get('Target', 'Target for Current Month');
+  const tgrowth = get('Target', 'Target Growth for Current Month');
+  const gap = get('Target', 'Target vs Actual');
+  setText('targetHeadMS', `MS · Target ${fmt(target.ms)} KL (Base ${fmt(base.ms)})`);
+  setText('targetHeadHSD', `HSD · Target ${fmt(target.hsd)} KL (Base ${fmt(base.hsd)})`);
+  setText('targetGapMS', `Gap ${fmt(gap.ms)} KL`);
+  setText('targetGapHSD', `Gap ${fmt(gap.hsd)} KL`);
+  setBar('targetBarMS', target.ms ? ((target.ms-gap.ms)/target.ms)*100 : 0);
+  setBar('targetBarHSD', target.hsd ? ((target.hsd-gap.hsd)/target.hsd)*100 : 0);
+  setText('tgGrowthMS', tgrowth.ms!==null ? `+${tgrowth.ms}%` : '—');
+  setText('tgGrowthHSD', tgrowth.hsd!==null ? `+${tgrowth.hsd}%` : '—');
+
+  // Inventory
+  const tankage = get('Inventory','Tankage');
+  const todayInv = get('Inventory',"Today's Inventory");
+  const prevInv = get('Inventory', RAW_KEYS.prevInventory);
+  setHeight('tankMS', todayInv.ms); setHeight('tankHSD', todayInv.hsd);
+  setText('tankMSPct', todayInv.ms!==null?todayInv.ms+'%':'—'); setText('tankHSDPct', todayInv.hsd!==null?todayInv.hsd+'%':'—');
+  setText('tankMSCap', `Tankage ${fmt(tankage.ms)} KL`); setText('tankHSDCap', `Tankage ${fmt(tankage.hsd)} KL`);
+  setText('tankFooter', `Previous level — MS ${prevInv.ms!==null?prevInv.ms+'%':'—'} · HSD ${prevInv.hsd!==null?prevInv.hsd+'%':'—'}`);
+
+  // Dryouts
+  const dryVol = get('Dryouts', RAW_KEYS.dryVolLabel);
+  const dryCnt = get('Dryouts', RAW_KEYS.dryCntLabel);
+  setText('dryVolMS', fmt(dryVol.ms)); setText('dryVolHSD', fmt(dryVol.hsd));
+  setText('dryCntMS', fmt(dryCnt.ms)); setText('dryCntHSD', fmt(dryCnt.hsd));
+
+  // Commissioning
+  const A = get(RAW_KEYS.commSection, RAW_KEYS.commA), B = get(RAW_KEYS.commSection, RAW_KEYS.commB),
+        D1 = get(RAW_KEYS.commSection, RAW_KEYS.commD1), IOC = get(RAW_KEYS.commSection, RAW_KEYS.commIOC),
+        PSU = get(RAW_KEYS.commSection, RAW_KEYS.commPSU);
+  setText('commA_MS', fmt(A.ms)); setText('commA_HSD', fmt(A.hsd));
+  setText('commB_MS', fmt(B.ms)); setText('commB_HSD', fmt(B.hsd));
+  setText('commD1_MS', fmt(D1.ms)); setText('commD1_HSD', fmt(D1.hsd));
+  setText('commIOC_MS', fmt(IOC.ms)); setText('commIOC_HSD', fmt(IOC.hsd));
+  setText('commFooter', `Overall PSU — ${fmt(PSU.ms)} / ${fmt(PSU.hsd)} Nos.`);
+
+  // Outlet health trend cards
+  function trend(section, oldKey, newKey, prefix, positiveIsGood){
+    const o = get(section, oldKey), n = get(section, newKey);
+    const oldEl = document.getElementById(prefix+'Old'), newEl = document.getElementById(prefix+'New');
+    oldEl.textContent = fmt(o.ms); newEl.textContent = fmt(n.ms);
+    document.getElementById(prefix+'OldL').textContent = oldKey.replace('As on ','');
+    document.getElementById(prefix+'NewL').textContent = newKey.replace('As on ','');
+    let pct = null;
+    if(o.ms) pct = ((n.ms-o.ms)/o.ms)*100;
+    const up = pct!==null && pct>=0;
+    const good = up===positiveIsGood;
+    const color = pct===null ? 'var(--text-dim)' : (good ? 'var(--good)':'var(--bad)');
+    newEl.style.color = color;
+    document.getElementById(prefix+'Arrow').innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <span class="chip ${good?'up':'down'}" style="margin-top:0; ${good?'':'color:var(--bad);background:rgba(242,102,94,.12);'}">${pct===null?'—':(up?'▲':'▼')+Math.abs(pct).toFixed(0)+'%'}</span>`;
+  }
+  trend('YTS', RAW_KEYS.yts1, RAW_KEYS.yts2, 'yts', false); // decrease is good
+  trend('NIL Selling', RAW_KEYS.nil1, RAW_KEYS.nil2, 'nil', false); // decrease is good
+  trend('NFR Store', RAW_KEYS.nfr1, RAW_KEYS.nfr2, 'nfr', true); // increase is good
+
+  // Lube & Xtrapower
+  const lubeM = get('Lube Sales', RAW_KEYS.monthCYLY), lubeC = get('Lube Sales', RAW_KEYS.cumCYLY);
+  setText('lubeMonthVal', `CY ${fmt(lubeM.ms)} / LY ${fmt(lubeM.hsd)} KL`);
+  setText('lubeCumVal', `CY ${fmt(lubeC.ms)} / LY ${fmt(lubeC.hsd)} KL`);
+  setBar('lubeMonthCY', 100); setBar('lubeMonthLY', lubeM.ms ? (lubeM.hsd/lubeM.ms)*100 : 0);
+  setBar('lubeCumCY', 100); setBar('lubeCumLY', lubeC.ms ? (lubeC.hsd/lubeC.ms)*100 : 0);
+
+  const xpM = get('Xtrapower', RAW_KEYS.monthCYLY), xpC = get('Xtrapower', RAW_KEYS.cumCYLY);
+  setText('xpMonthVal', `CY ${fmt(xpM.ms)}% / LY ${fmt(xpM.hsd)}%`);
+  setText('xpCumVal', `CY ${fmt(xpC.ms)}% / LY ${fmt(xpC.hsd)}%`);
+  setBar('xpMonthCY', 100); setBar('xpMonthLY', xpM.ms ? (xpM.hsd/xpM.ms)*100 : 0);
+  setBar('xpCumCY', 100); setBar('xpCumLY', xpC.ms ? (xpC.hsd/xpC.ms)*100 : 0);
+
+  document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
+
+  setTimeout(()=>{
+    document.querySelectorAll('.bar-fill').forEach(b=>{ /* widths already set directly */ });
+  }, 50);
+}
+
+// Keys that vary by date/label — auto-detected from whatever rows exist under each section,
+// falling back to the template's known labels.
+const RAW_KEYS = {
+  salesToday:null, salesDate:'', lyLabel:null, nozzleToday:null,
+  baseVolume:null, prevInventory:null, dryVolLabel:null, dryCntLabel:null,
+  commSection:'Commissioning Upto July 2026', commA:null, commB:null, commD1:null, commIOC:null, commPSU:null,
+  yts1:'As on 01.04.2026', yts2:'As on 01.08.2026',
+  nil1:'As on 01.04.2026', nil2:'As on 01.08.2026',
+  nfr1:'As on 01.04.2026', nfr2:'As on 01.08.2026',
+  monthCYLY:'Month CY vs LY', cumCYLY:'Cumulative CY vs LY'
+};
+
+function detectDynamicKeys(){
+  // scan RAW for section-specific parameter names to fill in date-dependent labels
+  const bySection = {};
+  Object.keys(RAW).forEach(k=>{
+    const [sec, param] = k.split('|||');
+    bySection[sec] = bySection[sec] || [];
+    bySection[sec].push(param);
+  });
+  const sp = bySection['Sales Performance'] || [];
+  RAW_KEYS.salesToday = sp.find(p=>p.startsWith('Sales (SAP) on')) || 'Sales (SAP) on 12-08-2026';
+  const cumParam = sp.find(p=>p.startsWith('Cumulative Sales till'));
+  RAW_KEYS.salesDate = cumParam ? cumParam.replace('Cumulative Sales till ','') : '12-08-2026';
+  RAW_KEYS.lyLabel = sp.find(p=>p.startsWith('LY')) || 'LY (Aug 2025)';
+  RAW_KEYS.nozzleToday = sp.find(p=>p.startsWith('Nozzle sale on')) || 'Nozzle sale on 12-08-2026';
+
+  const tg = bySection['Target'] || [];
+  RAW_KEYS.baseVolume = tg.find(p=>p.startsWith('Base Volume')) || 'Base Volume for Aug-26';
+
+  const inv = bySection['Inventory'] || [];
+  RAW_KEYS.prevInventory = inv.find(p=>p.startsWith('Inventory as on')) || 'Inventory as on 01-08-2026';
+
+  const dr = bySection['Dryouts'] || [];
+  RAW_KEYS.dryVolLabel = dr.find(p=>p.startsWith('Volume Loss')) || 'Volume Loss MS & HSD';
+  RAW_KEYS.dryCntLabel = dr.find(p=>p.startsWith('Dryouts on')) || 'Dryouts on 12-08-2026';
+
+  const commSectionName = Object.keys(bySection).find(s=>s.startsWith('Commissioning')) || RAW_KEYS.commSection;
+  RAW_KEYS.commSection = commSectionName;
+  const cm = bySection[commSectionName] || [];
+  RAW_KEYS.commA = cm.find(p=>p.startsWith('A Class')) || 'A Class IOC Month & Cumulative';
+  RAW_KEYS.commB = cm.find(p=>p.startsWith('B Class')) || 'B Class IOC Month & Cumulative';
+  RAW_KEYS.commD1 = cm.find(p=>p.startsWith('D1 Class')) || 'D1 Class IOC Month & Cumulative';
+  RAW_KEYS.commIOC = cm.find(p=>p.startsWith('Overall IOC')) || 'Overall IOC Month & Cumulative';
+  RAW_KEYS.commPSU = cm.find(p=>p.startsWith('Overall PSU')) || 'Overall PSU Month & Cumulative';
+}
+
+let autoRefreshTimer = null;
+const AUTO_REFRESH_MS = 30000; // poll every 30s
+
+async function loadFromUrl(url, silent){
+  const statusEl = document.getElementById('statusMsg');
+  if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
+  try{
+    const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    parseCSV(text);
+    detectDynamicKeys();
+    renderAll();
+    const now = new Date().toLocaleTimeString();
+    statusEl.textContent = 'Live · auto-refreshing every 30s · last update ' + now; statusEl.className='status ok';
+    document.getElementById('veil').classList.add('hide');
+    startAutoRefresh(url);
+  }catch(err){
+    statusEl.textContent = 'Could not load sheet: ' + err.message; statusEl.className='status err';
+    document.getElementById('veil').classList.add('hide');
+  }
+}
+
+function startAutoRefresh(url){
+  if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+  autoRefreshTimer = setInterval(()=> loadFromUrl(url, true), AUTO_REFRESH_MS);
+}
+
+document.getElementById('toggleSettings').addEventListener('click', ()=>{
+  const bar = document.getElementById('settingsBar');
+  bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+});
+
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const url = document.getElementById('csvUrlInput').value.trim();
+  if(!url) return;
+  localStorage.setItem(LS_KEY, url);
+  loadFromUrl(url);
+});
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const scope = btn.dataset.scope, period = btn.dataset.period;
+    const cardId = scope === 'industry' ? 'cardIndustry' : 'cardPSU';
+    document.querySelectorAll(`#${cardId} .tab-btn`).forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGauge(scope==='industry'?'gaugeIndustry':'gaugePSU', scope, period);
+  });
+});
+
+window.addEventListener('load', ()=>{
+  const saved = localStorage.getItem(LS_KEY) || DEFAULT_CSV_URL;
+  if(saved){
+    document.getElementById('csvUrlInput').value = saved;
+    loadFromUrl(saved);
+  } else {
+    document.getElementById('veil').classList.add('hide');
+  }
+});
+</script>
+</body>
+</html>
