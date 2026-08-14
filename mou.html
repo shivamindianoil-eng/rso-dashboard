@@ -130,6 +130,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
   <div class="settings" id="settingsBar" style="display:none;">
     <input type="text" id="csvUrlInput" placeholder="Paste your MOU data CSV raw link here…">
     <button id="loadBtn">Load &amp; Save</button>
+    <button id="resetBtn" style="background:#e8ecef; color:var(--text-dim);">Reset to Default</button>
     <span class="status" id="statusMsg">Not connected</span>
   </div>
   <div class="toggle-settings-row">
@@ -203,7 +204,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
 </div>
 
 <script>
-const LS_KEY = 'mou_dashboard_csv_url';
+const LS_KEY = 'mou_dashboard_csv_url_v2';
 const DEFAULT_CSV_URL = 'https://raw.githubusercontent.com/shivamindianoil-eng/rso-dashboard/refs/heads/main/mou-data.csv';
 let ROWS = [];
 let sortKey = 'sr', sortDir = 1;
@@ -396,6 +397,11 @@ document.getElementById('searchInput').addEventListener('input', (e)=>{
 document.getElementById('toggleSettings').addEventListener('click', ()=>{
   const bar = document.getElementById('settingsBar');
   bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(LS_KEY);
+  document.getElementById('csvUrlInput').value = DEFAULT_CSV_URL;
+  loadFromUrl(DEFAULT_CSV_URL);
 });
 document.getElementById('loadBtn').addEventListener('click', ()=>{
   const url = document.getElementById('csvUrlInput').value.trim();
