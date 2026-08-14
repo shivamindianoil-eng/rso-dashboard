@@ -1,0 +1,45 @@
+Daily Sale Monitoring Dashboard - RSO Dated 13-08-2026,,,,
+Section,Parameter,Unit,MS,HSD
+Mkt Shr Ind,IND Abs Mkt Shr for month of Jul-26,%,37.3,37.8
+,IND Mkt Shr for month of Jul-25,%,36.5,36.7
+,IND Mkt Shr Gr. for month of Jul-26,%,0.8,1.11
+,IND Abs Mkt Shr for month of Apr-Jul-26,%,37.6,40.4
+,IND Mkt Shr for month of Apr Jul-25,%,36.3,36.5
+,IND Mkt Shr Gr. for month of Apr Jul-25,%,1.3,3.9
+Mkt Shr PSU,PSU Mkt Share July'26 Actual,%,0.7,0.4
+,PSU Mkt Share July'26 Prorata,%,0.7,0.4
+,PSU Abs Mkt Shr for month of Jul-26,%,41.8,42.6
+,PSU Mkt Shr for month of Jul-25,%,41.1,42.2
+,PSU Mkt Shr Gr. for month of Jul-26,%,0.7,0.4
+,PSU Abs Mkt Shr for month of Apr-Jul-26,%,41.4,44.1
+,PSU Mkt Shr for month of Apr Jul-25,%,41.1,42.3
+,PSU Mkt Shr Gr. for month of Apr Jul-25,%,0.3,1.8
+Sales Performance,Sales (SAP) on 12-08-2026,KL,3279.0,5865.0
+,Cumulative Sales till 12-08-2026,KL,30171.0,67138.0
+,LY (Aug 2025),KL,27074.0,46429.0
+,Growth,%,11.4,44.6
+,Nozzle sale on 12-08-2026,KL,2908.0,4750.0
+Target,Base Volume for Aug-26,KL,96803.0,155392.0
+,Target for Current Month,KL,108971.0,178654.0
+,Target Growth for Current Month,%,12.6,15.0
+,Target vs Actual,KL,12011.0,2018.0
+Commissioning Upto July 2026,A Class IOC Month & Cumulative,Nos.,0.0,0.0
+,B Class IOC Month & Cumulative,Nos.,1.0,1.0
+,D1 Class IOC Month & Cumulative,Nos.,5.0,15.0
+,Overall IOC Month & Cumulative,Nos.,8.0,31.0
+,Overall PSU Month & Cumulative,Nos.,17.0,58.0
+Inventory,Tankage,KL,52595.0,71310.0
+,Today's Inventory,%,42.5,48.7
+,Inventory as on 01-08-2026,%,40.4,54.5
+Dryouts,Volume Loss MS & HSD,KL,1781.0,1340.0
+,Dryouts on 12-08-2026,Nos.,9.0,3.0
+YTS,As on 01.04.2026,Nos.,88.0,
+,As on 01.08.2026,Nos.,57.0,
+NIL Selling,As on 01.04.2026,Nos.,48.0,
+,As on 01.08.2026,Nos.,60.0,
+Lube Sales,Month CY vs LY,KL,220.0,202.0
+,Cumulative CY vs LY,KL,764.0,551.0
+NFR Store,As on 01.04.2026,Nos.,1262.0,
+,As on 01.08.2026,Nos.,1270.0,
+Xtrapower,Month CY vs LY,%,15.0,13.5
+,Cumulative CY vs LY,%,12.7,11.1
