@@ -1,45 +1,45 @@
-Daily Sale Monitoring Dashboard - RSO Dated 14-08-2026				
-Section	Parameter	Unit	MS	HSD
-Mkt Shr Ind	IND Abs Mkt Shr for month of Jul-26	%	37.3	37.8
-	IND Mkt Shr for month of Jul-25	%	36.5	36.7
-	IND Mkt Shr Gr. for month of Jul-26	%	0.8	1.11
-	IND Abs Mkt Shr for month of Apr-Jul-26	%	37.6	40.4
-	IND Mkt Shr for month of Apr Jul-25	%	36.3	36.5
-	IND Mkt Shr Gr. for month of Apr Jul-25	%	1.3	3.9
-Mkt Shr PSU	PSU Mkt Share July'26 Actual	%	0.7	0.4
-	PSU Mkt Share July'26 Prorata	%	0.7	0.4
-	PSU Abs Mkt Shr for month of Jul-26	%	41.8	42.6
-	PSU Mkt Shr for month of Jul-25	%	41.1	42.2
-	PSU Mkt Shr Gr. for month of Jul-26	%	0.7	0.4
-	PSU Abs Mkt Shr for month of Apr-Jul-26	%	41.4	44.1
-	PSU Mkt Shr for month of Apr Jul-25	%	41.1	42.3
-	PSU Mkt Shr Gr. for month of Apr Jul-25	%	0.3	1.8
-Sales Performance	Sales (SAP) on  13-08-2026	KL	3,723	6,614
-	Cumulative Sales till  13-08-2026	KL	33,894	73,751
-	LY (Aug 2025) 	KL	30,810	51,903
-	Growth	%	10	42.1
-	Nozzle sale on 13-08-2026	KL	3014	5591
-Target	Base Volume for Aug-26	KL	96803	155392
-	Target for Current Month	KL	108971	178654
-	Target Growth for Current Month	%	12.6	15
-	Target vs Actual	KL	11804	1168
-Commissioning Upto July 2026	A Class IOC Month & Cumulative 	Nos.	0	0
-	B Class IOC Month & Cumulative 	Nos.	1	1
-	D1 Class IOC Month & Cumulative 	Nos.	5	15
-	Overall IOC Month & Cumulative 	Nos.	8	31
-	Overall PSU Month & Cumulative 	Nos.	17	58
-Inventory	Tankage	KL	52545	71140
-	Today's Inventory	%	43.7	50
-	Inventory as on 01-08-2026	%	40.4	54.5
-Dryouts	Volume Loss MS & HSD 	KL	1820	0
-	Dryouts on  13-08-2026	Nos.	9	0
-YTS 	As on 01.04.2026	Nos.	88	
-	As on 01.08.2026 	Nos.	57	
-NIL Selling 	As on 01.04.2026	Nos.	48	
-	As on 01.08.2026 	Nos.	60	
-Lube Sales 	Month CY vs LY 	KL	220	202
-	Cumulative CY vs LY 	KL	764	551
-NFR Store 	As on 01.04.2026	Nos.	1262	
-	As on 01.08.2026 	Nos.	1270	
-Xtrapower 	Month CY vs LY 	%	15	13.5
-	Cumulative CY vs LY 	%	12.7	11.1
+﻿Daily Sale Monitoring Dashboard - RSO Dated 17-08-2026,,,,,,16,16-08-2026,17-08-2026
+Section,Parameter,Unit,MS,HSD,,,,
+Mkt Shr Ind,IND Abs Mkt Shr for month of Jul-26,%,37.3,37.8,,,Sales (SAP) on ,
+,IND Mkt Shr for month of Jul-25,%,36.5,36.7,,,Cumulative Sales till ,
+,IND Mkt Shr Gr. for month of Jul-26,%,0.8,1.11,,,,
+,IND Abs Mkt Shr for month of Apr-Jul-26,%,37.6,40.4,,,,
+,IND Mkt Shr for month of Apr Jul-25,%,36.3,36.5,,,,
+,IND Mkt Shr Gr. for month of Apr Jul-25,%,1.3,3.9,,,Cumulative Sales till 28-04-26,
+Mkt Shr PSU,PSU Mkt Share 1-14 Aug'26 Actual,%,-0.3,0.5,,,Nozzle sale on,
+,PSU Mkt Share 1-14 Aug'26 Prorata,%,-1.8,1.1,,,,
+,PSU Abs Mkt Shr for month of Jul-26,%,41.8,42.6,,,Daily Sale Monitoring Dashboard - RSO Dated,
+,PSU Mkt Shr for month of Jul-25,%,41.1,42.2,,,Dryouts on ,
+,PSU Mkt Shr Gr. for month of Jul-26,%,0.7,0.4,,,,
+,PSU Abs Mkt Shr for month of Apr-Jul-26,%,41.4,44.1,,,,
+,PSU Mkt Shr for month of Apr Jul-25,%,41.1,42.3,,,,
+,PSU Mkt Shr Gr. for month of Apr Jul-25,%,0.3,1.8,,,,
+Sales Performance,Sales (SAP) on  16-08-2026,KL,752,"1,243",,,,
+,Cumulative Sales till  16-08-2026,KL,"41,130","86,814",,,,
+,LY (Aug 2025) ,KL,"41,760","69,841",,,,
+,Growth,%,-1.5,24.3,,,,
+,Nozzle sale on 16-08-2026,KL,3022,5285,,,,
+Target,Base Volume for Aug-26,KL,96803,155392,,,,
+,Target for Current Month,KL,108971,178654,,,,
+,Target Growth for Current Month,%,12.6,15.0,,,,
+,Target vs Actual,KL,15113,5395,,,,
+Commissioning Upto July 2026,A Class IOC Month & Cumulative ,Nos.,0,0,,,,
+,B Class IOC Month & Cumulative ,Nos.,1,1,,,,
+,D1 Class IOC Month & Cumulative ,Nos.,5,15,,,,
+,Overall IOC Month & Cumulative ,Nos.,8,31,,,,
+,Overall PSU Month & Cumulative ,Nos.,17,58,,,,
+Inventory,Tankage,KL,52435,71100,,,,
+,Today's Inventory,%,39.8,45.0,,,,
+,Inventory as on 01-08-2026,%,40.4,54.5,,,,
+Dryouts,Volume Loss MS & HSD ,L,3627,8693,,,,
+,Dryouts on  16-08-2026,Nos.,7,5,,,,
+YTS ,As on 01.04.2026,Nos.,88,,,,,
+,As on 01.08.2026 ,Nos.,57,,,,,
+NIL Selling ,As on 01.04.2026,Nos.,48,,,,,
+,As on 01.08.2026 ,Nos.,60,,,,,
+Lube Sales ,Month CY vs LY ,KL,220,202,,,,
+,Cumulative CY vs LY ,KL,764,551,,,,
+NFR Store ,As on 01.04.2026,Nos.,1262,,,,,
+,As on 01.08.2026 ,Nos.,1270,,,,,
+Xtrapower ,Month CY vs LY ,%,15.0,13.5,,,,
+,Cumulative CY vs LY ,%,12.7,11.1,,,,
