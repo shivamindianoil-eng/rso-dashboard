@@ -123,7 +123,8 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
     </div>
     <div style="text-align:right;">
       <a href="index.html" class="mou-link">← Daily Sales</a>
-      <a href="retail-folder.html" class="mou-link" style="background:linear-gradient(90deg,#2f6fbf,#5b8fd8);">DO Wise →</a><br>
+      <a href="retail-folder.html" class="mou-link" style="background:linear-gradient(90deg,#2f6fbf,#5b8fd8);">DO Wise →</a>
+      <a href="ecms.html" class="mou-link" style="background:linear-gradient(90deg,#0f6b57,#159c7c);">ECMS Pendency →</a><br>
       <div class="date-badge">Period <b>Apr – Jul 2026</b></div>
     </div>
   </div>
@@ -263,12 +264,12 @@ function parseCSV(text){
 }
 
 function ring(pct, color){
-  const r=58, c=2*Math.PI*r, off = c - (Math.min(Math.max(pct,0),100)/100)*c;
-  return `<svg width="150" height="150" viewBox="0 0 150 150">
-    <circle cx="75" cy="75" r="${r}" fill="none" stroke="rgba(15,35,55,0.08)" stroke-width="13"/>
-    <circle cx="75" cy="75" r="${r}" fill="none" stroke="${color}" stroke-width="13" stroke-linecap="round"
+  const r=70, c=2*Math.PI*r, off = c - (Math.min(Math.max(pct,0),100)/100)*c;
+  return `<svg width="180" height="180" viewBox="0 0 180 180">
+    <circle cx="90" cy="90" r="${r}" fill="none" stroke="rgba(15,35,55,0.08)" stroke-width="14"/>
+    <circle cx="90" cy="90" r="${r}" fill="none" stroke="${color}" stroke-width="14" stroke-linecap="round"
       stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${off}"
-      transform="rotate(-90 75 75)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1);"/>
+      transform="rotate(-90 90 90)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1);"/>
   </svg>`;
 }
 
@@ -305,7 +306,7 @@ function renderHero(){
   const wrap = document.getElementById('scoreRingWrap');
   const color = pct>=100 ? 'var(--excellent)' : pct>=80 ? 'var(--good)' : pct>=60 ? 'var(--fair)' : 'var(--poor)';
   wrap.innerHTML = ring(Math.min(pct,100), color) +
-    `<div class="score-num"><div class="n">${overall.score!==null?fmt(overall.score):'—'}</div><div class="l">of ${overall.weightage!==null?fmt(overall.weightage):'—'}</div></div>`;
+    `<div class="score-num"><div class="n">${overall.score!==null?fmt(overall.score):'—'}</div><div class="l">Score Achieved</div></div>`;
   requestAnimationFrame(()=> setTimeout(()=>{
     wrap.querySelectorAll('circle[data-target]').forEach(c=> c.style.strokeDashoffset = c.getAttribute('data-target'));
   },60));
