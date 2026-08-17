@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ECMS Pendency Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f7f9fb; --panel:#ffffff;
+  --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
+  --text:#0f2337; --text-dim:#0a3d21; --text-dim2:#0d5c30;
+  --ms:#7c3aed; --hsd:#db2777; --amber-line:#c47a12;
+  --b1:#16a34a; --b2:#eab308; --b3:#f97316; --b4:#ef4444; --b5:#7f1d1d;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:
+    radial-gradient(ellipse 1200px 600px at 15% -10%, rgba(124,58,237,0.05), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 100% 0%, rgba(219,39,119,0.05), transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; padding:28px 28px 60px;
+}
+.wrap{max-width:1400px; margin:0 auto;}
+
+.mou-link{display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; color:#fff; background:linear-gradient(90deg,#2f6fbf,#5b8fd8); padding:9px 16px; border-radius:8px; margin-bottom:8px; margin-right:6px; transition:.2s;}
+.mou-link:hover{filter:brightness(1.06); transform:translateY(-1px);}
+.mou-link.alt{background:linear-gradient(90deg,#c47a12,#e0a33d);}
+.mou-link.green{background:linear-gradient(90deg,#1f8f6f,#38b08a);}
+.mou-link.teal{background:linear-gradient(90deg,#0f6b57,#159c7c);}
+
+.topbar{display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid var(--border-2); padding-bottom:20px; margin-bottom:18px; flex-wrap:wrap; gap:16px;}
+.brand-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.18em; color:var(--amber-line); text-transform:uppercase; margin-bottom:8px;}
+h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:56px; letter-spacing:.01em; line-height:1;}
+h1 span{color:var(--text-dim2); font-weight:500;}
+.date-badge{font-family:'IBM Plex Mono',monospace; font-size:17px; color:var(--text); background:#fff; border:1px solid var(--border-2); padding:8px 14px; border-radius:8px;}
+.date-badge b{color:var(--amber-line); font-weight:600;}
+
+.settings{display:flex; gap:8px; align-items:center; background:#fff; border:1px solid var(--border-2); border-radius:10px; padding:10px 12px; margin-bottom:14px; flex-wrap:wrap;}
+.settings input{flex:1; min-width:220px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 10px; border-radius:6px;}
+.settings button{background:var(--amber-line); color:#fff; border:none; font-weight:700; font-size:12px; padding:9px 16px; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace;}
+.settings .status{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; color:var(--text-dim2);}
+.settings .status.ok{color:#16a34a;} .settings .status.err{color:#ef4444;}
+.toggle-settings-row{text-align:right; margin-bottom:10px;}
+.toggle-settings-row button{background:none; border:1px solid var(--border-2); color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:13.5px; padding:5px 10px; border-radius:6px; cursor:pointer;}
+
+.section-label{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dim2); margin:30px 0 12px; display:flex; align-items:center; gap:10px;}
+.section-label::after{content:''; flex:1; height:1px; background:var(--border);}
+
+/* KPIs */
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin-bottom:8px;}
+.kpi{background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(15,35,55,.04); position:relative; overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--ms), var(--hsd)); opacity:.85;}
+.kpi .num{font-family:'Big Shoulders Display'; font-size:40px; font-weight:700; line-height:1;}
+.kpi .lbl{font-size:13px; font-weight:700; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.03em; margin-top:8px; font-family:'IBM Plex Mono',monospace;}
+.kpi.warn .num{color:var(--b2);} .kpi.bad .num{color:var(--b4);}
+
+/* charts */
+.charts{display:grid; grid-template-columns:1.3fr 1fr; gap:16px; margin:20px 0;}
+@media(max-width:920px){.charts{grid-template-columns:1fr;}}
+.chart-card{background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 14px rgba(15,35,55,0.05); padding:18px 20px 12px; position:relative; overflow:hidden;}
+.chart-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--ms), var(--hsd)); opacity:.85;}
+.chart-card h3{margin:0 0 14px; font-size:15px; text-transform:uppercase; letter-spacing:.03em; color:var(--text); font-weight:700;}
+.chart-card canvas{max-height:280px;}
+
+.bucket-legend{display:flex; gap:16px; flex-wrap:wrap; font-size:13px; font-weight:700; color:var(--text-dim2); margin:14px 0 4px; font-family:'IBM Plex Mono',monospace;}
+.bucket-legend span{display:inline-flex; align-items:center; gap:6px;}
+.swatch{width:11px; height:11px; border-radius:3px; display:inline-block;}
+
+/* tables */
+.tables{display:grid; grid-template-columns:1fr; gap:18px; margin:8px 0 20px;}
+.table-card{background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 14px rgba(15,35,55,0.05); overflow:hidden;}
+.table-card .card-head{margin:0; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:10px; background:linear-gradient(90deg, var(--ms), var(--hsd)); color:#fff;}
+.table-card .card-head h3{margin:0; font-size:15px; text-transform:uppercase; letter-spacing:.03em; font-weight:700;}
+.table-card .card-head .btn-small{background:rgba(255,255,255,.18); color:#fff; border:none; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; padding:6px 12px; border-radius:6px; cursor:pointer;}
+.table-card .card-head .btn-small:hover{background:rgba(255,255,255,.3);}
+.table-wrap{max-height:480px; overflow:auto;}
+table.pivot{border-collapse:collapse; width:100%; font-size:14px;}
+table.pivot th, table.pivot td{border-bottom:1px solid var(--border); padding:10px 14px; text-align:right; white-space:nowrap; font-family:'IBM Plex Mono',monospace;}
+table.pivot th{position:sticky; top:0; background:#f2f5f8; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; z-index:1; color:var(--text-dim);}
+table.pivot td.rowlabel, table.pivot th.rowlabel{text-align:left; position:sticky; left:0; background:#fff; font-weight:700; z-index:1; font-family:'Inter',sans-serif;}
+table.pivot th.rowlabel{background:#f2f5f8; z-index:2;}
+table.pivot tbody tr:nth-child(even) td:not(.rowlabel){background:#fafbfc;}
+table.pivot tbody tr:hover td{background:#f3ecff;}
+table.pivot tr.grand td{font-weight:700; background:#ece0fb !important; border-top:2px solid var(--ms);}
+table.pivot td.clickable{cursor:pointer; color:var(--ms); font-weight:700;}
+table.pivot td.clickable:hover{text-decoration:underline; color:var(--hsd);}
+table.pivot td.zero{color:#c3cbd4;}
+
+/* detail view */
+#detailWrap{display:none;}
+#detailWrap.show{display:block;}
+#backBtn{margin-bottom:16px;}
+#detailHead{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:4px;}
+#detailTitle{font-family:'Big Shoulders Display'; font-size:28px; font-weight:700; margin:0 0 4px;}
+#detailSub{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; color:var(--text-dim2); margin-bottom:16px;}
+table.detail{border-collapse:collapse; width:100%; font-size:13.5px; background:#fff;}
+table.detail th, table.detail td{border-bottom:1px solid var(--border); padding:10px 14px; text-align:left; vertical-align:top;}
+table.detail th{background:var(--text); color:#fff; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; position:sticky; top:0;}
+table.detail tbody tr:nth-child(even){background:#fafbfc;}
+table.detail tr:hover td{background:#f3ecff;}
+.age-pill{font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700; padding:4px 10px; border-radius:5px; display:inline-block; color:#fff; white-space:nowrap;}
+.detail-wrap{overflow:auto; max-height:70vh; border:1px solid var(--border); border-radius:12px; box-shadow:0 2px 14px rgba(15,35,55,0.05);}
+.btn-small{background:var(--text); color:#fff; border:none; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; padding:8px 14px; border-radius:6px; cursor:pointer;}
+.btn-small:hover{background:var(--ms);}
+.btn-ghost{background:#fff; color:var(--text); border:1.5px solid var(--border-2); font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700; padding:8px 16px; border-radius:8px; cursor:pointer;}
+.btn-ghost:hover{border-color:var(--ms); color:var(--ms);}
+
+#summaryWrap.hide{display:none;}
+
+.empty-note{text-align:center; padding:30px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:17px; font-weight:700;}
+
+footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:14px; font-weight:700; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+.loading-veil{position:fixed; inset:0; background:var(--bg); z-index:50; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; font-family:'IBM Plex Mono',monospace; color:var(--text-dim); transition:opacity .4s;}
+.loading-veil.hide{opacity:0; pointer-events:none;}
+.spinner{width:34px;height:34px;border:3px solid var(--border-2); border-top-color:var(--amber-line); border-radius:50%; animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="loading-veil" id="veil"><div class="spinner"></div><div>Loading live data…</div></div>
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-eyebrow">Rajasthan State Office &middot; ECMS Pendency</div>
+      <h1>ECMS Pendency <span>— Proposals ≥ 7 Days</span></h1>
+    </div>
+    <div style="text-align:right;">
+      <a href="index.html" class="mou-link alt">← Daily Sales</a>
+      <a href="mou.html" class="mou-link green">MOU Performance →</a>
+      <a href="retail-folder.html" class="mou-link">DO Wise →</a>
+      <div class="date-badge" style="margin-top:8px;">As on <b id="asOfDate">—</b></div>
+    </div>
+  </div>
+
+  <div class="settings" id="settingsBar" style="display:none;">
+    <input type="text" id="csvUrlInput" placeholder="Paste your ECMS data CSV raw link here…">
+    <button id="loadBtn">Load &amp; Save</button>
+    <button id="resetBtn" style="background:#e8ecef; color:var(--text-dim);">Reset to Default</button>
+    <span class="status" id="statusMsg">Not connected</span>
+  </div>
+  <div class="toggle-settings-row"><button id="toggleSettings">⚙ Data source settings</button></div>
+
+  <div id="summaryWrap">
+    <div class="section-label">Overview</div>
+    <div class="kpis" id="kpis"></div>
+
+    <div class="charts">
+      <div class="chart-card">
+        <h3>Pendency by DO — Age Bucket Split</h3>
+        <canvas id="chartDO"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Overall Age Bucket Distribution</h3>
+        <canvas id="chartBucket"></canvas>
+      </div>
+    </div>
+    <div class="bucket-legend" id="legend"></div>
+
+    <div class="section-label">DO Wise &amp; Officer Wise</div>
+    <div class="tables">
+      <div class="table-card">
+        <div class="card-head"><h3>DO Wise</h3></div>
+        <div class="table-wrap"><table class="pivot" id="tblDO"></table></div>
+      </div>
+      <div class="table-card">
+        <div class="card-head"><h3>Officer Wise</h3></div>
+        <div class="table-wrap"><table class="pivot" id="tblOfficer"></table></div>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="chart-card" style="grid-column:1/-1;">
+        <h3>Top 12 Officers by Pending Proposal Count</h3>
+        <canvas id="chartOfficer"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div id="detailWrap">
+    <button class="btn-ghost" id="backBtn">← Back to summary</button>
+    <div id="detailHead">
+      <h2 id="detailTitle"></h2>
+    </div>
+    <div id="detailSub"></div>
+    <div class="detail-wrap"><table class="detail" id="tblDetail"></table></div>
+  </div>
+
+  <footer>
+    <span>Source: live ECMS data feed &middot; Proposals pending ≥ 7 days</span>
+    <span id="lastUpdated"></span>
+  </footer>
+</div>
+
+<script>
+const LS_KEY = 'ecms_csv_url_v1';
+const DEFAULT_CSV_URL = ''; // filled in once repo file link is known
+let ROWS = [];
+const DO_ORDER = ['Ajmer DO','Jaipur DO','Jodhpur DO','Udaipur DO','Rajasthan State Office'];
+const BUCKET_ORDER = ['0-30 Days','31-90 Days','3M-6M','6M-1YR','1YR+'];
+const BUCKET_COLOR = {'0-30 Days':'#16a34a','31-90 Days':'#eab308','3M-6M':'#f97316','6M-1YR':'#ef4444','1YR+':'#7f1d1d'};
+let charts = {};
+
+function fmt(n){ if(n===null||n===undefined||isNaN(n)) return '—'; return Number(n).toLocaleString('en-IN'); }
+function bucketColor(b){ return BUCKET_COLOR[b] || '#94a3b3'; }
+
+function parseCSV(text){
+  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
+  ROWS = parsed.filter(r => r.Officer && r.DO);
+}
+
+function orderedBuckets(){
+  const present = new Set(ROWS.map(r=>r.Bucket));
+  return BUCKET_ORDER.filter(b=>present.has(b));
+}
+function orderedDOs(){
+  const present = new Set(ROWS.map(r=>r.DO));
+  return DO_ORDER.filter(d=>present.has(d)).concat([...present].filter(d=>!DO_ORDER.includes(d)));
+}
+
+function renderKPIs(){
+  const total = ROWS.length;
+  const buckets = orderedBuckets();
+  const counts = {};
+  buckets.forEach(b=> counts[b] = ROWS.filter(r=>r.Bucket===b).length);
+  const oldest = ROWS.reduce((m,r)=> Math.max(m, parseInt(r.PendencyDays)||0), 0);
+  const critical = ROWS.filter(r => r.Bucket==='3M-6M' || r.Bucket==='6M-1YR' || r.Bucket==='1YR+').length;
+
+  const cards = [
+    {n: total, l:'Total Pending Proposals', cls:''},
+    ...buckets.map(b=>({n:counts[b], l:b, cls: (b==='3M-6M'||b==='6M-1YR'||b==='1YR+') ? 'bad' : (b==='31-90 Days' ? 'warn':'')})),
+    {n: oldest, l:'Oldest Pending (Days)', cls:'bad'},
+  ];
+  document.getElementById('kpis').innerHTML = cards.map(c=>
+    `<div class="kpi ${c.cls}"><div class="num">${fmt(c.n)}</div><div class="lbl">${c.l}</div></div>`
+  ).join('');
+
+  const asOf = ROWS.length ? new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'}) : '—';
+  document.getElementById('asOfDate').textContent = asOf;
+}
+
+function renderLegend(){
+  const buckets = orderedBuckets();
+  document.getElementById('legend').innerHTML = buckets.map(b=>
+    `<span><span class="swatch" style="background:${bucketColor(b)}"></span>${b}</span>`
+  ).join('');
+}
+
+function renderChartDO(){
+  const dos = orderedDOs();
+  const buckets = orderedBuckets();
+  const datasets = buckets.map(b=>({
+    label: b,
+    backgroundColor: bucketColor(b),
+    data: dos.map(d => ROWS.filter(r=>r.DO===d && r.Bucket===b).length)
+  }));
+  const ctx = document.getElementById('chartDO');
+  if(charts.do) charts.do.destroy();
+  charts.do = new Chart(ctx, {
+    type:'bar',
+    data:{ labels: dos, datasets },
+    options:{
+      responsive:true,
+      plugins:{ legend:{display:false} },
+      scales:{ x:{ stacked:true, grid:{display:false} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } }
+    }
+  });
+}
+
+function renderChartBucket(){
+  const buckets = orderedBuckets();
+  const data = buckets.map(b=> ROWS.filter(r=>r.Bucket===b).length);
+  const ctx = document.getElementById('chartBucket');
+  if(charts.bucket) charts.bucket.destroy();
+  charts.bucket = new Chart(ctx, {
+    type:'doughnut',
+    data:{ labels:buckets, datasets:[{ data, backgroundColor: buckets.map(bucketColor), borderWidth:2, borderColor:'#fff' }] },
+    options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ font:{family:"'IBM Plex Mono'", size:11}, color:'#0a3d21' } } }, cutout:'62%' }
+  });
+}
+
+function renderChartOfficer(){
+  const counts = {};
+  ROWS.forEach(r=> counts[r.Officer] = (counts[r.Officer]||0)+1);
+  const top = Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,12);
+  const ctx = document.getElementById('chartOfficer');
+  if(charts.officer) charts.officer.destroy();
+  charts.officer = new Chart(ctx, {
+    type:'bar',
+    data:{ labels: top.map(t=>t[0].replace(/\s*\(\d+\)/,'')), datasets:[{ label:'Pending', data: top.map(t=>t[1]), backgroundColor:'#7c3aed', borderRadius:4 }] },
+    options:{
+      indexAxis:'y', responsive:true,
+      plugins:{ legend:{display:false} },
+      scales:{ x:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} }, y:{ grid:{display:false}, ticks:{ font:{size:11} } } }
+    }
+  });
+}
+
+function renderTblDO(){
+  const dos = orderedDOs();
+  const buckets = orderedBuckets();
+  let html = `<thead><tr><th class="rowlabel">DO</th>${buckets.map(b=>`<th>${b}</th>`).join('')}<th>Total</th></tr></thead><tbody>`;
+  let grandTotals = buckets.map(()=>0);
+  dos.forEach(d=>{
+    const counts = buckets.map(b=> ROWS.filter(r=>r.DO===d && r.Bucket===b).length);
+    counts.forEach((c,i)=> grandTotals[i]+=c);
+    const total = counts.reduce((a,b)=>a+b,0);
+    html += `<tr><td class="rowlabel">${d}</td>${counts.map((c,i)=>
+      `<td class="${c===0?'zero':'clickable'}" data-do="${d}" data-bucket="${buckets[i]}">${c===0?'0':c}</td>`
+    ).join('')}<td>${total}</td></tr>`;
+  });
+  const grandTotal = grandTotals.reduce((a,b)=>a+b,0);
+  html += `<tr class="grand"><td class="rowlabel">Grand Total</td>${grandTotals.map((c,i)=>
+    `<td class="${c===0?'zero':'clickable'}" data-do="" data-bucket="${buckets[i]}">${c}</td>`
+  ).join('')}<td>${grandTotal}</td></tr>`;
+  html += `</tbody>`;
+  document.getElementById('tblDO').innerHTML = html;
+  document.querySelectorAll('#tblDO td.clickable').forEach(td=>{
+    td.addEventListener('click', ()=> openDetail({do: td.dataset.do || null, bucket: td.dataset.bucket}));
+  });
+}
+
+function renderTblOfficer(){
+  const buckets = orderedBuckets();
+  const officers = {};
+  ROWS.forEach(r=>{ officers[r.Officer] = officers[r.Officer] || {do:r.DO, counts:{}}; officers[r.Officer].counts[r.Bucket] = (officers[r.Officer].counts[r.Bucket]||0)+1; });
+  const sorted = Object.entries(officers).sort((a,b)=>{
+    const totalA = Object.values(a[1].counts).reduce((x,y)=>x+y,0);
+    const totalB = Object.values(b[1].counts).reduce((x,y)=>x+y,0);
+    return totalB - totalA;
+  });
+  let html = `<thead><tr><th class="rowlabel">Officer</th>${buckets.map(b=>`<th>${b}</th>`).join('')}<th>Total</th></tr></thead><tbody>`;
+  sorted.forEach(([officer, info])=>{
+    const counts = buckets.map(b=> info.counts[b]||0);
+    const total = counts.reduce((a,b)=>a+b,0);
+    html += `<tr><td class="rowlabel">${officer}</td>${counts.map((c,i)=>
+      `<td class="${c===0?'zero':'clickable'}" data-officer="${officer.replace(/"/g,'&quot;')}" data-bucket="${buckets[i]}">${c===0?'0':c}</td>`
+    ).join('')}<td>${total}</td></tr>`;
+  });
+  html += `</tbody>`;
+  document.getElementById('tblOfficer').innerHTML = html;
+  document.querySelectorAll('#tblOfficer td.clickable').forEach(td=>{
+    td.addEventListener('click', ()=> openDetail({officer: td.dataset.officer, bucket: td.dataset.bucket}));
+  });
+}
+
+function openDetail({do:doFilter=null, officer=null, bucket=null}){
+  let rows = ROWS;
+  if(doFilter) rows = rows.filter(r=>r.DO===doFilter);
+  if(officer) rows = rows.filter(r=>r.Officer===officer);
+  if(bucket) rows = rows.filter(r=>r.Bucket===bucket);
+
+  const titleParts = [];
+  if(doFilter) titleParts.push(doFilter);
+  if(officer) titleParts.push(officer);
+  if(bucket) titleParts.push(bucket);
+  document.getElementById('detailTitle').textContent = titleParts.join(' — ') || 'All Pending Proposals';
+  document.getElementById('detailSub').textContent = `${rows.length} proposal${rows.length===1?'':'s'} found`;
+
+  const cols = ['Officer','Designation','Subject','PendingSince','PendencyDays','Bucket','Initiator','FinalApprover','RefNumber'];
+  const labels = ['Officer','Designation','Subject','Pending Since','Days','Bucket','Initiator','Final Approver','Reference Number'];
+  let html = `<thead><tr>${labels.map(l=>`<th>${l}</th>`).join('')}</tr></thead><tbody>`;
+  rows.sort((a,b)=> (parseInt(b.PendencyDays)||0) - (parseInt(a.PendencyDays)||0));
+  rows.forEach(r=>{
+    html += '<tr>';
+    cols.forEach(c=>{
+      if(c==='Bucket'){
+        html += `<td><span class="age-pill" style="background:${bucketColor(r[c])}">${r[c]}</span></td>`;
+      } else if(c==='PendencyDays'){
+        html += `<td>${r[c]}</td>`;
+      } else {
+        html += `<td>${r[c]||''}</td>`;
+      }
+    });
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  document.getElementById('tblDetail').innerHTML = html;
+
+  document.getElementById('summaryWrap').classList.add('hide');
+  document.getElementById('detailWrap').classList.add('show');
+}
+
+document.getElementById('backBtn').addEventListener('click', ()=>{
+  document.getElementById('detailWrap').classList.remove('show');
+  document.getElementById('summaryWrap').classList.remove('hide');
+});
+
+function renderAll(){
+  renderKPIs();
+  renderLegend();
+  renderChartDO();
+  renderChartBucket();
+  renderChartOfficer();
+  renderTblDO();
+  renderTblOfficer();
+}
+
+document.getElementById('toggleSettings').addEventListener('click', ()=>{
+  const bar = document.getElementById('settingsBar');
+  bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(LS_KEY);
+  document.getElementById('csvUrlInput').value = DEFAULT_CSV_URL;
+  loadFromUrl(DEFAULT_CSV_URL);
+});
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const url = document.getElementById('csvUrlInput').value.trim();
+  if(!url) return;
+  localStorage.setItem(LS_KEY, url);
+  loadFromUrl(url);
+});
+
+let autoRefreshTimer = null;
+const AUTO_REFRESH_MS = 30000;
+async function loadFromUrl(url, silent){
+  const statusEl = document.getElementById('statusMsg');
+  if(!url){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
+  if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
+  try{
+    const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    parseCSV(text);
+    renderAll();
+    const now = new Date().toLocaleTimeString();
+    statusEl.textContent = 'Live · auto-refreshing every 30s · last update ' + now; statusEl.className='status ok';
+    document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
+    document.getElementById('veil').classList.add('hide');
+    if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(()=> loadFromUrl(url, true), AUTO_REFRESH_MS);
+  }catch(err){
+    statusEl.textContent = 'Could not load data: ' + err.message; statusEl.className='status err';
+    document.getElementById('veil').classList.add('hide');
+  }
+}
+
+window.addEventListener('load', ()=>{
+  const saved = localStorage.getItem(LS_KEY) || DEFAULT_CSV_URL;
+  if(saved){
+    document.getElementById('csvUrlInput').value = saved;
+    loadFromUrl(saved);
+  } else {
+    document.getElementById('veil').classList.add('hide');
+    document.getElementById('settingsBar').style.display='flex';
+  }
+});
+</script>
+</body>
+</html>
