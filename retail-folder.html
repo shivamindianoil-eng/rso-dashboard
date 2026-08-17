@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retail Folder — DO Performance (Apr–Jul 26)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+:root{
+  --bg:#f7f9fb; --panel:#ffffff;
+  --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
+  --text:#0f2337; --text-dim:#516b82; --text-dim2:#7c93a8;
+  --ms:#7c3aed; --hsd:#db2777; --amber-line:#c47a12;
+  --do1:#7c3aed; --do2:#db2777;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:
+    radial-gradient(ellipse 1200px 600px at 15% -10%, rgba(31,143,111,0.05), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 100% 0%, rgba(196,122,18,0.05), transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; padding:28px 28px 60px;
+}
+.wrap{max-width:1320px; margin:0 auto;}
+
+.mou-link{display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; color:#fff; background:linear-gradient(90deg,#2f6fbf,#5b8fd8); padding:9px 16px; border-radius:8px; margin-bottom:8px; margin-right:6px; transition:.2s;}
+.mou-link:hover{filter:brightness(1.06); transform:translateY(-1px);}
+.mou-link.alt{background:linear-gradient(90deg,#c47a12,#e0a33d);}
+
+.topbar{display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid var(--border-2); padding-bottom:20px; margin-bottom:18px; flex-wrap:wrap; gap:16px;}
+.brand-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:var(--amber-line); text-transform:uppercase; margin-bottom:8px;}
+h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:48px; letter-spacing:.01em; line-height:1;}
+h1 span{color:var(--text-dim2); font-weight:500;}
+.date-badge{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--text); background:#fff; border:1px solid var(--border-2); padding:8px 14px; border-radius:8px;}
+.date-badge b{color:var(--amber-line); font-weight:600;}
+
+/* overview strip */
+.overview-strip{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px;}
+.ov-item{flex:1; min-width:150px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px; box-shadow:0 2px 10px rgba(15,35,55,.04);}
+.ov-item .n{font-family:'Big Shoulders Display'; font-size:33px; font-weight:700;}
+.ov-item .l{font-size:11px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; text-transform:uppercase; margin-top:2px;}
+
+/* DO Tabs */
+.do-tabs{display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap;}
+.do-tab{font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+  background:#fff; border:1.5px solid var(--border-2); color:var(--text-dim); padding:10px 22px; border-radius:10px; cursor:pointer; transition:.15s;}
+.do-tab.active{background:var(--text); color:#fff; border-color:var(--text);}
+.do-tab:hover:not(.active){border-color:var(--text-dim);}
+
+.section-label{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dim2); margin:30px 0 12px; display:flex; align-items:center; gap:10px;}
+.section-label::after{content:''; flex:1; height:1px; background:var(--border);}
+
+.grid{display:grid; gap:16px; grid-template-columns:repeat(2,1fr);}
+@media(max-width:900px){.grid{grid-template-columns:1fr;}}
+
+.card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:20px; position:relative; overflow:hidden; box-shadow:0 2px 14px rgba(15,35,55,0.05);}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--do1), var(--do2)); opacity:.75;}
+.card-title{font-size:14px; font-weight:700; color:var(--text); margin-bottom:2px;}
+.card-period{font-size:11px; color:var(--amber-line); font-family:'IBM Plex Mono',monospace; font-weight:600; margin-bottom:12px;}
+
+.metric-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px;}
+.metric-cell{background:rgba(15,35,55,.025); border:1px solid var(--border); border-radius:8px; padding:10px 12px;}
+.metric-cell .v{font-family:'Big Shoulders Display'; font-size:29px; font-weight:700; line-height:1;}
+.metric-cell .l{font-size:10.5px; color:var(--text-dim2); margin-top:5px; line-height:1.3;}
+.metric-cell.neg .v{color:#d84a42;}
+.metric-cell.pos .v{color:#1d9a5b;}
+
+.empty-note{text-align:center; padding:30px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:13px;}
+
+.settings{display:flex; gap:8px; align-items:center; background:#fff; border:1px solid var(--border-2); border-radius:10px; padding:10px 12px; margin-bottom:14px; flex-wrap:wrap;}
+.settings input{flex:1; min-width:220px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 10px; border-radius:6px;}
+.settings button{background:var(--amber-line); color:#fff; border:none; font-weight:700; font-size:12px; padding:9px 16px; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace;}
+.settings .status{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim2);}
+.settings .status.ok{color:#1d9a5b;} .settings .status.err{color:#d84a42;}
+.toggle-settings-row{text-align:right; margin-bottom:10px;}
+.toggle-settings-row button{background:none; border:1px solid var(--border-2); color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:10.5px; padding:5px 10px; border-radius:6px; cursor:pointer;}
+
+footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:11px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+.loading-veil{position:fixed; inset:0; background:var(--bg); z-index:50; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; font-family:'IBM Plex Mono',monospace; color:var(--text-dim); transition:opacity .4s;}
+.loading-veil.hide{opacity:0; pointer-events:none;}
+.spinner{width:34px;height:34px;border:3px solid var(--border-2); border-top-color:var(--amber-line); border-radius:50%; animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="loading-veil" id="veil"><div class="spinner"></div><div>Loading live data…</div></div>
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-eyebrow">Rajasthan State Office &middot; Retail Folder</div>
+      <h1>Divisional Office <span>Performance — Apr–Jul 2026</span></h1>
+    </div>
+    <div style="text-align:right;">
+      <a href="index.html" class="mou-link alt">← Daily Sales</a>
+      <a href="mou.html" class="mou-link" style="background:linear-gradient(90deg,#1f8f6f,#38b08a);">MOU Performance →</a>
+      <div class="date-badge" style="margin-top:8px;">Period <b>Apr – Jul 2026</b></div>
+    </div>
+  </div>
+
+  <div class="settings" id="settingsBar" style="display:none;">
+    <input type="text" id="csvUrlInput" placeholder="Paste your Retail Folder data CSV raw link here…">
+    <button id="loadBtn">Load &amp; Save</button>
+    <button id="resetBtn" style="background:#e8ecef; color:var(--text-dim);">Reset to Default</button>
+    <span class="status" id="statusMsg">Not connected</span>
+  </div>
+  <div class="toggle-settings-row"><button id="toggleSettings">⚙ Data source settings</button></div>
+
+  <div class="overview-strip">
+    <div class="ov-item"><div class="n">4</div><div class="l">Divisional Offices</div></div>
+    <div class="ov-item"><div class="n">45</div><div class="l">RSA (Ajmer 10 · Jaipur 14 · Jodhpur 11 · Udaipur 10)</div></div>
+    <div class="ov-item"><div class="n">41</div><div class="l">Districts</div></div>
+    <div class="ov-item"><div class="n">2,923</div><div class="l">Total IOC / KSK Outlets</div></div>
+    <div class="ov-item"><div class="n">7,506</div><div class="l">Total Industry Outlets</div></div>
+  </div>
+
+  <div class="do-tabs" id="doTabs"></div>
+
+  <div id="sectionsWrap"></div>
+
+  <footer>
+    <span>Source: live Retail Folder data feed &middot; RSO Divisional Office Performance — Apr-Jul 2026</span>
+    <span id="lastUpdated"></span>
+  </footer>
+</div>
+
+<script>
+const LS_KEY = 'retail_folder_csv_url_v1';
+const DEFAULT_CSV_URL = 'https://raw.githubusercontent.com/shivamindianoil-eng/rso-dashboard/refs/heads/main/retail-folder-data.csv';
+let ROWS = [];
+let activeDO = 'RSO';
+const DO_LIST = ['Ajmer','Jaipur','Jodhpur','Udaipur','RSO'];
+
+function fmt(v){
+  if(v===null || v===undefined || v==='') return '—';
+  const n = parseFloat(v);
+  if(isNaN(n)) return v;
+  return n.toLocaleString('en-IN', {maximumFractionDigits:2});
+}
+
+function parseCSV(text){
+  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
+  ROWS = parsed.filter(r => r.Section && r.DO);
+}
+
+function renderTabs(){
+  const wrap = document.getElementById('doTabs');
+  wrap.innerHTML = DO_LIST.map(d=>`<button class="do-tab ${d===activeDO?'active':''}" data-do="${d}">${d==='RSO'?'RSO (Overall)':d}</button>`).join('');
+  wrap.querySelectorAll('.do-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      activeDO = btn.dataset.do;
+      renderTabs();
+      renderSections();
+    });
+  });
+}
+
+function renderSections(){
+  const wrap = document.getElementById('sectionsWrap');
+  if(ROWS.length===0){
+    wrap.innerHTML = `<div class="empty-note">No data loaded yet.</div>`;
+    return;
+  }
+  // group by Section + Period, preserving first-seen order
+  const groups = [];
+  const seen = {};
+  ROWS.forEach(r=>{
+    if(r.DO !== activeDO) return;
+    const key = r.Section + '|||' + (r.Period||'');
+    if(!(key in seen)){
+      seen[key] = groups.length;
+      groups.push({section:r.Section, period:r.Period||'', metrics:[]});
+    }
+    groups[seen[key]].metrics.push({label:r.Metric, value:r.Value});
+  });
+
+  if(groups.length===0){
+    wrap.innerHTML = `<div class="empty-note">No data found for ${activeDO}.</div>`;
+    return;
+  }
+
+  wrap.innerHTML = `<div class="section-label">${activeDO} — Section-wise Performance</div><div class="grid">` +
+    groups.map(g=>{
+      const cells = g.metrics.map(m=>{
+        let cls = '';
+        const n = parseFloat(m.value);
+        if(!isNaN(n) && /diff|\+\/-/i.test(m.label)){
+          cls = n < 0 ? 'neg' : (n > 0 ? 'pos' : '');
+        }
+        return `<div class="metric-cell ${cls}"><div class="v">${fmt(m.value)}</div><div class="l">${m.label}</div></div>`;
+      }).join('');
+      return `<div class="card">
+        <div class="card-title">${g.section}</div>
+        ${g.period ? `<div class="card-period">${g.period}</div>` : '<div style="margin-bottom:12px;"></div>'}
+        <div class="metric-grid">${cells}</div>
+      </div>`;
+    }).join('') + `</div>`;
+}
+
+document.getElementById('toggleSettings').addEventListener('click', ()=>{
+  const bar = document.getElementById('settingsBar');
+  bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(LS_KEY);
+  document.getElementById('csvUrlInput').value = DEFAULT_CSV_URL;
+  loadFromUrl(DEFAULT_CSV_URL);
+});
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const url = document.getElementById('csvUrlInput').value.trim();
+  if(!url) return;
+  localStorage.setItem(LS_KEY, url);
+  loadFromUrl(url);
+});
+
+let autoRefreshTimer = null;
+const AUTO_REFRESH_MS = 30000;
+async function loadFromUrl(url, silent){
+  const statusEl = document.getElementById('statusMsg');
+  if(!url){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
+  if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
+  try{
+    const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    parseCSV(text);
+    renderTabs();
+    renderSections();
+    const now = new Date().toLocaleTimeString();
+    statusEl.textContent = 'Live · auto-refreshing every 30s · last update ' + now; statusEl.className='status ok';
+    document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
+    document.getElementById('veil').classList.add('hide');
+    if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(()=> loadFromUrl(url, true), AUTO_REFRESH_MS);
+  }catch(err){
+    statusEl.textContent = 'Could not load data: ' + err.message; statusEl.className='status err';
+    document.getElementById('veil').classList.add('hide');
+  }
+}
+
+window.addEventListener('load', ()=>{
+  renderTabs();
+  const saved = localStorage.getItem(LS_KEY) || DEFAULT_CSV_URL;
+  if(saved){
+    document.getElementById('csvUrlInput').value = saved;
+    loadFromUrl(saved);
+  } else {
+    document.getElementById('veil').classList.add('hide');
+    document.getElementById('settingsBar').style.display='flex';
+  }
+});
+</script>
+</body>
+</html>
