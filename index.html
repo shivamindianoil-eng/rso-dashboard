@@ -13,9 +13,9 @@
   --panel:#ffffff; --panel-2:#ffffff;
   --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
   --text:#0f2337; --text-dim:#516b82; --text-dim2:#7c93a8;
-  --ms:#1f8f6f; --ms-glow:rgba(31,143,111,0.25);
-  --hsd:#c47a12; --hsd-glow:rgba(196,122,18,0.22);
-  --good:#1d9a5b; --bad:#d84a42; --amber-line:#c47a12;
+  --ms:#7c3aed; --ms-glow:rgba(124,58,237,0.32);
+  --hsd:#db2777; --hsd-glow:rgba(219,39,119,0.28);
+  --good:#16a34a; --bad:#ef4444; --amber-line:#c47a12;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
 body{
@@ -30,7 +30,7 @@ body{
 .brand-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:var(--amber-line); text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:8px;}
 .pulse{width:7px;height:7px;border-radius:50%;background:var(--good); box-shadow:0 0 0 0 rgba(74,222,128,.6); animation:pulse 2s infinite;}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}70%{box-shadow:0 0 0 7px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
-h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:42px; letter-spacing:.01em; line-height:1;}
+h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:48px; letter-spacing:.01em; line-height:1;}
 h1 span{color:var(--text-dim2); font-weight:500;}
 .topbar-right{text-align:right;}
 .date-badge{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--text); background:var(--panel-2); border:1px solid var(--border-2); padding:8px 14px; border-radius:8px; display:inline-flex; gap:10px; align-items:center;}
@@ -75,7 +75,7 @@ h1 span{color:var(--text-dim2); font-weight:500;}
 .gauge-row{display:flex; gap:28px; align-items:center; flex-wrap:wrap;}
 .gauge-block{display:flex; align-items:center; gap:16px; flex:1; min-width:220px;}
 .gauge-svg{flex-shrink:0;}
-.gauge-num{font-family:'Big Shoulders Display'; font-size:42px; font-weight:700; line-height:1;}
+.gauge-num{font-family:'Big Shoulders Display'; font-size:50px; font-weight:700; line-height:1;}
 .gauge-label{font-size:11.5px; color:var(--text-dim); font-weight:600; margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em;}
 .gauge-meta{font-size:11.5px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; margin-top:4px;}
 .chip{display:inline-flex; align-items:center; gap:4px; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px; margin-top:6px;}
@@ -84,7 +84,7 @@ h1 span{color:var(--text-dim2); font-weight:500;}
 .bar-group{margin-bottom:16px;} .bar-group:last-child{margin-bottom:0;}
 .bar-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;}
 .bar-name{font-size:12px; color:var(--text-dim); font-weight:500;}
-.bar-val{font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--text); font-weight:600;}
+.bar-val{font-family:'IBM Plex Mono',monospace; font-size:15px; color:var(--text); font-weight:600;}
 .bar-track{height:10px; background:rgba(15,35,55,0.07); border-radius:6px; overflow:hidden; position:relative;}
 .bar-fill{height:100%; border-radius:6px; width:0%; transition:width 1.1s cubic-bezier(.16,1,.3,1);}
 .bar-fill.ms{background:linear-gradient(90deg,#237a5f,var(--ms)); box-shadow:0 0 12px var(--ms-glow);}
@@ -96,18 +96,18 @@ h1 span{color:var(--text-dim2); font-weight:500;}
 .tank-fill{position:absolute; bottom:0; left:0; right:0; height:0%; transition:height 1.2s cubic-bezier(.16,1,.3,1);}
 .tank-fill.ms{background:linear-gradient(180deg, var(--ms), #1c5f49);} .tank-fill.hsd{background:linear-gradient(180deg, var(--hsd), #96660f);}
 .tank-fill::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.5);}
-.tank-pct{font-family:'Big Shoulders Display'; font-size:28px; font-weight:700;}
+.tank-pct{font-family:'Big Shoulders Display'; font-size:34px; font-weight:700;}
 .tank-cap{font-size:10.5px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; margin-top:2px;}
 .tank-name{font-size:11px; color:var(--text-dim); margin-top:6px; font-weight:600;}
 
 .stat-mini{text-align:center; padding:14px 8px; background:rgba(15,35,55,.02); border:1px solid var(--border); border-radius:10px;}
 .stat-mini .lab{font-size:10px; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; font-family:'IBM Plex Mono',monospace;}
 .stat-pair{display:flex; justify-content:center; gap:14px;} .stat-pair div{flex:1;}
-.stat-pair .n{font-family:'Big Shoulders Display'; font-size:32px; font-weight:700;}
+.stat-pair .n{font-family:'Big Shoulders Display'; font-size:38px; font-weight:700;}
 .stat-pair .u{font-size:9.5px; color:var(--text-dim2); text-transform:uppercase;}
 
 .trend-card .trend-flow{display:flex; align-items:center; justify-content:center; gap:14px; margin-top:10px;}
-.trend-num{text-align:center;} .trend-num .n{font-family:'Big Shoulders Display'; font-size:44px; font-weight:700;}
+.trend-num{text-align:center;} .trend-num .n{font-family:'Big Shoulders Display'; font-size:52px; font-weight:700;}
 .trend-num .l{font-size:10px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; text-transform:uppercase;}
 .arrow-mid{display:flex; flex-direction:column; align-items:center; gap:2px;} .arrow-mid svg{width:26px; height:26px;}
 
@@ -128,7 +128,8 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
       <h1>Daily Sale Monitoring <span>— MS &amp; HSD</span></h1>
     </div>
     <div class="topbar-right">
-      <a href="mou.html" class="mou-link">MOU Performance →</a><br>
+      <a href="mou.html" class="mou-link">MOU Performance →</a>
+      <a href="retail-folder.html" class="mou-link" style="background:linear-gradient(90deg,#2f6fbf,#5b8fd8);">Retail Folder (DO-wise) →</a><br>
       <div class="date-badge">Reporting Date <b id="reportDate">—</b></div>
       <div class="legend">
         <span><span class="dot ms"></span>MS (Petrol)</span>
@@ -201,8 +202,8 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
         <div class="bar-track"><div class="bar-fill hsd" id="targetBarHSD"></div></div>
       </div>
       <div style="display:flex; gap:14px; margin-top:16px;">
-        <div class="stat-mini" style="flex:1;"><div class="lab">Target Growth · MS</div><div class="n" id="tgGrowthMS" style="font-family:'Big Shoulders Display'; font-size:30px; color:var(--ms);"></div></div>
-        <div class="stat-mini" style="flex:1;"><div class="lab">Target Growth · HSD</div><div class="n" id="tgGrowthHSD" style="font-family:'Big Shoulders Display'; font-size:30px; color:var(--hsd);"></div></div>
+        <div class="stat-mini" style="flex:1;"><div class="lab">Target Growth · MS</div><div class="n" id="tgGrowthMS" style="font-family:'Big Shoulders Display'; font-size:36px; color:var(--ms);"></div></div>
+        <div class="stat-mini" style="flex:1;"><div class="lab">Target Growth · HSD</div><div class="n" id="tgGrowthHSD" style="font-family:'Big Shoulders Display'; font-size:36px; color:var(--hsd);"></div></div>
       </div>
     </div>
   </div>
@@ -223,8 +224,8 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
       <div class="card-title">Dryouts</div>
       <div class="card-sub" id="dryoutSub">Volume loss &amp; outlet count</div>
       <div class="grid grid-2" style="gap:10px;">
-        <div class="stat-mini"><div class="lab">Vol. Loss MS</div><div class="n" id="dryVolMS" style="font-family:'Big Shoulders Display';font-size:34px;color:var(--bad);"></div><div class="u">KL</div></div>
-        <div class="stat-mini"><div class="lab">Vol. Loss HSD</div><div class="n" id="dryVolHSD" style="font-family:'Big Shoulders Display';font-size:34px;color:var(--bad);"></div><div class="u">KL</div></div>
+        <div class="stat-mini"><div class="lab">Vol. Loss MS</div><div class="n" id="dryVolMS" style="font-family:'Big Shoulders Display';font-size:40px;color:var(--bad);"></div><div class="u" id="dryVolUnitMS"></div></div>
+        <div class="stat-mini"><div class="lab">Vol. Loss HSD</div><div class="n" id="dryVolHSD" style="font-family:'Big Shoulders Display';font-size:40px;color:var(--bad);"></div><div class="u" id="dryVolUnitHSD"></div></div>
         <div class="stat-mini"><div class="lab">Dryout Outlets MS</div><div class="n" id="dryCntMS" style="font-family:'Big Shoulders Display';font-size:34px;"></div><div class="u">Nos.</div></div>
         <div class="stat-mini"><div class="lab">Dryout Outlets HSD</div><div class="n" id="dryCntHSD" style="font-family:'Big Shoulders Display';font-size:34px;"></div><div class="u">Nos.</div></div>
       </div>
@@ -246,7 +247,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
   <div class="section-label">Outlet Health</div>
   <div class="grid grid-3">
     <div class="card trend-card">
-      <div class="card-title">YTS — Yet to Start</div><div class="card-sub">Outlet count, MS network</div>
+      <div class="card-title">YTS — Yet to Start</div>
       <div class="trend-flow">
         <div class="trend-num"><div class="n" id="ytsOld"></div><div class="l" id="ytsOldL"></div></div>
         <div class="arrow-mid" id="ytsArrow"></div>
@@ -254,7 +255,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
       </div>
     </div>
     <div class="card trend-card">
-      <div class="card-title">NIL Selling Outlets</div><div class="card-sub">Outlet count, MS network</div>
+      <div class="card-title">NIL Selling Outlets</div>
       <div class="trend-flow">
         <div class="trend-num"><div class="n" id="nilOld"></div><div class="l" id="nilOldL"></div></div>
         <div class="arrow-mid" id="nilArrow"></div>
@@ -262,7 +263,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
       </div>
     </div>
     <div class="card trend-card">
-      <div class="card-title">NFR Store Outlets</div><div class="card-sub">Outlet count, MS network</div>
+      <div class="card-title">NFR Store Outlets</div>
       <div class="trend-flow">
         <div class="trend-num"><div class="n" id="nfrOld"></div><div class="l" id="nfrOldL"></div></div>
         <div class="arrow-mid" id="nfrArrow"></div>
@@ -349,12 +350,12 @@ function parseCSV(text){
 
 /* ===== gauges ===== */
 function ring(pct, color, glow){
-  const r=48, c=2*Math.PI*r, off = c - (Math.min(Math.max(pct,0),100)/100)*c;
-  return `<svg class="gauge-svg" width="118" height="118" viewBox="0 0 118 118">
-    <circle cx="59" cy="59" r="${r}" fill="none" stroke="rgba(15,35,55,0.08)" stroke-width="10"/>
-    <circle cx="59" cy="59" r="${r}" fill="none" stroke="${color}" stroke-width="10" stroke-linecap="round"
+  const r=54, c=2*Math.PI*r, off = c - (Math.min(Math.max(pct,0),100)/100)*c;
+  return `<svg class="gauge-svg" width="130" height="130" viewBox="0 0 130 130">
+    <circle cx="65" cy="65" r="${r}" fill="none" stroke="rgba(15,35,55,0.08)" stroke-width="11"/>
+    <circle cx="65" cy="65" r="${r}" fill="none" stroke="${color}" stroke-width="11" stroke-linecap="round"
       stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${off}"
-      transform="rotate(-90 59 59)" style="filter:drop-shadow(0 0 4px ${glow}); transition:stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1);"/>
+      transform="rotate(-90 65 65)" style="filter:drop-shadow(0 0 5px ${glow}); transition:stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1);"/>
   </svg>`;
 }
 function gaugeData(scope, period){
@@ -373,6 +374,7 @@ function gaugeData(scope, period){
   }
 }
 function renderGauge(containerId, scope, period){
+  if(period==='week'){ renderWeekBlock(containerId, scope); return; }
   const d = gaugeData(scope, period);
   const el = document.getElementById(containerId);
   const block = (label,val,color,glow,gr,ly)=>`
@@ -390,6 +392,31 @@ function renderGauge(containerId, scope, period){
   requestAnimationFrame(()=> setTimeout(()=>{
     el.querySelectorAll('circle[data-target]').forEach(c=> c.style.strokeDashoffset = c.getAttribute('data-target'));
   },60));
+}
+
+function renderWeekBlock(containerId, scope){
+  const el = document.getElementById(containerId);
+  if(!RAW_KEYS.psuWeekActual){
+    el.innerHTML = `<div class="gauge-meta" style="padding:10px 0;">No weekly market share data found for this period.</div>`;
+    return;
+  }
+  const actual = get('Mkt Shr PSU', RAW_KEYS.psuWeekActual);
+  const prorata = get('Mkt Shr PSU', RAW_KEYS.psuWeekProrata);
+  const label = RAW_KEYS.psuWeekLabel || 'This period';
+  const deltaChip = (v)=> v===null ? '—' : `${v>=0?'▲':'▼'} ${Math.abs(v)} pp`;
+  const deltaClass = (v)=> v===null ? '' : (v>=0?'up':'down');
+  const fuelCol = (fuelLabel, color, av, pv)=>`
+    <div class="gauge-block" style="min-width:180px;">
+      <div>
+        <div class="gauge-label" style="color:${color}">${fuelLabel} — Actual</div>
+        <div class="gauge-num">${av===null?'—':av+' pp'}</div>
+        <div class="chip ${deltaClass(av)}">${deltaChip(av)}</div>
+        <div class="gauge-meta">Prorata: ${pv===null?'—':pv+' pp'}</div>
+      </div>
+    </div>`;
+  el.innerHTML = fuelCol('MS', 'var(--ms)', actual.ms, prorata.ms) +
+                 fuelCol('HSD', 'var(--hsd)', actual.hsd, prorata.hsd) +
+                 `<div class="gauge-meta" style="width:100%; margin-top:4px;">Market share movement, ${label} — Actual vs Prorata basis</div>`;
 }
 
 function setBar(id, pct){ const e=document.getElementById(id); if(e) e.style.width = Math.max(0,Math.min(100,pct))+'%'; }
@@ -450,6 +477,7 @@ function renderAll(){
   const dryVol = get('Dryouts', RAW_KEYS.dryVolLabel);
   const dryCnt = get('Dryouts', RAW_KEYS.dryCntLabel);
   setText('dryVolMS', fmt(dryVol.ms)); setText('dryVolHSD', fmt(dryVol.hsd));
+  setText('dryVolUnitMS', dryVol.unit || 'L'); setText('dryVolUnitHSD', dryVol.unit || 'L');
   setText('dryCntMS', fmt(dryCnt.ms)); setText('dryCntHSD', fmt(dryCnt.hsd));
 
   // Commissioning
@@ -511,7 +539,8 @@ const RAW_KEYS = {
   yts1:'As on 01.04.2026', yts2:'As on 01.08.2026',
   nil1:'As on 01.04.2026', nil2:'As on 01.08.2026',
   nfr1:'As on 01.04.2026', nfr2:'As on 01.08.2026',
-  monthCYLY:'Month CY vs LY', cumCYLY:'Cumulative CY vs LY'
+  monthCYLY:'Month CY vs LY', cumCYLY:'Cumulative CY vs LY',
+  psuWeekActual:null, psuWeekProrata:null, psuWeekLabel:''
 };
 
 function detectDynamicKeys(){
@@ -547,6 +576,39 @@ function detectDynamicKeys(){
   RAW_KEYS.commD1 = cm.find(p=>p.startsWith('D1 Class')) || 'D1 Class IOC Month & Cumulative';
   RAW_KEYS.commIOC = cm.find(p=>p.startsWith('Overall IOC')) || 'Overall IOC Month & Cumulative';
   RAW_KEYS.commPSU = cm.find(p=>p.startsWith('Overall PSU')) || 'Overall PSU Month & Cumulative';
+
+  const psuKeys = bySection['Mkt Shr PSU'] || [];
+  RAW_KEYS.psuWeekActual = psuKeys.find(p=>/^PSU Mkt Share .* Actual$/.test(p)) || null;
+  RAW_KEYS.psuWeekProrata = psuKeys.find(p=>/^PSU Mkt Share .* Prorata$/.test(p)) || null;
+  if(RAW_KEYS.psuWeekActual){
+    const m = RAW_KEYS.psuWeekActual.match(/^PSU Mkt Share (.*) Actual$/);
+    RAW_KEYS.psuWeekLabel = m ? m[1] : '';
+  } else {
+    RAW_KEYS.psuWeekLabel = '';
+  }
+
+  // inject / remove the third "weekly" tab on the PSU card based on data availability
+  const psuTabs = document.querySelector('#cardPSU .tabs');
+  if(psuTabs){
+    let weekBtn = psuTabs.querySelector('[data-period="week"]');
+    if(RAW_KEYS.psuWeekActual){
+      if(!weekBtn){
+        weekBtn = document.createElement('button');
+        weekBtn.className = 'tab-btn';
+        weekBtn.dataset.scope = 'psu';
+        weekBtn.dataset.period = 'week';
+        weekBtn.addEventListener('click', ()=>{
+          psuTabs.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+          weekBtn.classList.add('active');
+          renderGauge('gaugePSU','psu','week');
+        });
+        psuTabs.appendChild(weekBtn);
+      }
+      weekBtn.textContent = RAW_KEYS.psuWeekLabel || 'This Week';
+    } else if(weekBtn){
+      weekBtn.remove();
+    }
+  }
 }
 
 let autoRefreshTimer = null;
