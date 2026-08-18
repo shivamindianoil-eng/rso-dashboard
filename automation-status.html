@@ -203,9 +203,15 @@ function fmt(n){ if(n===null||n===undefined||isNaN(n)) return '—'; return Numb
 function num(v){ const n=parseFloat(v); return isNaN(n)?0:n; }
 function bucketColor(b){ return BUCKET_COLOR[b] || '#94a3b3'; }
 
+function normDO(d){
+  const k = (d||'').trim().toUpperCase();
+  const map = {'AJMER DO':'Ajmer DO','JAIPUR DO':'Jaipur DO','JODHPUR DO':'Jodhpur DO','UDAIPUR DO':'Udaipur DO','RSO':'RSO','RAJASTHAN STATE OFFICE':'RSO'};
+  return map[k] || (d||'').trim();
+}
+
 function parseTidyCSV(text){
   const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
-  return parsed.filter(r => r.Section);
+  return parsed.filter(r => r.Section).map(r => ({...r, DO: normDO(r.DO)}));
 }
 
 function getVal(rows, section, do_, metric){
