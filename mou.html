@@ -59,8 +59,8 @@ h1 span{color:var(--text-dim2); font-weight:500;}
 .score-hero{display:flex; align-items:center; gap:24px; flex-wrap:wrap;}
 .score-ring-wrap{position:relative; flex-shrink:0;}
 .score-num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
-.score-num .n{font-family:'Big Shoulders Display'; font-size:56px; font-weight:700; line-height:1;}
-.score-num .l{font-size:13px; font-weight:700; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; text-transform:uppercase; margin-top:2px;}
+.score-num .n{font-family:'Big Shoulders Display'; font-size:68px; font-weight:700; line-height:1;}
+.score-num .l{font-size:14px; font-weight:700; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; text-transform:uppercase; margin-top:4px;}
 .score-meta{flex:1; min-width:180px;}
 .score-meta .row{display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:17px;}
 .score-meta .row:last-child{border-bottom:none;}
@@ -143,11 +143,10 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
   <div class="grid grid-hero">
     <div class="card">
       <div class="card-title">Overall Score</div>
-      <div class="card-sub">Applicable weightage vs score achieved</div>
+      <div class="card-sub">Score achieved across all applicable parameters</div>
       <div class="score-hero">
         <div class="score-ring-wrap" id="scoreRingWrap"></div>
         <div class="score-meta">
-          <div class="row"><span>Applicable Weightage</span><b id="scoreWeightage">—</b></div>
           <div class="row"><span>Score Achieved</span><b id="scoreAchieved">—</b></div>
           <div class="row"><span>Total Parameters</span><b id="scoreTotalParams">—</b></div>
           <div class="row"><span>Applicable Parameters</span><b id="scoreApplicable">—</b></div>
@@ -264,12 +263,12 @@ function parseCSV(text){
 }
 
 function ring(pct, color){
-  const r=70, c=2*Math.PI*r, off = c - (Math.min(Math.max(pct,0),100)/100)*c;
-  return `<svg width="180" height="180" viewBox="0 0 180 180">
-    <circle cx="90" cy="90" r="${r}" fill="none" stroke="rgba(15,35,55,0.08)" stroke-width="14"/>
-    <circle cx="90" cy="90" r="${r}" fill="none" stroke="${color}" stroke-width="14" stroke-linecap="round"
+  const r=92, c=2*Math.PI*r, off = c - (Math.min(Math.max(pct,0),100)/100)*c;
+  return `<svg width="230" height="230" viewBox="0 0 230 230">
+    <circle cx="115" cy="115" r="${r}" fill="none" stroke="rgba(15,35,55,0.08)" stroke-width="16"/>
+    <circle cx="115" cy="115" r="${r}" fill="none" stroke="${color}" stroke-width="16" stroke-linecap="round"
       stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${off}"
-      transform="rotate(-90 90 90)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1);"/>
+      transform="rotate(-90 115 115)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1);"/>
   </svg>`;
 }
 
@@ -310,7 +309,6 @@ function renderHero(){
   requestAnimationFrame(()=> setTimeout(()=>{
     wrap.querySelectorAll('circle[data-target]').forEach(c=> c.style.strokeDashoffset = c.getAttribute('data-target'));
   },60));
-  document.getElementById('scoreWeightage').textContent = overall.weightage!==null ? fmt(overall.weightage) : '—';
   document.getElementById('scoreAchieved').textContent = overall.score!==null ? fmt(overall.score) : '—';
   document.getElementById('scoreTotalParams').textContent = overall.total;
   document.getElementById('scoreApplicable').textContent = overall.applicable;
