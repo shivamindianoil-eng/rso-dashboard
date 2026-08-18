@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Automation Status — ERACTS &amp; Vishleshan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f7f9fb; --panel:#ffffff;
+  --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
+  --text:#0f2337; --text-dim:#0a3d21; --text-dim2:#0d5c30;
+  --ms:#7c3aed; --hsd:#db2777; --amber-line:#c47a12;
+  --b1:#16a34a; --b2:#eab308; --b3:#f97316; --b4:#ef4444; --b5:#7f1d1d;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:
+    radial-gradient(ellipse 1200px 600px at 15% -10%, rgba(124,58,237,0.05), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 100% 0%, rgba(219,39,119,0.05), transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; padding:28px 28px 60px;
+}
+.wrap{max-width:1400px; margin:0 auto;}
+
+.mou-link{display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; color:#fff; background:linear-gradient(90deg,#2f6fbf,#5b8fd8); padding:9px 16px; border-radius:8px; margin-bottom:8px; margin-right:6px; transition:.2s;}
+.mou-link:hover{filter:brightness(1.06); transform:translateY(-1px);}
+.mou-link.alt{background:linear-gradient(90deg,#c47a12,#e0a33d);}
+.mou-link.green{background:linear-gradient(90deg,#1f8f6f,#38b08a);}
+.mou-link.teal{background:linear-gradient(90deg,#0f6b57,#159c7c);}
+
+.topbar{display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid var(--border-2); padding-bottom:20px; margin-bottom:18px; flex-wrap:wrap; gap:16px;}
+.brand-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.18em; color:var(--amber-line); text-transform:uppercase; margin-bottom:8px;}
+h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:56px; letter-spacing:.01em; line-height:1;}
+h1 span{color:var(--text-dim2); font-weight:500;}
+.date-badge{font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--text); background:#fff; border:1px solid var(--border-2); padding:8px 14px; border-radius:8px; display:block; margin-top:6px;}
+.date-badge b{color:var(--amber-line); font-weight:600;}
+
+.settings{display:flex; gap:8px; align-items:center; background:#fff; border:1px solid var(--border-2); border-radius:10px; padding:10px 12px; margin-bottom:14px; flex-wrap:wrap;}
+.settings input{flex:1; min-width:220px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 10px; border-radius:6px;}
+.settings button{background:var(--amber-line); color:#fff; border:none; font-weight:700; font-size:12px; padding:9px 16px; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace;}
+.settings .status{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; color:var(--text-dim2);}
+.settings .status.ok{color:#16a34a;} .settings .status.err{color:#ef4444;}
+.toggle-settings-row{text-align:right; margin-bottom:10px;}
+.toggle-settings-row button{background:none; border:1px solid var(--border-2); color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:13.5px; padding:5px 10px; border-radius:6px; cursor:pointer;}
+
+.report-tabs{display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap;}
+.report-tab{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.02em; text-transform:uppercase;
+  background:#fff; border:1.5px solid var(--border-2); color:var(--text-dim); padding:11px 24px; border-radius:10px; cursor:pointer; transition:.15s;}
+.report-tab.active{background:linear-gradient(90deg, var(--ms), var(--hsd)); color:#fff; border-color:transparent;}
+.report-tab:hover:not(.active){border-color:var(--text-dim);}
+
+.report-panel{display:none;}
+.report-panel.active{display:block;}
+
+.section-label{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dim2); margin:30px 0 12px; display:flex; align-items:center; gap:10px;}
+.section-label::after{content:''; flex:1; height:1px; background:var(--border);}
+
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin-bottom:8px;}
+.kpi{background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(15,35,55,.04); position:relative; overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--ms), var(--hsd)); opacity:.85;}
+.kpi .num{font-family:'Big Shoulders Display'; font-size:40px; font-weight:700; line-height:1;}
+.kpi .lbl{font-size:13px; font-weight:700; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.03em; margin-top:8px; font-family:'IBM Plex Mono',monospace;}
+.kpi.bad .num{color:var(--b4);} .kpi.warn .num{color:var(--b2);}
+
+.charts{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0;}
+@media(max-width:920px){.charts{grid-template-columns:1fr;}}
+.chart-card{background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 14px rgba(15,35,55,0.05); padding:18px 20px 12px; position:relative; overflow:hidden;}
+.chart-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--ms), var(--hsd)); opacity:.85;}
+.chart-card h3{margin:0 0 14px; font-size:15px; text-transform:uppercase; letter-spacing:.03em; color:var(--text); font-weight:700;}
+.chart-card canvas{max-height:280px;}
+
+.bucket-legend{display:flex; gap:16px; flex-wrap:wrap; font-size:13px; font-weight:700; color:var(--text-dim2); margin:14px 0 20px; font-family:'IBM Plex Mono',monospace;}
+.bucket-legend span{display:inline-flex; align-items:center; gap:6px;}
+.swatch{width:11px; height:11px; border-radius:3px; display:inline-block;}
+
+.tables{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:8px 0 20px;}
+@media(max-width:1100px){.tables{grid-template-columns:1fr;}}
+.tables.two{grid-template-columns:repeat(2,1fr);}
+@media(max-width:920px){.tables.two{grid-template-columns:1fr;}}
+.table-card{background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 14px rgba(15,35,55,0.05); overflow:hidden;}
+.table-card .card-head{margin:0; padding:12px 16px; background:linear-gradient(90deg, var(--ms), var(--hsd)); color:#fff;}
+.table-card .card-head h3{margin:0; font-size:13.5px; text-transform:uppercase; letter-spacing:.03em; font-weight:700;}
+.table-wrap{overflow:auto;}
+table.pivot{border-collapse:collapse; width:100%; font-size:13.5px;}
+table.pivot th, table.pivot td{border-bottom:1px solid var(--border); padding:9px 12px; text-align:right; white-space:nowrap; font-family:'IBM Plex Mono',monospace;}
+table.pivot th{background:#f2f5f8; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--text-dim);}
+table.pivot td.rowlabel, table.pivot th.rowlabel{text-align:left; font-weight:700; font-family:'Inter',sans-serif;}
+table.pivot tbody tr:nth-child(even) td:not(.rowlabel){background:#fafbfc;}
+table.pivot tr.grand td{font-weight:700; background:#ece0fb !important; border-top:2px solid var(--ms);}
+
+.empty-note{text-align:center; padding:30px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:17px; font-weight:700;}
+
+footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:14px; font-weight:700; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+.loading-veil{position:fixed; inset:0; background:var(--bg); z-index:50; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; font-family:'IBM Plex Mono',monospace; color:var(--text-dim); transition:opacity .4s;}
+.loading-veil.hide{opacity:0; pointer-events:none;}
+.spinner{width:34px;height:34px;border:3px solid var(--border-2); border-top-color:var(--amber-line); border-radius:50%; animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="loading-veil" id="veil"><div class="spinner"></div><div>Loading live data…</div></div>
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-eyebrow">Rajasthan State Office &middot; Automation Status</div>
+      <h1>Automation Status</h1>
+    </div>
+    <div style="text-align:right;">
+      <div>
+        <a href="index.html" class="mou-link alt">← Daily Sales</a>
+        <a href="mou.html" class="mou-link green">MOU Performance →</a>
+        <a href="retail-folder.html" class="mou-link">DO Wise →</a>
+        <a href="ecms.html" class="mou-link teal">ECMS Status →</a>
+      </div>
+      <div class="date-badge">ERACTS as on <b id="eractsDate">—</b> &nbsp;|&nbsp; Vishleshan as on <b id="vishDate">—</b></div>
+    </div>
+  </div>
+
+  <div class="settings" id="settingsBar" style="display:none;">
+    <input type="text" id="csvUrlInputEracts" placeholder="Paste ERACTS data CSV raw link…">
+    <input type="text" id="csvUrlInputVish" placeholder="Paste Vishleshan data CSV raw link…">
+    <button id="loadBtn">Load &amp; Save</button>
+    <button id="resetBtn" style="background:#e8ecef; color:var(--text-dim);">Reset to Default</button>
+    <span class="status" id="statusMsg">Not connected</span>
+  </div>
+  <div class="toggle-settings-row"><button id="toggleSettings">⚙ Data source settings</button></div>
+
+  <div class="report-tabs">
+    <button class="report-tab active" data-report="eracts">ERACTS Status</button>
+    <button class="report-tab" data-report="vishleshan">Vishleshan Leads</button>
+  </div>
+
+  <!-- ERACTS PANEL -->
+  <div class="report-panel active" id="panelEracts">
+    <div class="section-label">Overview</div>
+    <div class="kpis" id="eractsKpis"></div>
+
+    <div class="charts">
+      <div class="chart-card">
+        <h3>All Complaints — Ageing by DO</h3>
+        <canvas id="chartEractsAll"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Critical Complaints — Ageing by DO</h3>
+        <canvas id="chartEractsCritical"></canvas>
+      </div>
+    </div>
+    <div class="bucket-legend" id="eractsLegend"></div>
+
+    <div class="section-label">Equipment-wise — All Complaints</div>
+    <div class="tables" id="eractsAllEquipTables"></div>
+
+    <div class="section-label">Equipment-wise — Critical Complaints</div>
+    <div class="tables" id="eractsCritEquipTables"></div>
+  </div>
+
+  <!-- VISHLESHAN PANEL -->
+  <div class="report-panel" id="panelVishleshan">
+    <div class="section-label">Overview</div>
+    <div class="kpis" id="vishKpis"></div>
+
+    <div class="charts">
+      <div class="chart-card">
+        <h3>Total Open Critical Leads — Status by DO</h3>
+        <canvas id="chartVishCritical"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Ageing Analysis — Critical Leads</h3>
+        <canvas id="chartVishAgeing"></canvas>
+      </div>
+    </div>
+    <div class="bucket-legend" id="vishLegend"></div>
+
+    <div class="section-label">Detail Tables</div>
+    <div class="tables two" id="vishTables"></div>
+  </div>
+
+  <footer>
+    <span>Source: live ERACTS &amp; Vishleshan data feeds &middot; updated weekly</span>
+    <span id="lastUpdated"></span>
+  </footer>
+</div>
+
+<script>
+const LS_KEY_ERACTS = 'automation_eracts_csv_url_v1';
+const LS_KEY_VISH = 'automation_vish_csv_url_v1';
+const DEFAULT_ERACTS_URL = ''; // filled in once repo file link is known
+const DEFAULT_VISH_URL = ''; // filled in once repo file link is known
+
+let ERACTS_ROWS = [];
+let VISH_ROWS = [];
+const DO_ORDER = ['Ajmer DO','Jaipur DO','Jodhpur DO','Udaipur DO','RSO'];
+const BUCKETS = ['0-3 Days','3-10 Days','10-30 Days','More than 30 Days'];
+const BUCKET_COLOR = {'0-3 Days':'#16a34a','3-10 Days':'#eab308','10-30 Days':'#f97316','More than 30 Days':'#ef4444'};
+let charts = {};
+
+function fmt(n){ if(n===null||n===undefined||isNaN(n)) return '—'; return Number(n).toLocaleString('en-IN'); }
+function num(v){ const n=parseFloat(v); return isNaN(n)?0:n; }
+function bucketColor(b){ return BUCKET_COLOR[b] || '#94a3b3'; }
+
+function parseTidyCSV(text){
+  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
+  return parsed.filter(r => r.Section);
+}
+
+function getVal(rows, section, do_, metric){
+  const r = rows.find(x=>x.Section===section && x.DO===do_ && x.Metric===metric);
+  return r ? num(r.Value) : 0;
+}
+function getMeta(rows, metric){
+  const r = rows.find(x=>x.Section==='META' && x.Metric===metric);
+  return r ? r.Value : '—';
+}
+
+/* ============ ERACTS ============ */
+function renderEracts(){
+  document.getElementById('eractsDate').textContent = getMeta(ERACTS_ROWS, 'AsOfDate');
+
+  const totalAll = getVal(ERACTS_ROWS,'All Complaints — Combined','RSO','Total');
+  const totalCrit = getVal(ERACTS_ROWS,'Critical Complaints — Combined','RSO','Total');
+  const over30All = getVal(ERACTS_ROWS,'All Complaints — Combined','RSO','More than 30 Days');
+  const over30Crit = getVal(ERACTS_ROWS,'Critical Complaints — Combined','RSO','More than 30 Days');
+
+  document.getElementById('eractsKpis').innerHTML = [
+    {n:totalAll, l:'Total All Complaints (RSO)', cls:''},
+    {n:totalCrit, l:'Total Critical Complaints (RSO)', cls:'warn'},
+    {n:over30All, l:'All Complaints > 30 Days', cls:'bad'},
+    {n:over30Crit, l:'Critical Complaints > 30 Days', cls:'bad'},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n)}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  document.getElementById('eractsLegend').innerHTML = BUCKETS.map(b=>
+    `<span><span class="swatch" style="background:${bucketColor(b)}"></span>${b}</span>`
+  ).join('');
+
+  const dosAll = ['Ajmer DO','Jaipur DO','Jodhpur DO','Udaipur DO','RSO'];
+  const dsAll = BUCKETS.map(b=>({
+    label:b, backgroundColor:bucketColor(b),
+    data: dosAll.map(d=>getVal(ERACTS_ROWS,'All Complaints — Combined', d==='RSO'?'RSO':d, b))
+  }));
+  if(charts.eall) charts.eall.destroy();
+  charts.eall = new Chart(document.getElementById('chartEractsAll'), {
+    type:'bar', data:{labels:dosAll, datasets:dsAll},
+    options:{responsive:true, plugins:{legend:{display:false}}, scales:{x:{stacked:true, grid:{display:false}}, y:{stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}}}}
+  });
+
+  const dsCrit = BUCKETS.map(b=>({
+    label:b, backgroundColor:bucketColor(b),
+    data: dosAll.map(d=>getVal(ERACTS_ROWS,'Critical Complaints — Combined', d, b))
+  }));
+  if(charts.ecrit) charts.ecrit.destroy();
+  charts.ecrit = new Chart(document.getElementById('chartEractsCritical'), {
+    type:'bar', data:{labels:dosAll, datasets:dsCrit},
+    options:{responsive:true, plugins:{legend:{display:false}}, scales:{x:{stacked:true, grid:{display:false}}, y:{stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}}}}
+  });
+
+  renderEquipTables('eractsAllEquipTables', 'All Complaints');
+  renderEquipTables('eractsCritEquipTables', 'Critical Complaints');
+}
+
+function renderEquipTables(containerId, prefix){
+  const equip = ['Orpak','Atos','BCT'];
+  const dos = ['Ajmer DO','Jaipur DO','Jodhpur DO','Udaipur DO','RSO'];
+  const html = equip.map(eq=>{
+    const section = `${prefix} — ${eq}`;
+    let rows = dos.map(d=>{
+      const vals = BUCKETS.map(b=>getVal(ERACTS_ROWS, section, d, b));
+      const total = getVal(ERACTS_ROWS, section, d, 'Total');
+      const rowClass = d==='RSO' ? ' class="grand"' : '';
+      return `<tr${rowClass}><td class="rowlabel">${d}</td>${vals.map(v=>`<td>${fmt(v)}</td>`).join('')}<td>${fmt(total)}</td></tr>`;
+    }).join('');
+    return `<div class="table-card"><div class="card-head"><h3>${eq}</h3></div><div class="table-wrap">
+      <table class="pivot"><thead><tr><th class="rowlabel">DO</th>${BUCKETS.map(b=>`<th>${b.replace(' Days','').replace('More than 30','>30')}</th>`).join('')}<th>Total</th></tr></thead>
+      <tbody>${rows}</tbody></table></div></div>`;
+  }).join('');
+  document.getElementById(containerId).innerHTML = html;
+}
+
+/* ============ VISHLESHAN ============ */
+function renderVishleshan(){
+  document.getElementById('vishDate').textContent = getMeta(VISH_ROWS, 'AsOfDate');
+
+  const totalOpenCrit = getVal(VISH_ROWS,'Total Open Critical Leads','RSO','Total');
+  const totalOpen = getVal(VISH_ROWS,'Total Open Leads','RSO','Total');
+  const pendingDRH = getVal(VISH_ROWS,'Total Open Critical Leads','RSO','Pending at DRH');
+  const over30 = getVal(VISH_ROWS,'Ageing Analysis — Critical Leads','RSO','More than 30 Days');
+
+  document.getElementById('vishKpis').innerHTML = [
+    {n:totalOpenCrit, l:'Total Open Critical Leads (RSO)', cls:'warn'},
+    {n:totalOpen, l:'Total Open Leads (RSO)', cls:''},
+    {n:pendingDRH, l:'Critical — Pending at DRH', cls:'bad'},
+    {n:over30, l:'Critical Leads > 30 Days', cls:'bad'},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n)}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  const dos = ['Ajmer DO','Jaipur DO','Jodhpur DO','Udaipur DO','RSO'];
+  const statusLabels = ['Not Acknowledged','Pending at FO','Pending at DRH'];
+  const statusColors = {'Not Acknowledged':'#ef4444','Pending at FO':'#eab308','Pending at DRH':'#7c3aed'};
+  document.getElementById('vishLegend').innerHTML = statusLabels.map(s=>
+    `<span><span class="swatch" style="background:${statusColors[s]}"></span>${s}</span>`
+  ).join('') + BUCKETS.map(b=>`<span><span class="swatch" style="background:${bucketColor(b)}"></span>${b}</span>`).join('');
+
+  const dsStatus = statusLabels.map(s=>({
+    label:s, backgroundColor:statusColors[s],
+    data: dos.map(d=>getVal(VISH_ROWS,'Total Open Critical Leads', d, s))
+  }));
+  if(charts.vcrit) charts.vcrit.destroy();
+  charts.vcrit = new Chart(document.getElementById('chartVishCritical'), {
+    type:'bar', data:{labels:dos, datasets:dsStatus},
+    options:{responsive:true, plugins:{legend:{display:false}}, scales:{x:{stacked:true, grid:{display:false}}, y:{stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}}}}
+  });
+
+  const dsAge = BUCKETS.map(b=>({
+    label:b, backgroundColor:bucketColor(b),
+    data: dos.map(d=>getVal(VISH_ROWS,'Ageing Analysis — Critical Leads', d, b))
+  }));
+  if(charts.vage) charts.vage.destroy();
+  charts.vage = new Chart(document.getElementById('chartVishAgeing'), {
+    type:'bar', data:{labels:dos, datasets:dsAge},
+    options:{responsive:true, plugins:{legend:{display:false}}, scales:{x:{stacked:true, grid:{display:false}}, y:{stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}}}}
+  });
+
+  const tables = [
+    {title:'Total Open Critical Leads', section:'Total Open Critical Leads', cols:['Not Acknowledged','Pending at FO','Pending at DRH','Total']},
+    {title:'Total Open Leads', section:'Total Open Leads', cols:['Not Acknowledged','Pending at FO','Pending at DRH','Total']},
+  ];
+  document.getElementById('vishTables').innerHTML = tables.map(t=>{
+    let rows = dos.map(d=>{
+      const vals = t.cols.map(c=>getVal(VISH_ROWS, t.section, d, c));
+      const rowClass = d==='RSO' ? ' class="grand"' : '';
+      return `<tr${rowClass}><td class="rowlabel">${d}</td>${vals.map(v=>`<td>${fmt(v)}</td>`).join('')}</tr>`;
+    }).join('');
+    return `<div class="table-card"><div class="card-head"><h3>${t.title}</h3></div><div class="table-wrap">
+      <table class="pivot"><thead><tr><th class="rowlabel">DO</th>${t.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+      <tbody>${rows}</tbody></table></div></div>`;
+  }).join('');
+}
+
+/* ============ tab switching ============ */
+document.querySelectorAll('.report-tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.report-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.report-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(btn.dataset.report==='eracts' ? 'panelEracts' : 'panelVishleshan').classList.add('active');
+  });
+});
+
+document.getElementById('toggleSettings').addEventListener('click', ()=>{
+  const bar = document.getElementById('settingsBar');
+  bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(LS_KEY_ERACTS);
+  localStorage.removeItem(LS_KEY_VISH);
+  document.getElementById('csvUrlInputEracts').value = DEFAULT_ERACTS_URL;
+  document.getElementById('csvUrlInputVish').value = DEFAULT_VISH_URL;
+  loadAll(DEFAULT_ERACTS_URL, DEFAULT_VISH_URL);
+});
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const u1 = document.getElementById('csvUrlInputEracts').value.trim();
+  const u2 = document.getElementById('csvUrlInputVish').value.trim();
+  if(!u1 || !u2) return;
+  localStorage.setItem(LS_KEY_ERACTS, u1);
+  localStorage.setItem(LS_KEY_VISH, u2);
+  loadAll(u1, u2);
+});
+
+let autoRefreshTimer = null;
+const AUTO_REFRESH_MS = 30000;
+async function fetchCSV(url){
+  const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  return await res.text();
+}
+async function loadAll(u1, u2, silent){
+  const statusEl = document.getElementById('statusMsg');
+  if(!u1 || !u2){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
+  if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
+  try{
+    const [t1, t2] = await Promise.all([fetchCSV(u1), fetchCSV(u2)]);
+    ERACTS_ROWS = parseTidyCSV(t1);
+    VISH_ROWS = parseTidyCSV(t2);
+    renderEracts();
+    renderVishleshan();
+    const now = new Date().toLocaleTimeString();
+    statusEl.textContent = 'Live · auto-refreshing every 30s · last update ' + now; statusEl.className='status ok';
+    document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
+    document.getElementById('veil').classList.add('hide');
+    if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(()=> loadAll(u1, u2, true), AUTO_REFRESH_MS);
+  }catch(err){
+    statusEl.textContent = 'Could not load data: ' + err.message; statusEl.className='status err';
+    document.getElementById('veil').classList.add('hide');
+  }
+}
+
+window.addEventListener('load', ()=>{
+  const savedE = localStorage.getItem(LS_KEY_ERACTS) || DEFAULT_ERACTS_URL;
+  const savedV = localStorage.getItem(LS_KEY_VISH) || DEFAULT_VISH_URL;
+  document.getElementById('csvUrlInputEracts').value = savedE;
+  document.getElementById('csvUrlInputVish').value = savedV;
+  if(savedE && savedV){
+    loadAll(savedE, savedV);
+  } else {
+    document.getElementById('veil').classList.add('hide');
+    document.getElementById('settingsBar').style.display='flex';
+  }
+});
+</script>
+</body>
+</html>
