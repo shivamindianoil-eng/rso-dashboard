@@ -125,7 +125,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
   <div class="topbar">
     <div>
       <div class="brand-eyebrow"><span class="pulse"></span>Regional Sales Office &middot; Live Snapshot</div>
-      <h1>Daily Sale Monitoring <span>— MS &amp; HSD</span></h1>
+      <h1>Daily Sales Monitoring</h1>
     </div>
     <div class="topbar-right">
       <a href="mou.html" class="mou-link">MOU Performance →</a>
@@ -176,7 +176,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
       <div class="card-title">Sales Performance</div>
       <div class="card-sub" id="salesSub">Volumes in KL</div>
       <div class="bar-group">
-        <div class="bar-head"><span class="bar-name">Sales (SAP) — Today</span><span class="bar-val" id="salesTodayVal"></span></div>
+        <div class="bar-head"><span class="bar-name">Sales (SAP) — Yesterday</span><span class="bar-val" id="salesTodayVal"></span></div>
         <div class="bar-track"><div class="bar-fill ms" id="salesTodayMS"></div></div>
         <div class="bar-track" style="margin-top:5px;"><div class="bar-fill hsd" id="salesTodayHSD"></div></div>
       </div>
@@ -449,7 +449,7 @@ function renderAll(){
   const maxMS = Math.max(cum.ms||0, ly.ms||0, 1), maxHSD = Math.max(cum.hsd||0, ly.hsd||0, 1);
   setBar('cumMSCY', (cum.ms/maxMS)*100); setBar('cumMSLY', (ly.ms/maxMS)*100);
   setBar('cumHSDCY', (cum.hsd/maxHSD)*100); setBar('cumHSDLY', (ly.hsd/maxHSD)*100);
-  setText('salesFooter', `Cumulative — solid = CY ${fmt(cum.ms)} / ${fmt(cum.hsd)} KL · faded = LY ${fmt(ly.ms)} / ${fmt(ly.hsd)} KL · Nozzle sale today: ${fmt(nozzle.ms)} / ${fmt(nozzle.hsd)} KL`);
+  setText('salesFooter', `Nozzle sale yesterday: ${fmt(nozzle.ms)} / ${fmt(nozzle.hsd)} KL`);
 
   // Target
   const base = get('Target', RAW_KEYS.baseVolume);
@@ -472,7 +472,7 @@ function renderAll(){
   setHeight('tankMS', todayInv.ms); setHeight('tankHSD', todayInv.hsd);
   setText('tankMSPct', todayInv.ms!==null?todayInv.ms+'%':'—'); setText('tankHSDPct', todayInv.hsd!==null?todayInv.hsd+'%':'—');
   setText('tankMSCap', `Tankage ${fmt(tankage.ms)} KL`); setText('tankHSDCap', `Tankage ${fmt(tankage.hsd)} KL`);
-  setText('tankFooter', `Previous level — MS ${prevInv.ms!==null?prevInv.ms+'%':'—'} · HSD ${prevInv.hsd!==null?prevInv.hsd+'%':'—'}`);
+  setText('tankFooter', `${RAW_KEYS.prevInventory} — MS ${prevInv.ms!==null?prevInv.ms+'%':'—'} · HSD ${prevInv.hsd!==null?prevInv.hsd+'%':'—'}`);
 
   // Dryouts
   const dryVol = get('Dryouts', RAW_KEYS.dryVolLabel);
