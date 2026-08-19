@@ -127,6 +127,9 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
     <div class="ov-item"><div class="n">7,527</div><div class="l">Total Industry Outlets</div></div>
   </div>
 
+  <div class="section-label">Oil Company-wise Market Share &amp; Sales <span id="oilCoDateLabel" style="font-weight:400; text-transform:none; letter-spacing:0;"></span></div>
+  <div id="oilCoWrap"></div>
+
   <div class="section-label">RO / KSK — Site Class Breakup</div>
   <div id="rokskWrap"></div>
 
@@ -164,7 +167,7 @@ function normDO(d){
 
 function parseCSV(text){
   const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
-  ROWS = parsed.filter(r => r.Section && r.DO).map(r => ({...r, DO: normDO(r.DO)}));
+  ROWS = parsed.filter(r => r.Section).map(r => ({...r, DO: normDO(r.DO)}));
 }
 
 function buildSections(){
@@ -172,10 +175,46 @@ function buildSections(){
   const order = [];
   ROWS.forEach(r=>{
     if(r.Section === 'RO-KSK Site Class Breakup') return; // rendered separately
+    if(r.Section === 'Oil Co Market Share') return; // rendered separately
+    if(r.Section === 'META') return; // metadata only
     if(!(r.Section in map)){ map[r.Section] = []; order.push(r.Section); }
     if(r.Period && !map[r.Section].includes(r.Period)) map[r.Section].push(r.Period);
   });
   SECTIONS = order.map(s => ({section:s, periods:map[s]}));
+}
+
+function renderOilCo(){
+  const rows = ROWS.filter(r=>r.Section==='Oil Co Market Share');
+  const wrap = document.getElementById('oilCoWrap');
+  if(rows.length===0){ wrap.innerHTML = ''; return; }
+  const byCo = {};
+  rows.forEach(r=>{ byCo[r.DO] = byCo[r.DO]||{}; byCo[r.DO][r.Metric] = r.Value; });
+
+  const asOf = (ROWS.find(r=>r.Section==='META' && r.Metric==='OilCoAsOfDate')||{}).Value;
+  document.getElementById('oilCoDateLabel').textContent = asOf ? `— as on ${asOf}` : '';
+
+  const groupSpans = [["Sales Volume",6]];
+  const metricCols = [
+    ['RO Count','RO Outlets'],['Physical Participation','Phy. Part. %'],
+    ['MKT Share HSD(R)','Mkt Shr HSD(R) %'],['MKT Share Total','Mkt Shr Total %'],['NW Effec','N/W Effec. %'],
+    ['MS Sales TKL','MS Sales (TKL)'],['MS PPT','MS PPT'],
+    ['HSD Sales TKL','HSD Sales (TKL)'],['HSD PPT','HSD PPT'],
+    ['MS+HSD Sales TKL','MS+HSD (TKL)'],['MS+HSD PPT','MS+HSD PPT'],
+  ];
+  const coOrder = ['IOC','BPC','HPC','PSU Total','RIL','NEL','PVT Total','Industry Total'];
+  const totalRows = new Set(['PSU Total','PVT Total','Industry Total']);
+
+  let html = `<div class="card"><div class="card-title">Oil Company-wise Market Share &amp; Sales</div><div class="card-sub">RSO — Retail Outlets, Market Share, and MS/HSD Sales Volume</div>
+    <div class="table-wrap"><table><thead>
+    <tr><th>Oil Co.</th>${metricCols.map(([k,l])=>`<th>${l}</th>`).join('')}</tr>
+    </thead><tbody>`;
+  coOrder.forEach(co=>{
+    const vals = byCo[co] || {};
+    const rowClass = totalRows.has(co) ? ' class="rso-row"' : '';
+    html += `<tr${rowClass}><td>${co}</td>${metricCols.map(([k])=>`<td>${fmt(vals[k])}</td>`).join('')}</tr>`;
+  });
+  html += `</tbody></table></div></div>`;
+  wrap.innerHTML = html;
 }
 
 function renderRoKsk(){
@@ -301,6 +340,7 @@ async function loadFromUrl(url, silent){
       activeSection = SECTIONS[0].section;
       activePeriod = SECTIONS[0].periods.length ? SECTIONS[0].periods[0] : '';
     }
+    renderOilCo();
     renderRoKsk();
     renderItemTabs();
     renderPeriodTabs();

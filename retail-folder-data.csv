@@ -1,4 +1,93 @@
 Section,Period,DO,Metric,Value
+Oil Co Market Share,,IOC,RO Count,2931
+Oil Co Market Share,,IOC,Physical Participation,38.9
+Oil Co Market Share,,IOC,MKT Share HSD(R),40.4
+Oil Co Market Share,,IOC,MKT Share Total,39.6
+Oil Co Market Share,,IOC,NW Effec,101.7
+Oil Co Market Share,,IOC,MS Sales TKL,417
+Oil Co Market Share,,IOC,MS PPT,36
+Oil Co Market Share,,IOC,HSD Sales TKL,1026
+Oil Co Market Share,,IOC,HSD PPT,87
+Oil Co Market Share,,IOC,MS+HSD Sales TKL,1443
+Oil Co Market Share,,IOC,MS+HSD PPT,123
+Oil Co Market Share,,BPC,RO Count,1571
+Oil Co Market Share,,BPC,Physical Participation,20.9
+Oil Co Market Share,,BPC,MKT Share HSD(R),23.2
+Oil Co Market Share,,BPC,MKT Share Total,23.9
+Oil Co Market Share,,BPC,NW Effec,114.4
+Oil Co Market Share,,BPC,MS Sales TKL,285
+Oil Co Market Share,,BPC,MS PPT,45
+Oil Co Market Share,,BPC,HSD Sales TKL,589
+Oil Co Market Share,,BPC,HSD PPT,94
+Oil Co Market Share,,BPC,MS+HSD Sales TKL,874
+Oil Co Market Share,,BPC,MS+HSD PPT,139
+Oil Co Market Share,,HPC,RO Count,1920
+Oil Co Market Share,,HPC,Physical Participation,25.5
+Oil Co Market Share,,HPC,MKT Share HSD(R),27.9
+Oil Co Market Share,,HPC,MKT Share Total,27.8
+Oil Co Market Share,,HPC,NW Effec,109.0
+Oil Co Market Share,,HPC,MS Sales TKL,305
+Oil Co Market Share,,HPC,MS PPT,40
+Oil Co Market Share,,HPC,HSD Sales TKL,709
+Oil Co Market Share,,HPC,HSD PPT,92
+Oil Co Market Share,,HPC,MS+HSD Sales TKL,1015
+Oil Co Market Share,,HPC,MS+HSD PPT,132
+Oil Co Market Share,,PSU Total,RO Count,6422
+Oil Co Market Share,,PSU Total,Physical Participation,85.3
+Oil Co Market Share,,PSU Total,MKT Share HSD(R),91.5
+Oil Co Market Share,,PSU Total,MKT Share Total,91.3
+Oil Co Market Share,,PSU Total,NW Effec,107.0
+Oil Co Market Share,,PSU Total,MS Sales TKL,1008
+Oil Co Market Share,,PSU Total,MS PPT,39
+Oil Co Market Share,,PSU Total,HSD Sales TKL,2324
+Oil Co Market Share,,PSU Total,HSD PPT,90
+Oil Co Market Share,,PSU Total,MS+HSD Sales TKL,3331
+Oil Co Market Share,,PSU Total,MS+HSD PPT,130
+Oil Co Market Share,,RIL,RO Count,135
+Oil Co Market Share,,RIL,Physical Participation,1.8
+Oil Co Market Share,,RIL,MKT Share HSD(R),2.8
+Oil Co Market Share,,RIL,MKT Share Total,2.7
+Oil Co Market Share,,RIL,NW Effec,150.5
+Oil Co Market Share,,RIL,MS Sales TKL,28
+Oil Co Market Share,,RIL,MS PPT,52
+Oil Co Market Share,,RIL,HSD Sales TKL,70
+Oil Co Market Share,,RIL,HSD PPT,130
+Oil Co Market Share,,RIL,MS+HSD Sales TKL,98
+Oil Co Market Share,,RIL,MS+HSD PPT,182
+Oil Co Market Share,,NEL,RO Count,970
+Oil Co Market Share,,NEL,Physical Participation,12.9
+Oil Co Market Share,,NEL,MKT Share HSD(R),5.8
+Oil Co Market Share,,NEL,MKT Share Total,6.0
+Oil Co Market Share,,NEL,NW Effec,46.6
+Oil Co Market Share,,NEL,MS Sales TKL,75
+Oil Co Market Share,,NEL,MS PPT,19
+Oil Co Market Share,,NEL,HSD Sales TKL,146
+Oil Co Market Share,,NEL,HSD PPT,38
+Oil Co Market Share,,NEL,MS+HSD Sales TKL,221
+Oil Co Market Share,,NEL,MS+HSD PPT,57
+Oil Co Market Share,,PVT Total,RO Count,1105
+Oil Co Market Share,,PVT Total,Physical Participation,14.7
+Oil Co Market Share,,PVT Total,MKT Share HSD(R),8.5
+Oil Co Market Share,,PVT Total,MKT Share Total,8.7
+Oil Co Market Share,,PVT Total,NW Effec,59.3
+Oil Co Market Share,,PVT Total,MS Sales TKL,103
+Oil Co Market Share,,PVT Total,MS PPT,23
+Oil Co Market Share,,PVT Total,HSD Sales TKL,216
+Oil Co Market Share,,PVT Total,HSD PPT,49
+Oil Co Market Share,,PVT Total,MS+HSD Sales TKL,319
+Oil Co Market Share,,PVT Total,MS+HSD PPT,72
+Oil Co Market Share,,Industry Total,RO Count,7527
+Oil Co Market Share,,Industry Total,Physical Participation,100.0
+Oil Co Market Share,,Industry Total,MKT Share HSD(R),100
+Oil Co Market Share,,Industry Total,MKT Share Total,100
+Oil Co Market Share,,Industry Total,NW Effec,100.0
+Oil Co Market Share,,Industry Total,MS Sales TKL,1111
+Oil Co Market Share,,Industry Total,MS PPT,37
+Oil Co Market Share,,Industry Total,HSD Sales TKL,2540
+Oil Co Market Share,,Industry Total,HSD PPT,84
+Oil Co Market Share,,Industry Total,MS+HSD Sales TKL,3650
+Oil Co Market Share,,Industry Total,MS+HSD PPT,121
+META,,,OilCoAsOfDate,01-Aug-2026
 RO-KSK Site Class Breakup,,Ajmer,RO - A Site,215
 RO-KSK Site Class Breakup,,Ajmer,RO - B Site,259
 RO-KSK Site Class Breakup,,Ajmer,RO - Total,474
