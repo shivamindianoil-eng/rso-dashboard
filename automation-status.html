@@ -13,7 +13,7 @@
   --bg:#f7f9fb; --panel:#ffffff;
   --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
   --text:#0f2337; --text-dim:#0a3d21; --text-dim2:#0d5c30;
-  --ms:#7c3aed; --hsd:#db2777; --amber-line:#c47a12;
+  --ms:#4338ca; --hsd:#0891b2; --amber-line:#c47a12;
   --b1:#16a34a; --b2:#eab308; --b3:#f97316; --b4:#ef4444; --b5:#7f1d1d;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
@@ -97,7 +97,7 @@ table.pivot th, table.pivot td{border-bottom:1px solid var(--border); padding:9p
 table.pivot th{background:#f2f5f8; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--text-dim);}
 table.pivot td.rowlabel, table.pivot th.rowlabel{text-align:left; font-weight:700; font-family:'Inter',sans-serif;}
 table.pivot tbody tr:nth-child(even) td:not(.rowlabel){background:#fafbfc;}
-table.pivot tr.grand td{font-weight:700; background:#ece0fb !important; border-top:2px solid var(--ms);}
+table.pivot tr.grand td{font-weight:700; background:#e0e7ff !important; border-top:2px solid var(--ms);}
 
 .empty-note{text-align:center; padding:30px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:17px; font-weight:700;}
 
@@ -243,7 +243,7 @@ const DO_ORDER = ['Ajmer DO','Jaipur DO','Jodhpur DO','Udaipur DO','RSO'];
 const BUCKETS = ['0-3 Days','3-10 Days','10-30 Days','More than 30 Days'];
 const BUCKET_COLOR = {'0-3 Days':'#16a34a','3-10 Days':'#eab308','10-30 Days':'#f97316','More than 30 Days':'#ef4444'};
 const PHASE_COLS = ['Phase VI','Phase VII','Phase VIII','Phase IX Orpak','Phase IX BCT','Phase X ATOS','Phase X PINELABS'];
-const PHASE_COLORS = ['#7c3aed','#a855f7','#db2777','#f97316','#eab308','#16a34a','#0ea5e9'];
+const PHASE_COLORS = ['#312e81','#4338ca','#4f46e5','#6366f1','#0ea5e9','#0891b2','#14b8a6'];
 let charts = {};
 
 function fmt(n){ if(n===null||n===undefined||isNaN(n)) return '—'; return Number(n).toLocaleString('en-IN'); }
@@ -441,7 +441,7 @@ function renderVishleshan(){
 
   const dos = ['Ajmer DO','Jaipur DO','Jodhpur DO','Udaipur DO','RSO'];
   const statusLabels = ['Not Acknowledged','Pending at FO','Pending at DRH'];
-  const statusColors = {'Not Acknowledged':'#ef4444','Pending at FO':'#eab308','Pending at DRH':'#7c3aed'};
+  const statusColors = {'Not Acknowledged':'#ef4444','Pending at FO':'#eab308','Pending at DRH':'#4338ca'};
   document.getElementById('vishLegend').innerHTML = statusLabels.map(s=>
     `<span><span class="swatch" style="background:${statusColors[s]}"></span>${s}</span>`
   ).join('') + BUCKETS.map(b=>`<span><span class="swatch" style="background:${bucketColor(b)}"></span>${b}</span>`).join('');
