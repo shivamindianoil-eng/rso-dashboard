@@ -56,6 +56,13 @@ h1 span{color:var(--text-dim2); font-weight:500;}
 .report-panel{display:none;}
 .report-panel.active{display:block;}
 
+.phase-tab{font-family:'IBM Plex Mono',monospace; font-size:13.5px; font-weight:700; letter-spacing:.02em;
+  background:#fff; border:1.5px solid var(--border-2); color:var(--text-dim); padding:11px 20px; border-radius:10px; cursor:pointer; transition:.15s;}
+.phase-tab.active{background:linear-gradient(90deg, var(--ms), var(--hsd)); color:#fff; border-color:transparent;}
+.phase-tab:hover:not(.active){border-color:var(--text-dim);}
+.phase-detail{display:none; margin-bottom:20px;}
+.phase-detail.active{display:block;}
+
 .section-label{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dim2); margin:30px 0 12px; display:flex; align-items:center; gap:10px;}
 .section-label::after{content:''; flex:1; height:1px; background:var(--border);}
 
@@ -117,11 +124,12 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
         <a href="retail-folder.html" class="mou-link">DO Wise →</a>
         <a href="ecms.html" class="mou-link teal">ECMS Status →</a>
       </div>
-      <div class="date-badge">ERACTS as on <b id="eractsDate">—</b> &nbsp;|&nbsp; Vishleshan as on <b id="vishDate">—</b></div>
+      <div class="date-badge">Network as on <b id="networkDate">—</b> &nbsp;|&nbsp; ERACTS as on <b id="eractsDate">—</b> &nbsp;|&nbsp; Vishleshan as on <b id="vishDate">—</b></div>
     </div>
   </div>
 
   <div class="settings" id="settingsBar" style="display:none;">
+    <input type="text" id="csvUrlInputNetwork" placeholder="Paste Network Automation data CSV raw link…">
     <input type="text" id="csvUrlInputEracts" placeholder="Paste ERACTS data CSV raw link…">
     <input type="text" id="csvUrlInputVish" placeholder="Paste Vishleshan data CSV raw link…">
     <button id="loadBtn">Load &amp; Save</button>
@@ -129,6 +137,40 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
     <span class="status" id="statusMsg">Not connected</span>
   </div>
   <div class="toggle-settings-row"><button id="toggleSettings">⚙ Data source settings</button></div>
+
+  <!-- PHASE-WISE AUTOMATION NETWORK -->
+  <div class="section-label">Phase-wise Automation Network</div>
+  <div class="kpis" id="networkKpis"></div>
+
+  <div class="charts">
+    <div class="chart-card" style="grid-column:1/-1;">
+      <h3>Automated ROs — Phase-wise Split by DO</h3>
+      <canvas id="chartPhaseSummary"></canvas>
+    </div>
+  </div>
+  <div class="bucket-legend" id="phaseLegend"></div>
+
+  <div class="table-card" style="margin-bottom:20px;">
+    <div class="card-head"><h3>Phase Summary — DO Wise</h3></div>
+    <div class="table-wrap"><table class="pivot" id="tblPhaseSummary"></table></div>
+  </div>
+
+  <div class="report-tabs">
+    <button class="phase-tab active" data-phase="ix">Phase IX — Vendor Breakup (Orpak + BCT) ▾</button>
+    <button class="phase-tab" data-phase="x">Phase X — Vendor Breakup (ATOS + PineLabs) ▾</button>
+  </div>
+  <div class="phase-detail active" id="phaseDetailIx">
+    <div class="tables two" id="phaseIxTables"></div>
+  </div>
+  <div class="phase-detail" id="phaseDetailX">
+    <div class="tables two" id="phaseXTables"></div>
+  </div>
+
+  <div class="section-label">RA MOU / Communication Status <span style="font-weight:400; text-transform:none; letter-spacing:0;">— as on 01-Aug-2026</span></div>
+  <div class="table-card" style="margin-bottom:8px;">
+    <div class="card-head"><h3>DO Wise — Automated RO Communication Health</h3></div>
+    <div class="table-wrap"><table class="pivot" id="tblRaMou"></table></div>
+  </div>
 
   <div class="report-tabs">
     <button class="report-tab active" data-report="eracts">ERACTS Status</button>
@@ -189,14 +231,19 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
 <script>
 const LS_KEY_ERACTS = 'automation_eracts_csv_url_v1';
 const LS_KEY_VISH = 'automation_vish_csv_url_v1';
+const LS_KEY_NETWORK = 'automation_network_csv_url_v1';
 const DEFAULT_ERACTS_URL = 'https://raw.githubusercontent.com/shivamindianoil-eng/rso-dashboard/refs/heads/main/eracts-data.csv';
 const DEFAULT_VISH_URL = 'https://raw.githubusercontent.com/shivamindianoil-eng/rso-dashboard/refs/heads/main/vishleshan-data.csv';
+const DEFAULT_NETWORK_URL = ''; // filled in once repo file link is known
 
 let ERACTS_ROWS = [];
 let VISH_ROWS = [];
+let NETWORK_ROWS = [];
 const DO_ORDER = ['Ajmer DO','Jaipur DO','Jodhpur DO','Udaipur DO','RSO'];
 const BUCKETS = ['0-3 Days','3-10 Days','10-30 Days','More than 30 Days'];
 const BUCKET_COLOR = {'0-3 Days':'#16a34a','3-10 Days':'#eab308','10-30 Days':'#f97316','More than 30 Days':'#ef4444'};
+const PHASE_COLS = ['Phase VI','Phase VII','Phase VIII','Phase IX Orpak','Phase IX BCT','Phase X ATOS','Phase X PINELABS'];
+const PHASE_COLORS = ['#7c3aed','#a855f7','#db2777','#f97316','#eab308','#16a34a','#0ea5e9'];
 let charts = {};
 
 function fmt(n){ if(n===null||n===undefined||isNaN(n)) return '—'; return Number(n).toLocaleString('en-IN'); }
@@ -221,6 +268,96 @@ function getVal(rows, section, do_, metric){
 function getMeta(rows, metric){
   const r = rows.find(x=>x.Section==='META' && x.Metric===metric);
   return r ? r.Value : '—';
+}
+
+/* ============ PHASE NETWORK ============ */
+function renderNetwork(){
+  document.getElementById('networkDate').textContent = getMeta(NETWORK_ROWS, 'AsOfDate');
+
+  const dos = ['Ajmer','Jaipur','Jodhpur','Udaipur','RSO'];
+  const totalRSO = getVal(NETWORK_ROWS,'Phase Network','RSO','Total');
+  const ix = getVal(NETWORK_ROWS,'Phase Network','RSO','Phase IX Orpak') + getVal(NETWORK_ROWS,'Phase Network','RSO','Phase IX BCT');
+  const x = getVal(NETWORK_ROWS,'Phase Network','RSO','Phase X ATOS') + getVal(NETWORK_ROWS,'Phase Network','RSO','Phase X PINELABS');
+  const legacy = getVal(NETWORK_ROWS,'Phase Network','RSO','Phase VI') + getVal(NETWORK_ROWS,'Phase Network','RSO','Phase VII') + getVal(NETWORK_ROWS,'Phase Network','RSO','Phase VIII');
+
+  document.getElementById('networkKpis').innerHTML = [
+    {n:totalRSO, l:'Total Automated ROs (RSO)', cls:''},
+    {n:legacy, l:'Phase VI–VIII (RSO)', cls:''},
+    {n:ix, l:'Phase IX — Orpak + BCT (RSO)', cls:'warn'},
+    {n:x, l:'Phase X — ATOS + PineLabs (RSO)', cls:'warn'},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n)}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  document.getElementById('phaseLegend').innerHTML = PHASE_COLS.map((p,i)=>
+    `<span><span class="swatch" style="background:${PHASE_COLORS[i]}"></span>${p}</span>`
+  ).join('');
+
+  const dsPhase = PHASE_COLS.map((p,i)=>({
+    label:p, backgroundColor:PHASE_COLORS[i],
+    data: dos.map(d=>getVal(NETWORK_ROWS,'Phase Network', d, p))
+  }));
+  if(charts.phase) charts.phase.destroy();
+  charts.phase = new Chart(document.getElementById('chartPhaseSummary'), {
+    type:'bar', data:{labels:dos, datasets:dsPhase},
+    options:{responsive:true, plugins:{legend:{display:false}}, scales:{x:{stacked:true, grid:{display:false}}, y:{stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}}}}
+  });
+
+  let rows = dos.map(d=>{
+    const vals = PHASE_COLS.map(p=>getVal(NETWORK_ROWS,'Phase Network', d, p));
+    const total = getVal(NETWORK_ROWS,'Phase Network', d, 'Total');
+    const rowClass = d==='RSO' ? ' class="grand"' : '';
+    return `<tr${rowClass}><td class="rowlabel">${d}</td>${vals.map(v=>`<td>${fmt(v)}</td>`).join('')}<td>${fmt(total)}</td></tr>`;
+  }).join('');
+  document.getElementById('tblPhaseSummary').innerHTML =
+    `<thead><tr><th class="rowlabel">DO</th>${PHASE_COLS.map(p=>`<th>${p}</th>`).join('')}<th>Total</th></tr></thead><tbody>${rows}</tbody>`;
+
+  renderVendorTables('phaseIxTables', [
+    {title:'Orpak', section:'Phase IX — Orpak', cols:['PO Number','Removed By IOCL','Site Readiness Received','Material Dispatch','Material Received','Civil & Electric Completed','Power On Completed','SAT Submitted','CAMC PO Received']},
+    {title:'BCT', section:'Phase IX — BCT', cols:['PO Received','Readiness Received','Material Dispatched','Material Received','Civil Work Done','Powered-ON','SAT Observation Submitted','SAT Accepted','CAMC PO Received']},
+  ]);
+  renderVendorTables('phaseXTables', [
+    {title:'ATOS', section:'Phase X — ATOS', cols:['PO Received','Readiness Received','Survey Completed','Power ON']},
+    {title:'PineLabs', section:'Phase X — PINELABS', cols:['PO Received','Site Readiness Received','Site Survey Done','Material Dispatched','Power ON']},
+  ]);
+
+  const ramouCols = [
+    ['Automated ROs',null],
+    ['Communicating','Communicating Pct'],
+    ['Non-Communicating','NonCommunicating Pct'],
+    ['All DU & All Tank','AllDUAllTank Pct'],
+    ['All DU & Partial Tank','AllDUPartialTank Pct'],
+    ['Partial DU & All Tank','PartialDUAllTank Pct'],
+    ['Partial DU & Partial Tank','PartialDUPartialTank Pct'],
+  ];
+  const countKeyMap = {'Communicating':'Communicating Count','Non-Communicating':'NonCommunicating Count','All DU & All Tank':'AllDUAllTank Count','All DU & Partial Tank':'AllDUPartialTank Count','Partial DU & All Tank':'PartialDUAllTank Count','Partial DU & Partial Tank':'PartialDUPartialTank Count'};
+  let raRows = dos.map(d=>{
+    const cells = ramouCols.map(([label,pctKey])=>{
+      if(label==='Automated ROs'){
+        return `<td>${fmt(getVal(NETWORK_ROWS,'RA MOU Status', d, 'Automated ROs'))}</td>`;
+      }
+      const cnt = getVal(NETWORK_ROWS,'RA MOU Status', d, countKeyMap[label]);
+      const pct = getVal(NETWORK_ROWS,'RA MOU Status', d, pctKey);
+      return `<td>${fmt(cnt)} <span style="color:var(--text-dim2); font-weight:400;">(${pct}%)</span></td>`;
+    }).join('');
+    const rowClass = d==='RSO' ? ' class="grand"' : '';
+    return `<tr${rowClass}><td class="rowlabel">${d}</td>${cells}</tr>`;
+  }).join('');
+  document.getElementById('tblRaMou').innerHTML =
+    `<thead><tr><th class="rowlabel">DO</th>${ramouCols.map(([l])=>`<th>${l}</th>`).join('')}</tr></thead><tbody>${raRows}</tbody>`;
+}
+
+function renderVendorTables(containerId, specs){
+  const dos = ['Ajmer','Jaipur','Jodhpur','Udaipur','RSO'];
+  const html = specs.map(spec=>{
+    let rows = dos.map(d=>{
+      const vals = spec.cols.map(c=>getVal(NETWORK_ROWS, spec.section, d, c));
+      const rowClass = d==='RSO' ? ' class="grand"' : '';
+      return `<tr${rowClass}><td class="rowlabel">${d}</td>${vals.map(v=>`<td>${fmt(v)}</td>`).join('')}</tr>`;
+    }).join('');
+    return `<div class="table-card"><div class="card-head"><h3>${spec.title}</h3></div><div class="table-wrap">
+      <table class="pivot"><thead><tr><th class="rowlabel">DO</th>${spec.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+      <tbody>${rows}</tbody></table></div></div>`;
+  }).join('');
+  document.getElementById(containerId).innerHTML = html;
 }
 
 /* ============ ERACTS ============ */
@@ -345,6 +482,16 @@ function renderVishleshan(){
   }).join('');
 }
 
+/* ============ phase tab switching ============ */
+document.querySelectorAll('.phase-tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.phase-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.phase-detail').forEach(p=>p.classList.remove('active'));
+    document.getElementById(btn.dataset.phase==='ix' ? 'phaseDetailIx' : 'phaseDetailX').classList.add('active');
+  });
+});
+
 /* ============ tab switching ============ */
 document.querySelectorAll('.report-tab').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -362,17 +509,21 @@ document.getElementById('toggleSettings').addEventListener('click', ()=>{
 document.getElementById('resetBtn').addEventListener('click', ()=>{
   localStorage.removeItem(LS_KEY_ERACTS);
   localStorage.removeItem(LS_KEY_VISH);
+  localStorage.removeItem(LS_KEY_NETWORK);
   document.getElementById('csvUrlInputEracts').value = DEFAULT_ERACTS_URL;
   document.getElementById('csvUrlInputVish').value = DEFAULT_VISH_URL;
-  loadAll(DEFAULT_ERACTS_URL, DEFAULT_VISH_URL);
+  document.getElementById('csvUrlInputNetwork').value = DEFAULT_NETWORK_URL;
+  loadAll(DEFAULT_NETWORK_URL, DEFAULT_ERACTS_URL, DEFAULT_VISH_URL);
 });
 document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const u0 = document.getElementById('csvUrlInputNetwork').value.trim();
   const u1 = document.getElementById('csvUrlInputEracts').value.trim();
   const u2 = document.getElementById('csvUrlInputVish').value.trim();
-  if(!u1 || !u2) return;
+  if(!u0 || !u1 || !u2) return;
+  localStorage.setItem(LS_KEY_NETWORK, u0);
   localStorage.setItem(LS_KEY_ERACTS, u1);
   localStorage.setItem(LS_KEY_VISH, u2);
-  loadAll(u1, u2);
+  loadAll(u0, u1, u2);
 });
 
 let autoRefreshTimer = null;
@@ -382,14 +533,16 @@ async function fetchCSV(url){
   if(!res.ok) throw new Error('HTTP '+res.status);
   return await res.text();
 }
-async function loadAll(u1, u2, silent){
+async function loadAll(u0, u1, u2, silent){
   const statusEl = document.getElementById('statusMsg');
-  if(!u1 || !u2){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
+  if(!u0 || !u1 || !u2){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
   if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
   try{
-    const [t1, t2] = await Promise.all([fetchCSV(u1), fetchCSV(u2)]);
+    const [t0, t1, t2] = await Promise.all([fetchCSV(u0), fetchCSV(u1), fetchCSV(u2)]);
+    NETWORK_ROWS = parseTidyCSV(t0);
     ERACTS_ROWS = parseTidyCSV(t1);
     VISH_ROWS = parseTidyCSV(t2);
+    renderNetwork();
     renderEracts();
     renderVishleshan();
     const now = new Date().toLocaleTimeString();
@@ -397,7 +550,7 @@ async function loadAll(u1, u2, silent){
     document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
     document.getElementById('veil').classList.add('hide');
     if(autoRefreshTimer) clearInterval(autoRefreshTimer);
-    autoRefreshTimer = setInterval(()=> loadAll(u1, u2, true), AUTO_REFRESH_MS);
+    autoRefreshTimer = setInterval(()=> loadAll(u0, u1, u2, true), AUTO_REFRESH_MS);
   }catch(err){
     statusEl.textContent = 'Could not load data: ' + err.message; statusEl.className='status err';
     document.getElementById('veil').classList.add('hide');
@@ -405,12 +558,14 @@ async function loadAll(u1, u2, silent){
 }
 
 window.addEventListener('load', ()=>{
+  const savedN = localStorage.getItem(LS_KEY_NETWORK) || DEFAULT_NETWORK_URL;
   const savedE = localStorage.getItem(LS_KEY_ERACTS) || DEFAULT_ERACTS_URL;
   const savedV = localStorage.getItem(LS_KEY_VISH) || DEFAULT_VISH_URL;
+  document.getElementById('csvUrlInputNetwork').value = savedN;
   document.getElementById('csvUrlInputEracts').value = savedE;
   document.getElementById('csvUrlInputVish').value = savedV;
-  if(savedE && savedV){
-    loadAll(savedE, savedV);
+  if(savedN && savedE && savedV){
+    loadAll(savedN, savedE, savedV);
   } else {
     document.getElementById('veil').classList.add('hide');
     document.getElementById('settingsBar').style.display='flex';

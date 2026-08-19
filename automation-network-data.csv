@@ -1,0 +1,242 @@
+Section,DO,Metric,Value
+Phase Network,Ajmer,Phase VI,182
+Phase Network,Ajmer,Phase VII,272
+Phase Network,Ajmer,Phase VIII,133
+Phase Network,Ajmer,Phase IX Orpak,12
+Phase Network,Ajmer,Phase IX BCT,8
+Phase Network,Ajmer,Phase X ATOS,11
+Phase Network,Ajmer,Phase X PINELABS,9
+Phase Network,Ajmer,Total,627
+Phase Network,Jaipur,Phase VI,293
+Phase Network,Jaipur,Phase VII,309
+Phase Network,Jaipur,Phase VIII,148
+Phase Network,Jaipur,Phase IX Orpak,11
+Phase Network,Jaipur,Phase IX BCT,8
+Phase Network,Jaipur,Phase X ATOS,24
+Phase Network,Jaipur,Phase X PINELABS,15
+Phase Network,Jaipur,Total,808
+Phase Network,Jodhpur,Phase VI,234
+Phase Network,Jodhpur,Phase VII,274
+Phase Network,Jodhpur,Phase VIII,151
+Phase Network,Jodhpur,Phase IX Orpak,12
+Phase Network,Jodhpur,Phase IX BCT,8
+Phase Network,Jodhpur,Phase X ATOS,11
+Phase Network,Jodhpur,Phase X PINELABS,18
+Phase Network,Jodhpur,Total,708
+Phase Network,Udaipur,Phase VI,164
+Phase Network,Udaipur,Phase VII,309
+Phase Network,Udaipur,Phase VIII,149
+Phase Network,Udaipur,Phase IX Orpak,12
+Phase Network,Udaipur,Phase IX BCT,8
+Phase Network,Udaipur,Phase X ATOS,6
+Phase Network,Udaipur,Phase X PINELABS,5
+Phase Network,Udaipur,Total,653
+Phase Network,RSO,Phase VI,873
+Phase Network,RSO,Phase VII,1164
+Phase Network,RSO,Phase VIII,581
+Phase Network,RSO,Phase IX Orpak,47
+Phase Network,RSO,Phase IX BCT,32
+Phase Network,RSO,Phase X ATOS,52
+Phase Network,RSO,Phase X PINELABS,47
+Phase Network,RSO,Total,2796
+Phase IX — Orpak,Ajmer,PO Number,12
+Phase IX — Orpak,Ajmer,Removed By IOCL,0
+Phase IX — Orpak,Ajmer,Site Readiness Received,12
+Phase IX — Orpak,Ajmer,Material Dispatch,12
+Phase IX — Orpak,Ajmer,Material Received,12
+Phase IX — Orpak,Ajmer,Civil & Electric Completed,12
+Phase IX — Orpak,Ajmer,Power On Completed,12
+Phase IX — Orpak,Ajmer,SAT Submitted,12
+Phase IX — Orpak,Ajmer,CAMC PO Received,10
+Phase IX — Orpak,Jaipur,PO Number,11
+Phase IX — Orpak,Jaipur,Removed By IOCL,0
+Phase IX — Orpak,Jaipur,Site Readiness Received,11
+Phase IX — Orpak,Jaipur,Material Dispatch,11
+Phase IX — Orpak,Jaipur,Material Received,11
+Phase IX — Orpak,Jaipur,Civil & Electric Completed,11
+Phase IX — Orpak,Jaipur,Power On Completed,11
+Phase IX — Orpak,Jaipur,SAT Submitted,11
+Phase IX — Orpak,Jaipur,CAMC PO Received,11
+Phase IX — Orpak,Jodhpur,PO Number,20
+Phase IX — Orpak,Jodhpur,Removed By IOCL,8
+Phase IX — Orpak,Jodhpur,Site Readiness Received,12
+Phase IX — Orpak,Jodhpur,Material Dispatch,12
+Phase IX — Orpak,Jodhpur,Material Received,12
+Phase IX — Orpak,Jodhpur,Civil & Electric Completed,12
+Phase IX — Orpak,Jodhpur,Power On Completed,12
+Phase IX — Orpak,Jodhpur,SAT Submitted,12
+Phase IX — Orpak,Jodhpur,CAMC PO Received,12
+Phase IX — Orpak,Udaipur,PO Number,13
+Phase IX — Orpak,Udaipur,Removed By IOCL,1
+Phase IX — Orpak,Udaipur,Site Readiness Received,12
+Phase IX — Orpak,Udaipur,Material Dispatch,12
+Phase IX — Orpak,Udaipur,Material Received,12
+Phase IX — Orpak,Udaipur,Civil & Electric Completed,12
+Phase IX — Orpak,Udaipur,Power On Completed,12
+Phase IX — Orpak,Udaipur,SAT Submitted,12
+Phase IX — Orpak,Udaipur,CAMC PO Received,12
+Phase IX — Orpak,RSO,PO Number,56
+Phase IX — Orpak,RSO,Removed By IOCL,9
+Phase IX — Orpak,RSO,Site Readiness Received,47
+Phase IX — Orpak,RSO,Material Dispatch,47
+Phase IX — Orpak,RSO,Material Received,47
+Phase IX — Orpak,RSO,Civil & Electric Completed,47
+Phase IX — Orpak,RSO,Power On Completed,47
+Phase IX — Orpak,RSO,SAT Submitted,47
+Phase IX — Orpak,RSO,CAMC PO Received,45
+Phase IX — BCT,Jaipur,PO Received,8
+Phase IX — BCT,Jaipur,Readiness Received,8
+Phase IX — BCT,Jaipur,Material Dispatched,8
+Phase IX — BCT,Jaipur,Material Received,8
+Phase IX — BCT,Jaipur,Civil Work Done,8
+Phase IX — BCT,Jaipur,Powered-ON,8
+Phase IX — BCT,Jaipur,SAT Observation Submitted,8
+Phase IX — BCT,Jaipur,SAT Accepted,8
+Phase IX — BCT,Jaipur,CAMC PO Received,8
+Phase IX — BCT,Jodhpur,PO Received,8
+Phase IX — BCT,Jodhpur,Readiness Received,8
+Phase IX — BCT,Jodhpur,Material Dispatched,8
+Phase IX — BCT,Jodhpur,Material Received,8
+Phase IX — BCT,Jodhpur,Civil Work Done,8
+Phase IX — BCT,Jodhpur,Powered-ON,8
+Phase IX — BCT,Jodhpur,SAT Observation Submitted,8
+Phase IX — BCT,Jodhpur,SAT Accepted,8
+Phase IX — BCT,Jodhpur,CAMC PO Received,8
+Phase IX — BCT,Ajmer,PO Received,8
+Phase IX — BCT,Ajmer,Readiness Received,8
+Phase IX — BCT,Ajmer,Material Dispatched,8
+Phase IX — BCT,Ajmer,Material Received,8
+Phase IX — BCT,Ajmer,Civil Work Done,8
+Phase IX — BCT,Ajmer,Powered-ON,8
+Phase IX — BCT,Ajmer,SAT Observation Submitted,8
+Phase IX — BCT,Ajmer,SAT Accepted,8
+Phase IX — BCT,Ajmer,CAMC PO Received,8
+Phase IX — BCT,Udaipur,PO Received,8
+Phase IX — BCT,Udaipur,Readiness Received,8
+Phase IX — BCT,Udaipur,Material Dispatched,8
+Phase IX — BCT,Udaipur,Material Received,8
+Phase IX — BCT,Udaipur,Civil Work Done,8
+Phase IX — BCT,Udaipur,Powered-ON,8
+Phase IX — BCT,Udaipur,SAT Observation Submitted,8
+Phase IX — BCT,Udaipur,SAT Accepted,8
+Phase IX — BCT,Udaipur,CAMC PO Received,8
+Phase IX — BCT,RSO,PO Received,32
+Phase IX — BCT,RSO,Readiness Received,32
+Phase IX — BCT,RSO,Material Dispatched,32
+Phase IX — BCT,RSO,Material Received,32
+Phase IX — BCT,RSO,Civil Work Done,32
+Phase IX — BCT,RSO,Powered-ON,32
+Phase IX — BCT,RSO,SAT Observation Submitted,32
+Phase IX — BCT,RSO,SAT Accepted,32
+Phase IX — BCT,RSO,CAMC PO Received,32
+Phase X — ATOS,Ajmer,PO Received,20
+Phase X — ATOS,Ajmer,Readiness Received,20
+Phase X — ATOS,Ajmer,Survey Completed,20
+Phase X — ATOS,Ajmer,Power ON,11
+Phase X — ATOS,Jaipur,PO Received,29
+Phase X — ATOS,Jaipur,Readiness Received,29
+Phase X — ATOS,Jaipur,Survey Completed,29
+Phase X — ATOS,Jaipur,Power ON,24
+Phase X — ATOS,Jodhpur,PO Received,16
+Phase X — ATOS,Jodhpur,Readiness Received,16
+Phase X — ATOS,Jodhpur,Survey Completed,16
+Phase X — ATOS,Jodhpur,Power ON,11
+Phase X — ATOS,Udaipur,PO Received,11
+Phase X — ATOS,Udaipur,Readiness Received,10
+Phase X — ATOS,Udaipur,Survey Completed,10
+Phase X — ATOS,Udaipur,Power ON,6
+Phase X — ATOS,RSO,PO Received,76
+Phase X — ATOS,RSO,Readiness Received,75
+Phase X — ATOS,RSO,Survey Completed,75
+Phase X — ATOS,RSO,Power ON,52
+Phase X — PINELABS,Ajmer,PO Received,26
+Phase X — PINELABS,Ajmer,Site Readiness Received,26
+Phase X — PINELABS,Ajmer,Site Survey Done,26
+Phase X — PINELABS,Ajmer,Material Dispatched,11
+Phase X — PINELABS,Ajmer,Power ON,9
+Phase X — PINELABS,Jaipur,PO Received,38
+Phase X — PINELABS,Jaipur,Site Readiness Received,38
+Phase X — PINELABS,Jaipur,Site Survey Done,38
+Phase X — PINELABS,Jaipur,Material Dispatched,10
+Phase X — PINELABS,Jaipur,Power ON,15
+Phase X — PINELABS,Jodhpur,PO Received,37
+Phase X — PINELABS,Jodhpur,Site Readiness Received,37
+Phase X — PINELABS,Jodhpur,Site Survey Done,37
+Phase X — PINELABS,Jodhpur,Material Dispatched,24
+Phase X — PINELABS,Jodhpur,Power ON,18
+Phase X — PINELABS,Udaipur,PO Received,17
+Phase X — PINELABS,Udaipur,Site Readiness Received,17
+Phase X — PINELABS,Udaipur,Site Survey Done,17
+Phase X — PINELABS,Udaipur,Material Dispatched,7
+Phase X — PINELABS,Udaipur,Power ON,5
+Phase X — PINELABS,RSO,PO Received,118
+Phase X — PINELABS,RSO,Site Readiness Received,118
+Phase X — PINELABS,RSO,Site Survey Done,118
+Phase X — PINELABS,RSO,Material Dispatched,52
+Phase X — PINELABS,RSO,Power ON,47
+RA MOU Status,Ajmer,Automated ROs,587
+RA MOU Status,Ajmer,Communicating Count,585
+RA MOU Status,Ajmer,Communicating Pct,100
+RA MOU Status,Ajmer,NonCommunicating Count,2
+RA MOU Status,Ajmer,NonCommunicating Pct,0
+RA MOU Status,Ajmer,AllDUAllTank Count,570
+RA MOU Status,Ajmer,AllDUAllTank Pct,97
+RA MOU Status,Ajmer,AllDUPartialTank Count,3
+RA MOU Status,Ajmer,AllDUPartialTank Pct,1
+RA MOU Status,Ajmer,PartialDUAllTank Count,8
+RA MOU Status,Ajmer,PartialDUAllTank Pct,1
+RA MOU Status,Ajmer,PartialDUPartialTank Count,4
+RA MOU Status,Ajmer,PartialDUPartialTank Pct,1
+RA MOU Status,Jaipur,Automated ROs,691
+RA MOU Status,Jaipur,Communicating Count,684
+RA MOU Status,Jaipur,Communicating Pct,99
+RA MOU Status,Jaipur,NonCommunicating Count,7
+RA MOU Status,Jaipur,NonCommunicating Pct,1
+RA MOU Status,Jaipur,AllDUAllTank Count,675
+RA MOU Status,Jaipur,AllDUAllTank Pct,98
+RA MOU Status,Jaipur,AllDUPartialTank Count,3
+RA MOU Status,Jaipur,AllDUPartialTank Pct,0
+RA MOU Status,Jaipur,PartialDUAllTank Count,5
+RA MOU Status,Jaipur,PartialDUAllTank Pct,1
+RA MOU Status,Jaipur,PartialDUPartialTank Count,1
+RA MOU Status,Jaipur,PartialDUPartialTank Pct,0
+RA MOU Status,Jodhpur,Automated ROs,634
+RA MOU Status,Jodhpur,Communicating Count,631
+RA MOU Status,Jodhpur,Communicating Pct,100
+RA MOU Status,Jodhpur,NonCommunicating Count,3
+RA MOU Status,Jodhpur,NonCommunicating Pct,0
+RA MOU Status,Jodhpur,AllDUAllTank Count,608
+RA MOU Status,Jodhpur,AllDUAllTank Pct,96
+RA MOU Status,Jodhpur,AllDUPartialTank Count,9
+RA MOU Status,Jodhpur,AllDUPartialTank Pct,1
+RA MOU Status,Jodhpur,PartialDUAllTank Count,11
+RA MOU Status,Jodhpur,PartialDUAllTank Pct,2
+RA MOU Status,Jodhpur,PartialDUPartialTank Count,3
+RA MOU Status,Jodhpur,PartialDUPartialTank Pct,0
+RA MOU Status,Udaipur,Automated ROs,547
+RA MOU Status,Udaipur,Communicating Count,541
+RA MOU Status,Udaipur,Communicating Pct,99
+RA MOU Status,Udaipur,NonCommunicating Count,6
+RA MOU Status,Udaipur,NonCommunicating Pct,1
+RA MOU Status,Udaipur,AllDUAllTank Count,522
+RA MOU Status,Udaipur,AllDUAllTank Pct,95
+RA MOU Status,Udaipur,AllDUPartialTank Count,9
+RA MOU Status,Udaipur,AllDUPartialTank Pct,2
+RA MOU Status,Udaipur,PartialDUAllTank Count,9
+RA MOU Status,Udaipur,PartialDUAllTank Pct,2
+RA MOU Status,Udaipur,PartialDUPartialTank Count,1
+RA MOU Status,Udaipur,PartialDUPartialTank Pct,0
+RA MOU Status,RSO,Automated ROs,2459
+RA MOU Status,RSO,Communicating Count,2441
+RA MOU Status,RSO,Communicating Pct,99
+RA MOU Status,RSO,NonCommunicating Count,18
+RA MOU Status,RSO,NonCommunicating Pct,1
+RA MOU Status,RSO,AllDUAllTank Count,2375
+RA MOU Status,RSO,AllDUAllTank Pct,97
+RA MOU Status,RSO,AllDUPartialTank Count,24
+RA MOU Status,RSO,AllDUPartialTank Pct,1
+RA MOU Status,RSO,PartialDUAllTank Count,33
+RA MOU Status,RSO,PartialDUAllTank Pct,1
+RA MOU Status,RSO,PartialDUPartialTank Count,9
+RA MOU Status,RSO,PartialDUPartialTank Pct,0
+META,,AsOfDate,01-Aug-2026
