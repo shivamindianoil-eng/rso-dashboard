@@ -142,8 +142,8 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
       <h3>Time Performance of Commissioned ROs</h3>
       <canvas id="chartTimePerf"></canvas>
       <div class="bucket-legend">
-        <span><span class="swatch" style="background:var(--ms)"></span>Within Time</span>
-        <span><span class="swatch" style="background:var(--hsd)"></span>Delayed</span>
+        <span><span class="swatch" style="background:#16a34a"></span>Within Time</span>
+        <span><span class="swatch" style="background:#ea580c"></span>Delayed</span>
       </div>
     </div>
   </div>
@@ -220,11 +220,12 @@ function renderConstruction(){
   ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n, c.suffix?1:0)}${c.suffix}</div><div class="lbl">${c.l}</div></div>`).join('');
 
   const dos = DO_ORDER.filter(d=>d!=='RSO');
+  const DIV_COLORS = ['#0ea5e9','#ea580c','#16a34a','#1e3a8a'];
   const commissionedData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Commissioned'));
   if(charts.div) charts.div.destroy();
   charts.div = new Chart(document.getElementById('chartConstructionDiv'), {
     type:'bar',
-    data:{ labels:dos, datasets:[{ label:'Commissioned', data:commissionedData, backgroundColor:'#1e3a8a', borderRadius:4 }] },
+    data:{ labels:dos, datasets:[{ label:'Commissioned', data:commissionedData, backgroundColor:DIV_COLORS, borderRadius:4 }] },
     options:{ responsive:true, plugins:{ legend:{display:false}, tooltip:{enabled:true} },
       scales:{ x:{ grid:{display:false} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
   });
@@ -235,7 +236,7 @@ function renderConstruction(){
   charts.time = new Chart(document.getElementById('chartTimePerf'), {
     type:'bar',
     data:{ labels:dos, datasets:[
-      { label:'Within Time', data:withinData, backgroundColor:'#1e3a8a' },
+      { label:'Within Time', data:withinData, backgroundColor:'#16a34a' },
       { label:'Delayed', data:delayedData, backgroundColor:'#ea580c' },
     ]},
     options:{ responsive:true, plugins:{ legend:{display:false} },
@@ -274,8 +275,8 @@ function renderFinancial(){
   charts.fin = new Chart(document.getElementById('chartFinancial'), {
     type:'bar',
     data:{ labels:dos, datasets:[
-      { label:'PO Amount', data:poData, backgroundColor:'#1e3a8a', borderRadius:4 },
-      { label:'Amount Released', data:relData, backgroundColor:'#ea580c', borderRadius:4 },
+      { label:'PO Amount', data:poData, backgroundColor:'#0ea5e9', borderRadius:4 },
+      { label:'Amount Released', data:relData, backgroundColor:'#16a34a', borderRadius:4 },
     ]},
     options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ font:{family:"'IBM Plex Mono'", size:12}, color:'#0a3d21' } } },
       scales:{ x:{ grid:{display:false} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}, title:{display:true, text:'₹ Crore'} } } }
