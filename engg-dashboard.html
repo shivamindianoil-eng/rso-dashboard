@@ -79,9 +79,9 @@ h1 span{color:var(--text-dim2); font-weight:500;}
 .table-card .card-head{margin:0; padding:14px 18px; background:linear-gradient(90deg, var(--ms), var(--hsd)); color:#fff;}
 .table-card .card-head h3{margin:0; font-size:15px; text-transform:uppercase; letter-spacing:.03em; font-weight:700;}
 .table-wrap{overflow:auto;}
-table.pivot{border-collapse:collapse; width:100%; font-size:14px;}
+table.pivot{border-collapse:collapse; width:100%; font-size:16px;}
 table.pivot th, table.pivot td{border-bottom:1px solid var(--border); padding:11px 16px; text-align:right; white-space:nowrap; font-family:'IBM Plex Mono',monospace;}
-table.pivot th{background:#f2f5f8; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--text-dim);}
+table.pivot th{background:#f2f5f8; font-size:13.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--text-dim);}
 table.pivot td.rowlabel, table.pivot th.rowlabel{text-align:left; font-weight:700; font-family:'Inter',sans-serif;}
 table.pivot tbody tr:nth-child(even) td:not(.rowlabel){background:#fafbfc;}
 table.pivot tr.grand td{font-weight:700; background:#ffedd5 !important; border-top:2px solid var(--hsd);}
@@ -227,7 +227,7 @@ function renderConstruction(){
     type:'bar',
     data:{ labels:dos, datasets:[{ label:'Commissioned', data:commissionedData, backgroundColor:DIV_COLORS, borderRadius:4 }] },
     options:{ responsive:true, plugins:{ legend:{display:false}, tooltip:{enabled:true} },
-      scales:{ x:{ grid:{display:false} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+      scales:{ x:{ grid:{display:false}, ticks:{font:{size:15,weight:'700',family:"'Inter'"}, color:'#0f2337'} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
   });
 
   const withinData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Within Time'));
@@ -240,7 +240,7 @@ function renderConstruction(){
       { label:'Delayed', data:delayedData, backgroundColor:'#ea580c' },
     ]},
     options:{ responsive:true, plugins:{ legend:{display:false} },
-      scales:{ x:{ stacked:true, grid:{display:false} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+      scales:{ x:{ stacked:true, grid:{display:false}, ticks:{font:{size:15,weight:'700',family:"'Inter'"}, color:'#0f2337'} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
   });
 
   let rows = DO_ORDER.map(d=>{
@@ -262,9 +262,9 @@ function renderFinancial(){
   const pct = getVal('Financial Progress', activeFY, 'RSO', 'Financial Progress Pct');
 
   document.getElementById('financialKpis').innerHTML = [
-    {n:po, l:'Total PO Amount (₹ Cr)', cls:'', dec:2},
-    {n:rel, l:'Amount Released (₹ Cr)', cls:'', dec:2},
-    {n:po-rel, l:'Balance to Release (₹ Cr)', cls:'bad', dec:2},
+    {n:po, l:'Total PO Amount (₹ Cr)', cls:'', dec:1},
+    {n:rel, l:'Amount Released (₹ Cr)', cls:'', dec:1},
+    {n:po-rel, l:'Balance to Release (₹ Cr)', cls:'bad', dec:1},
     {n:pct, l:'Bill Clearing %', cls: pct>=60?'good':'bad', dec:1, suffix:'%'},
   ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n, c.dec)}${c.suffix||''}</div><div class="lbl">${c.l}</div></div>`).join('');
 
@@ -279,7 +279,7 @@ function renderFinancial(){
       { label:'Amount Released', data:relData, backgroundColor:'#16a34a', borderRadius:4 },
     ]},
     options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ font:{family:"'IBM Plex Mono'", size:12}, color:'#0a3d21' } } },
-      scales:{ x:{ grid:{display:false} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}, title:{display:true, text:'₹ Crore'} } } }
+      scales:{ x:{ grid:{display:false}, ticks:{font:{size:15,weight:'700',family:"'Inter'"}, color:'#0f2337'} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}, title:{display:true, text:'₹ Crore'} } } }
   });
 
   let rows = DO_ORDER.map(d=>{
@@ -288,10 +288,10 @@ function renderFinancial(){
     const fp = getVal('Financial Progress', activeFY, d, 'Financial Progress Pct');
     const rowClass = d==='RSO' ? ' class="grand"' : '';
     const pctClass = fp>=60 ? 'pctgood' : 'pctbad';
-    return `<tr${rowClass}><td class="rowlabel">${d==='RSO'?'RSO Total':d}</td><td>₹${fmt(p,2)} Cr</td><td>₹${fmt(r,2)} Cr</td><td class="${pctClass}">${fmt(fp,2)}%</td></tr>`;
+    return `<tr${rowClass}><td class="rowlabel">${d==='RSO'?'RSO Total':d}</td><td>${fmt(p,1)}</td><td>${fmt(r,1)}</td><td class="${pctClass}">${fmt(fp,1)}%</td></tr>`;
   }).join('');
   document.getElementById('tblFinancial').innerHTML =
-    `<thead><tr><th class="rowlabel">Division</th><th>PO Amount</th><th>Amount Released</th><th>Financial Progress</th></tr></thead><tbody>${rows}</tbody>`;
+    `<thead><tr><th class="rowlabel">Division</th><th>PO Amount (Cr)</th><th>Amount Released (Cr)</th><th>Financial Progress</th></tr></thead><tbody>${rows}</tbody>`;
 }
 
 function renderAll(){
