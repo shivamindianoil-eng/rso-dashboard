@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retail Engineering — RO Construction &amp; Financial Progress</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f7f9fb; --panel:#ffffff;
+  --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
+  --text:#0f2337; --text-dim:#0a3d21; --text-dim2:#0d5c30;
+  --ms:#1e3a8a; --hsd:#ea580c; --amber-line:#c47a12;
+  --good:#16a34a; --bad:#ef4444;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:
+    radial-gradient(ellipse 1200px 600px at 15% -10%, rgba(30,58,138,0.05), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 100% 0%, rgba(234,88,12,0.06), transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; padding:28px 28px 60px;
+}
+.wrap{max-width:1400px; margin:0 auto;}
+
+.mou-link{display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; color:#fff; background:linear-gradient(90deg,#2f6fbf,#5b8fd8); padding:9px 16px; border-radius:8px; margin-bottom:8px; margin-right:6px; transition:.2s;}
+.mou-link:hover{filter:brightness(1.06); transform:translateY(-1px);}
+.mou-link.alt{background:linear-gradient(90deg,#c47a12,#e0a33d);}
+.mou-link.green{background:linear-gradient(90deg,#1f8f6f,#38b08a);}
+.mou-link.teal{background:linear-gradient(90deg,#0f6b57,#159c7c);}
+.mou-link.indigo{background:linear-gradient(90deg,#4338ca,#6366f1);}
+
+.topbar{display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid var(--border-2); padding-bottom:20px; margin-bottom:18px; flex-wrap:wrap; gap:16px;}
+.brand-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.18em; color:var(--amber-line); text-transform:uppercase; margin-bottom:8px;}
+h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:56px; letter-spacing:.01em; line-height:1;}
+h1 span{color:var(--text-dim2); font-weight:500;}
+.date-badge{font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--text); background:#fff; border:1px solid var(--border-2); padding:8px 14px; border-radius:8px; display:block; margin-top:6px;}
+.date-badge b{color:var(--amber-line); font-weight:600;}
+
+.settings{display:flex; gap:8px; align-items:center; background:#fff; border:1px solid var(--border-2); border-radius:10px; padding:10px 12px; margin-bottom:14px; flex-wrap:wrap;}
+.settings input{flex:1; min-width:220px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 10px; border-radius:6px;}
+.settings button{background:var(--amber-line); color:#fff; border:none; font-weight:700; font-size:12px; padding:9px 16px; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace;}
+.settings .status{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; color:var(--text-dim2);}
+.settings .status.ok{color:#16a34a;} .settings .status.err{color:#ef4444;}
+.toggle-settings-row{text-align:right; margin-bottom:10px;}
+.toggle-settings-row button{background:none; border:1px solid var(--border-2); color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:13.5px; padding:5px 10px; border-radius:6px; cursor:pointer;}
+
+.fy-tabs{display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap;}
+.fy-tab{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.02em; text-transform:uppercase;
+  background:#fff; border:1.5px solid var(--border-2); color:var(--text-dim); padding:11px 24px; border-radius:10px; cursor:pointer; transition:.15s;}
+.fy-tab.active{background:linear-gradient(90deg, var(--ms), var(--hsd)); color:#fff; border-color:transparent;}
+.fy-tab:hover:not(.active){border-color:var(--text-dim);}
+
+.section-label{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dim2); margin:30px 0 12px; display:flex; align-items:center; gap:10px;}
+.section-label::after{content:''; flex:1; height:1px; background:var(--border);}
+
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin-bottom:8px;}
+.kpi{background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(15,35,55,.04); position:relative; overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--ms), var(--hsd)); opacity:.85;}
+.kpi .num{font-family:'Big Shoulders Display'; font-size:40px; font-weight:700; line-height:1;}
+.kpi .lbl{font-size:13px; font-weight:700; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.03em; margin-top:8px; font-family:'IBM Plex Mono',monospace;}
+.kpi.good .num{color:var(--good);} .kpi.bad .num{color:var(--bad);}
+
+.charts{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0;}
+@media(max-width:920px){.charts{grid-template-columns:1fr;}}
+.chart-card{background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 14px rgba(15,35,55,0.05); padding:18px 20px 12px; position:relative; overflow:hidden;}
+.chart-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--ms), var(--hsd)); opacity:.85;}
+.chart-card h3{margin:0 0 14px; font-size:15px; text-transform:uppercase; letter-spacing:.03em; color:var(--text); font-weight:700;}
+.chart-card canvas{max-height:280px;}
+
+.bucket-legend{display:flex; gap:16px; flex-wrap:wrap; font-size:13px; font-weight:700; color:var(--text-dim2); margin:14px 0 4px; font-family:'IBM Plex Mono',monospace;}
+.bucket-legend span{display:inline-flex; align-items:center; gap:6px;}
+.swatch{width:11px; height:11px; border-radius:3px; display:inline-block;}
+
+.table-card{background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 14px rgba(15,35,55,0.05); overflow:hidden; margin-bottom:20px;}
+.table-card .card-head{margin:0; padding:14px 18px; background:linear-gradient(90deg, var(--ms), var(--hsd)); color:#fff;}
+.table-card .card-head h3{margin:0; font-size:15px; text-transform:uppercase; letter-spacing:.03em; font-weight:700;}
+.table-wrap{overflow:auto;}
+table.pivot{border-collapse:collapse; width:100%; font-size:14px;}
+table.pivot th, table.pivot td{border-bottom:1px solid var(--border); padding:11px 16px; text-align:right; white-space:nowrap; font-family:'IBM Plex Mono',monospace;}
+table.pivot th{background:#f2f5f8; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--text-dim);}
+table.pivot td.rowlabel, table.pivot th.rowlabel{text-align:left; font-weight:700; font-family:'Inter',sans-serif;}
+table.pivot tbody tr:nth-child(even) td:not(.rowlabel){background:#fafbfc;}
+table.pivot tr.grand td{font-weight:700; background:#ffedd5 !important; border-top:2px solid var(--hsd);}
+td.pctgood{color:var(--good); font-weight:700;} td.pctbad{color:var(--bad); font-weight:700;}
+
+.note{font-size:13px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-weight:700; margin-top:6px; margin-bottom:24px;}
+
+footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:14px; font-weight:700; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+.loading-veil{position:fixed; inset:0; background:var(--bg); z-index:50; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; font-family:'IBM Plex Mono',monospace; color:var(--text-dim); transition:opacity .4s;}
+.loading-veil.hide{opacity:0; pointer-events:none;}
+.spinner{width:34px;height:34px;border:3px solid var(--border-2); border-top-color:var(--amber-line); border-radius:50%; animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="loading-veil" id="veil"><div class="spinner"></div><div>Loading live data…</div></div>
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-eyebrow">Rajasthan State Office &middot; Retail Engineering</div>
+      <h1>RO Construction <span>&amp; Financial Progress</span></h1>
+    </div>
+    <div style="text-align:right;">
+      <div>
+        <a href="index.html" class="mou-link alt">← Daily Sales</a>
+        <a href="mou.html" class="mou-link green">MOU Performance →</a>
+        <a href="retail-folder.html" class="mou-link">DO Wise →</a>
+        <a href="ecms.html" class="mou-link teal">ECMS Status →</a>
+        <a href="automation-status.html" class="mou-link indigo">Automation Status →</a>
+      </div>
+      <div class="date-badge">Data as on <b id="asOfDate">—</b></div>
+    </div>
+  </div>
+
+  <div class="settings" id="settingsBar" style="display:none;">
+    <input type="text" id="csvUrlInput" placeholder="Paste your Engineering data CSV raw link here…">
+    <button id="loadBtn">Load &amp; Save</button>
+    <button id="resetBtn" style="background:#e8ecef; color:var(--text-dim);">Reset to Default</button>
+    <span class="status" id="statusMsg">Not connected</span>
+  </div>
+  <div class="toggle-settings-row"><button id="toggleSettings">⚙ Data source settings</button></div>
+
+  <div class="fy-tabs" id="fyTabs">
+    <button class="fy-tab active" data-fy="FY 2025-26">FY 2025-26</button>
+    <button class="fy-tab" data-fy="FY 2026-27">FY 2026-27</button>
+  </div>
+
+  <div class="section-label">RO Construction — Commissioning Cohort</div>
+  <div class="kpis" id="constructionKpis"></div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h3>ROs Commissioned — Division-wise</h3>
+      <canvas id="chartConstructionDiv"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Time Performance of Commissioned ROs</h3>
+      <canvas id="chartTimePerf"></canvas>
+      <div class="bucket-legend">
+        <span><span class="swatch" style="background:var(--ms)"></span>Within Time</span>
+        <span><span class="swatch" style="background:var(--hsd)"></span>Delayed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="card-head"><h3>Division-wise Construction Summary</h3></div>
+    <div class="table-wrap"><table class="pivot" id="tblConstruction"></table></div>
+  </div>
+  <div class="note">Within Time = Actual Completion Date on/before Revised Target Date after approved extension.</div>
+
+  <div class="section-label">Bill Clearing / Financial Progress</div>
+  <div class="kpis" id="financialKpis"></div>
+
+  <div class="charts">
+    <div class="chart-card" style="grid-column:1/-1;">
+      <h3>PO Amount vs Amount Released — Division-wise (₹ Cr)</h3>
+      <canvas id="chartFinancial"></canvas>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="card-head"><h3>Division-wise Financial Progress</h3></div>
+    <div class="table-wrap"><table class="pivot" id="tblFinancial"></table></div>
+  </div>
+  <div class="note">Bill Clearing % = Total Amount Released ÷ Total PO Amount × 100 (weighted financial progress).</div>
+
+  <footer>
+    <span>Source: live Engineering data feed &middot; updated monthly</span>
+    <span id="lastUpdated"></span>
+  </footer>
+</div>
+
+<script>
+const LS_KEY = 'engg_dashboard_csv_url_v1';
+const DEFAULT_CSV_URL = ''; // filled in once repo file link is known
+let ROWS = [];
+let activeFY = 'FY 2025-26';
+const DO_ORDER = ['Jaipur','Ajmer','Udaipur','Jodhpur','RSO'];
+let charts = {};
+
+function fmt(n, dec){
+  if(n===null||n===undefined||n===''||isNaN(n)) return '—';
+  const num = Number(n);
+  if(dec!==undefined) return num.toFixed(dec);
+  return num.toLocaleString('en-IN');
+}
+function num(v){ const n=parseFloat(v); return isNaN(n)?0:n; }
+
+function parseCSV(text){
+  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
+  ROWS = parsed.filter(r => r.Section);
+}
+function getVal(section, period, do_, metric){
+  const r = ROWS.find(x=>x.Section===section && x.Period===period && x.DO===do_ && x.Metric===metric);
+  return r ? num(r.Value) : 0;
+}
+function getMeta(metric){
+  const r = ROWS.find(x=>x.Section==='META' && x.Metric===metric);
+  return r ? r.Value : '—';
+}
+
+function renderConstruction(){
+  const kpiData = {
+    commissioned: getVal('Construction Summary', activeFY, 'RSO', 'Commissioned'),
+    withinTime: getVal('Construction Summary', activeFY, 'RSO', 'Within Time'),
+    delayed: getVal('Construction Summary', activeFY, 'RSO', 'Delayed'),
+    timePct: getVal('Construction Summary', activeFY, 'RSO', 'Time Pct'),
+  };
+  document.getElementById('constructionKpis').innerHTML = [
+    {n:kpiData.commissioned, l:'ROs Commissioned', cls:'', suffix:''},
+    {n:kpiData.withinTime, l:'Within Time', cls:'good', suffix:''},
+    {n:kpiData.delayed, l:'Delayed', cls:'bad', suffix:''},
+    {n:kpiData.timePct, l:'Time Performance', cls: kpiData.timePct>=60?'good':'bad', suffix:'%'},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n, c.suffix?1:0)}${c.suffix}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  const dos = DO_ORDER.filter(d=>d!=='RSO');
+  const commissionedData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Commissioned'));
+  if(charts.div) charts.div.destroy();
+  charts.div = new Chart(document.getElementById('chartConstructionDiv'), {
+    type:'bar',
+    data:{ labels:dos, datasets:[{ label:'Commissioned', data:commissionedData, backgroundColor:'#1e3a8a', borderRadius:4 }] },
+    options:{ responsive:true, plugins:{ legend:{display:false}, tooltip:{enabled:true} },
+      scales:{ x:{ grid:{display:false} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+  });
+
+  const withinData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Within Time'));
+  const delayedData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Delayed'));
+  if(charts.time) charts.time.destroy();
+  charts.time = new Chart(document.getElementById('chartTimePerf'), {
+    type:'bar',
+    data:{ labels:dos, datasets:[
+      { label:'Within Time', data:withinData, backgroundColor:'#1e3a8a' },
+      { label:'Delayed', data:delayedData, backgroundColor:'#ea580c' },
+    ]},
+    options:{ responsive:true, plugins:{ legend:{display:false} },
+      scales:{ x:{ stacked:true, grid:{display:false} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+  });
+
+  let rows = DO_ORDER.map(d=>{
+    const c = getVal('Construction Summary', activeFY, d, 'Commissioned');
+    const w = getVal('Construction Summary', activeFY, d, 'Within Time');
+    const del = getVal('Construction Summary', activeFY, d, 'Delayed');
+    const p = getVal('Construction Summary', activeFY, d, 'Time Pct');
+    const rowClass = d==='RSO' ? ' class="grand"' : '';
+    const pctClass = p>=60 ? 'pctgood' : 'pctbad';
+    return `<tr${rowClass}><td class="rowlabel">${d==='RSO'?'RSO Total':d}</td><td>${fmt(c)}</td><td>${fmt(w)}</td><td>${fmt(del)}</td><td class="${pctClass}">${fmt(p,1)}%</td></tr>`;
+  }).join('');
+  document.getElementById('tblConstruction').innerHTML =
+    `<thead><tr><th class="rowlabel">Division</th><th>Commissioned</th><th>Within Time</th><th>Delayed</th><th>Time %</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+function renderFinancial(){
+  const po = getVal('Financial Progress', activeFY, 'RSO', 'PO Amount');
+  const rel = getVal('Financial Progress', activeFY, 'RSO', 'Amount Released');
+  const pct = getVal('Financial Progress', activeFY, 'RSO', 'Financial Progress Pct');
+
+  document.getElementById('financialKpis').innerHTML = [
+    {n:po, l:'Total PO Amount (₹ Cr)', cls:'', dec:2},
+    {n:rel, l:'Amount Released (₹ Cr)', cls:'', dec:2},
+    {n:po-rel, l:'Balance to Release (₹ Cr)', cls:'bad', dec:2},
+    {n:pct, l:'Bill Clearing %', cls: pct>=60?'good':'bad', dec:1, suffix:'%'},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n, c.dec)}${c.suffix||''}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  const dos = DO_ORDER.filter(d=>d!=='RSO');
+  const poData = dos.map(d=>getVal('Financial Progress', activeFY, d, 'PO Amount'));
+  const relData = dos.map(d=>getVal('Financial Progress', activeFY, d, 'Amount Released'));
+  if(charts.fin) charts.fin.destroy();
+  charts.fin = new Chart(document.getElementById('chartFinancial'), {
+    type:'bar',
+    data:{ labels:dos, datasets:[
+      { label:'PO Amount', data:poData, backgroundColor:'#1e3a8a', borderRadius:4 },
+      { label:'Amount Released', data:relData, backgroundColor:'#ea580c', borderRadius:4 },
+    ]},
+    options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ font:{family:"'IBM Plex Mono'", size:12}, color:'#0a3d21' } } },
+      scales:{ x:{ grid:{display:false} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'}, title:{display:true, text:'₹ Crore'} } } }
+  });
+
+  let rows = DO_ORDER.map(d=>{
+    const p = getVal('Financial Progress', activeFY, d, 'PO Amount');
+    const r = getVal('Financial Progress', activeFY, d, 'Amount Released');
+    const fp = getVal('Financial Progress', activeFY, d, 'Financial Progress Pct');
+    const rowClass = d==='RSO' ? ' class="grand"' : '';
+    const pctClass = fp>=60 ? 'pctgood' : 'pctbad';
+    return `<tr${rowClass}><td class="rowlabel">${d==='RSO'?'RSO Total':d}</td><td>₹${fmt(p,2)} Cr</td><td>₹${fmt(r,2)} Cr</td><td class="${pctClass}">${fmt(fp,2)}%</td></tr>`;
+  }).join('');
+  document.getElementById('tblFinancial').innerHTML =
+    `<thead><tr><th class="rowlabel">Division</th><th>PO Amount</th><th>Amount Released</th><th>Financial Progress</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+function renderAll(){
+  document.getElementById('asOfDate').textContent = getMeta('AsOfDate');
+  renderConstruction();
+  renderFinancial();
+}
+
+document.querySelectorAll('.fy-tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.fy-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFY = btn.dataset.fy;
+    renderAll();
+  });
+});
+
+document.getElementById('toggleSettings').addEventListener('click', ()=>{
+  const bar = document.getElementById('settingsBar');
+  bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(LS_KEY);
+  document.getElementById('csvUrlInput').value = DEFAULT_CSV_URL;
+  loadFromUrl(DEFAULT_CSV_URL);
+});
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const url = document.getElementById('csvUrlInput').value.trim();
+  if(!url) return;
+  localStorage.setItem(LS_KEY, url);
+  loadFromUrl(url);
+});
+
+let autoRefreshTimer = null;
+const AUTO_REFRESH_MS = 30000;
+async function loadFromUrl(url, silent){
+  const statusEl = document.getElementById('statusMsg');
+  if(!url){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
+  if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
+  try{
+    const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    parseCSV(text);
+    renderAll();
+    const now = new Date().toLocaleTimeString();
+    statusEl.textContent = 'Live · auto-refreshing every 30s · last update ' + now; statusEl.className='status ok';
+    document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
+    document.getElementById('veil').classList.add('hide');
+    if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(()=> loadFromUrl(url, true), AUTO_REFRESH_MS);
+  }catch(err){
+    statusEl.textContent = 'Could not load data: ' + err.message; statusEl.className='status err';
+    document.getElementById('veil').classList.add('hide');
+  }
+}
+
+window.addEventListener('load', ()=>{
+  const saved = localStorage.getItem(LS_KEY) || DEFAULT_CSV_URL;
+  if(saved){
+    document.getElementById('csvUrlInput').value = saved;
+    loadFromUrl(saved);
+  } else {
+    document.getElementById('veil').classList.add('hide');
+    document.getElementById('settingsBar').style.display='flex';
+  }
+});
+</script>
+</body>
+</html>
