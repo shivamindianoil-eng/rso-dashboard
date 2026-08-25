@@ -406,15 +406,15 @@ function renderWeekBlock(containerId, scope){
   const actual = get('Mkt Shr PSU', RAW_KEYS.psuWeekActual);
   const prorata = get('Mkt Shr PSU', RAW_KEYS.psuWeekProrata);
   const label = RAW_KEYS.psuWeekLabel || 'This period';
-  const deltaChip = (v)=> v===null ? '—' : `${v>=0?'▲':'▼'} ${Math.abs(v)} pp`;
+  const deltaChip = (v)=> v===null ? '—' : `${v>=0?'▲':'▼'} ${Math.abs(v)}%`;
   const deltaClass = (v)=> v===null ? '' : (v>=0?'up':'down');
   const fuelCol = (fuelLabel, color, av, pv)=>`
     <div class="gauge-block" style="min-width:180px;">
       <div>
         <div class="gauge-label" style="color:${color}">${fuelLabel} — Actual</div>
-        <div class="gauge-num">${av===null?'—':av+' pp'}</div>
+        <div class="gauge-num">${av===null?'—':av+'%'}</div>
         <div class="chip ${deltaClass(av)}">${deltaChip(av)}</div>
-        <div class="gauge-meta">Prorata: ${pv===null?'—':pv+' pp'}</div>
+        <div class="gauge-meta">Prorata: ${pv===null?'—':pv+'%'}</div>
       </div>
     </div>`;
   el.innerHTML = fuelCol('MS', 'var(--ms)', actual.ms, prorata.ms) +
