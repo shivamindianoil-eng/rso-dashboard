@@ -83,12 +83,16 @@ h1 span{color:var(--text-dim2); font-weight:500;}
 
 .bar-group{margin-bottom:16px;} .bar-group:last-child{margin-bottom:0;}
 .weekly-growth{margin-top:14px; border-top:1px solid var(--border); padding-top:12px;}
-.weekly-growth-title{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;}
-.weekly-growth-row{display:flex; align-items:center; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; font-size:15px;}
-.weekly-growth-row:last-child{border-bottom:none;}
-.weekly-growth-row .wg-label{color:var(--text-dim); font-weight:700;}
-.weekly-growth-row .wg-vals{display:flex; gap:18px;}
-.weekly-growth-row .wg-vals span{font-weight:700;}
+.weekly-growth-title{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.04em; margin-bottom:10px;}
+table.weekly-growth-table{width:100%; border-collapse:collapse; font-family:'IBM Plex Mono',monospace; font-size:15px;}
+table.weekly-growth-table th, table.weekly-growth-table td{padding:9px 12px; text-align:center; border-bottom:1px solid var(--border);}
+table.weekly-growth-table th{font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--text-dim2); background:rgba(15,35,55,0.03);}
+table.weekly-growth-table th.ms-col{color:var(--ms);}
+table.weekly-growth-table th.hsd-col{color:#16a34a;}
+table.weekly-growth-table td.period-col{text-align:left; font-weight:700; color:var(--text-dim);}
+table.weekly-growth-table td.ms-col{color:var(--ms); font-weight:700;}
+table.weekly-growth-table td.hsd-col{color:#16a34a; font-weight:700;}
+table.weekly-growth-table tr:last-child td{border-bottom:none;}
 .bar-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;}
 .bar-name{font-size:15px; color:var(--text-dim); font-weight:700;}
 .bar-val{font-family:'IBM Plex Mono',monospace; font-size:19px; color:var(--text); font-weight:600;}
@@ -446,13 +450,18 @@ function renderWeeklyGrowth(){
   if(rows.length === 0){ wrap.innerHTML = ''; return; }
   wrap.innerHTML = `<div class="weekly-growth">
     <div class="weekly-growth-title">Weekly Growth Checkpoints (vs LY)</div>
-    ${rows.map(r => `<div class="weekly-growth-row">
-      <span class="wg-label">${r.label}</span>
-      <span class="wg-vals">
-        <span style="color:var(--ms)">MS ${r.ms!==null?(r.ms>=0?'▲':'▼')+Math.abs(r.ms)+'%':'—'}</span>
-        <span style="color:var(--hsd)">HSD ${r.hsd!==null?(r.hsd>=0?'▲':'▼')+Math.abs(r.hsd)+'%':'—'}</span>
-      </span>
-    </div>`).join('')}
+    <table class="weekly-growth-table">
+      <thead>
+        <tr><th></th><th class="ms-col">MS</th><th class="hsd-col">HSD</th></tr>
+      </thead>
+      <tbody>
+        ${rows.map(r => `<tr>
+          <td class="period-col">(${r.label})</td>
+          <td class="ms-col">${r.ms!==null?fmt(r.ms)+'%':'—'}</td>
+          <td class="hsd-col">${r.hsd!==null?fmt(r.hsd)+'%':'—'}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>
   </div>`;
 }
 
