@@ -82,6 +82,13 @@ h1 span{color:var(--text-dim2); font-weight:500;}
 .chip.up{color:var(--good); background:rgba(74,222,128,.12);} .chip.down{color:var(--bad); background:rgba(242,102,94,.12);}
 
 .bar-group{margin-bottom:16px;} .bar-group:last-child{margin-bottom:0;}
+.weekly-growth{margin-top:14px; border-top:1px solid var(--border); padding-top:12px;}
+.weekly-growth-title{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px;}
+.weekly-growth-row{display:flex; align-items:center; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; font-size:15px;}
+.weekly-growth-row:last-child{border-bottom:none;}
+.weekly-growth-row .wg-label{color:var(--text-dim); font-weight:700;}
+.weekly-growth-row .wg-vals{display:flex; gap:18px;}
+.weekly-growth-row .wg-vals span{font-weight:700;}
 .bar-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;}
 .bar-name{font-size:15px; color:var(--text-dim); font-weight:700;}
 .bar-val{font-family:'IBM Plex Mono',monospace; font-size:19px; color:var(--text); font-weight:600;}
@@ -191,6 +198,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
         <div class="bar-track" style="margin-top:5px;"><div class="bar-fill hsd" id="cumHSDLY" style="opacity:.35"></div></div>
       </div>
       <div class="card-sub" id="salesFooter" style="margin-top:8px; margin-bottom:0;"></div>
+      <div id="weeklyGrowthWrap"></div>
     </div>
 
     <div class="card">
@@ -426,6 +434,28 @@ function setBar(id, pct){ const e=document.getElementById(id); if(e) e.style.wid
 function setHeight(id, pct){ const e=document.getElementById(id); if(e) e.style.height = Math.max(0,Math.min(100,pct))+'%'; }
 function setText(id, txt){ const e=document.getElementById(id); if(e) e.textContent = txt; }
 
+function renderWeeklyGrowth(){
+  const wrap = document.getElementById('weeklyGrowthWrap');
+  const rows = Object.keys(RAW)
+    .filter(k => k.startsWith('Sales Performance|||Growth ('))
+    .map(k => {
+      const param = k.split('|||')[1];
+      const label = param.match(/^Growth \((.*)\)$/)[1];
+      return { label, ...RAW[k] };
+    });
+  if(rows.length === 0){ wrap.innerHTML = ''; return; }
+  wrap.innerHTML = `<div class="weekly-growth">
+    <div class="weekly-growth-title">Weekly Growth Checkpoints (vs LY)</div>
+    ${rows.map(r => `<div class="weekly-growth-row">
+      <span class="wg-label">${r.label}</span>
+      <span class="wg-vals">
+        <span style="color:var(--ms)">MS ${r.ms!==null?(r.ms>=0?'▲':'▼')+Math.abs(r.ms)+'%':'—'}</span>
+        <span style="color:var(--hsd)">HSD ${r.hsd!==null?(r.hsd>=0?'▲':'▼')+Math.abs(r.hsd)+'%':'—'}</span>
+      </span>
+    </div>`).join('')}
+  </div>`;
+}
+
 function renderAll(){
   document.getElementById('reportDate').textContent = reportDateStr;
 
@@ -452,6 +482,8 @@ function renderAll(){
   setBar('cumMSCY', (cum.ms/maxMS)*100); setBar('cumMSLY', (ly.ms/maxMS)*100);
   setBar('cumHSDCY', (cum.hsd/maxHSD)*100); setBar('cumHSDLY', (ly.hsd/maxHSD)*100);
   setText('salesFooter', `Nozzle sale yesterday: ${fmt(nozzle.ms)} / ${fmt(nozzle.hsd)} KL`);
+
+  renderWeeklyGrowth();
 
   // Target
   const base = get('Target', RAW_KEYS.baseVolume);
