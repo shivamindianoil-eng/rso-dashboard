@@ -1,0 +1,93 @@
+Section,DO,Metric,Value
+eFMS Complaints,Ajmer,Complaints Logged,1053
+eFMS Complaints,Ajmer,Rejected by FO,560
+eFMS Complaints,Ajmer,Pending with FO,73
+eFMS Complaints,Ajmer,Proposal Initiated,156
+eFMS Complaints,Ajmer,Approved & Intimated to Vendor,264
+eFMS Complaints,Ajmer,Vendor Acknowledged,173
+eFMS Complaints,Ajmer,Work Completed & Closed,164
+eFMS Complaints,Ajmer,Payment Approved,61
+eFMS Complaints,Ajmer,% Allocated & Completed,62
+eFMS Complaints,Jaipur,Complaints Logged,1210
+eFMS Complaints,Jaipur,Rejected by FO,585
+eFMS Complaints,Jaipur,Pending with FO,63
+eFMS Complaints,Jaipur,Proposal Initiated,220
+eFMS Complaints,Jaipur,Approved & Intimated to Vendor,342
+eFMS Complaints,Jaipur,Vendor Acknowledged,237
+eFMS Complaints,Jaipur,Work Completed & Closed,224
+eFMS Complaints,Jaipur,Payment Approved,131
+eFMS Complaints,Jaipur,% Allocated & Completed,65
+eFMS Complaints,Jodhpur,Complaints Logged,896
+eFMS Complaints,Jodhpur,Rejected by FO,463
+eFMS Complaints,Jodhpur,Pending with FO,56
+eFMS Complaints,Jodhpur,Proposal Initiated,65
+eFMS Complaints,Jodhpur,Approved & Intimated to Vendor,312
+eFMS Complaints,Jodhpur,Vendor Acknowledged,180
+eFMS Complaints,Jodhpur,Work Completed & Closed,167
+eFMS Complaints,Jodhpur,Payment Approved,79
+eFMS Complaints,Jodhpur,% Allocated & Completed,54
+eFMS Complaints,Udaipur,Complaints Logged,1153
+eFMS Complaints,Udaipur,Rejected by FO,430
+eFMS Complaints,Udaipur,Pending with FO,80
+eFMS Complaints,Udaipur,Proposal Initiated,201
+eFMS Complaints,Udaipur,Approved & Intimated to Vendor,442
+eFMS Complaints,Udaipur,Vendor Acknowledged,151
+eFMS Complaints,Udaipur,Work Completed & Closed,132
+eFMS Complaints,Udaipur,Payment Approved,24
+eFMS Complaints,Udaipur,% Allocated & Completed,30
+eFMS Complaints,RSO,Complaints Logged,4312
+eFMS Complaints,RSO,Rejected by FO,2038
+eFMS Complaints,RSO,Pending with FO,272
+eFMS Complaints,RSO,Proposal Initiated,642
+eFMS Complaints,RSO,Approved & Intimated to Vendor,1360
+eFMS Complaints,RSO,Vendor Acknowledged,741
+eFMS Complaints,RSO,Work Completed & Closed,687
+eFMS Complaints,RSO,Payment Approved,295
+eFMS Complaints,RSO,% Allocated & Completed,51
+eCTS Complaints,Ajmer,Joint Visit Required (Electrical),0
+eCTS Complaints,Ajmer,W and M Approval Required,7
+eCTS Complaints,Ajmer,Quotation Approval Requested,2
+eCTS Complaints,Ajmer,Approval of Quotation Awaited,0
+eCTS Complaints,Ajmer,Card Failure,0
+eCTS Complaints,Ajmer,Others (Meter Assembly),0
+eCTS Complaints,Ajmer,Re-calibration,4
+eCTS Complaints,Ajmer,Suction Failure,0
+eCTS Complaints,Ajmer,Grand Total,13
+eCTS Complaints,Jaipur,Joint Visit Required (Electrical),1
+eCTS Complaints,Jaipur,W and M Approval Required,20
+eCTS Complaints,Jaipur,Quotation Approval Requested,29
+eCTS Complaints,Jaipur,Approval of Quotation Awaited,3
+eCTS Complaints,Jaipur,Card Failure,2
+eCTS Complaints,Jaipur,Others (Meter Assembly),1
+eCTS Complaints,Jaipur,Re-calibration,7
+eCTS Complaints,Jaipur,Suction Failure,0
+eCTS Complaints,Jaipur,Grand Total,63
+eCTS Complaints,Jodhpur,Joint Visit Required (Electrical),0
+eCTS Complaints,Jodhpur,W and M Approval Required,12
+eCTS Complaints,Jodhpur,Quotation Approval Requested,2
+eCTS Complaints,Jodhpur,Approval of Quotation Awaited,0
+eCTS Complaints,Jodhpur,Card Failure,0
+eCTS Complaints,Jodhpur,Others (Meter Assembly),0
+eCTS Complaints,Jodhpur,Re-calibration,6
+eCTS Complaints,Jodhpur,Suction Failure,1
+eCTS Complaints,Jodhpur,Grand Total,21
+eCTS Complaints,Udaipur,Joint Visit Required (Electrical),0
+eCTS Complaints,Udaipur,W and M Approval Required,7
+eCTS Complaints,Udaipur,Quotation Approval Requested,0
+eCTS Complaints,Udaipur,Approval of Quotation Awaited,0
+eCTS Complaints,Udaipur,Card Failure,1
+eCTS Complaints,Udaipur,Others (Meter Assembly),0
+eCTS Complaints,Udaipur,Re-calibration,2
+eCTS Complaints,Udaipur,Suction Failure,0
+eCTS Complaints,Udaipur,Grand Total,10
+eCTS Complaints,RSO,Joint Visit Required (Electrical),1
+eCTS Complaints,RSO,W and M Approval Required,42
+eCTS Complaints,RSO,Quotation Approval Requested,33
+eCTS Complaints,RSO,Approval of Quotation Awaited,3
+eCTS Complaints,RSO,Card Failure,3
+eCTS Complaints,RSO,Others (Meter Assembly),1
+eCTS Complaints,RSO,Re-calibration,19
+eCTS Complaints,RSO,Suction Failure,1
+eCTS Complaints,RSO,Grand Total,107
+META,,eFMSAsOfDate,25-Aug-2026
+META,,eCTSAsOfDate,26-Aug-2026

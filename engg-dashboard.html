@@ -117,6 +117,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
 
   <div class="settings" id="settingsBar" style="display:none;">
     <input type="text" id="csvUrlInput" placeholder="Paste your Engineering data CSV raw link here…">
+    <input type="text" id="csvUrlInputComplaints" placeholder="Paste your Complaints data CSV raw link here…">
     <button id="loadBtn">Load &amp; Save</button>
     <button id="resetBtn" style="background:#e8ecef; color:var(--text-dim);">Reset to Default</button>
     <span class="status" id="statusMsg">Not connected</span>
@@ -168,6 +169,44 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
   </div>
   <div class="note">Bill Clearing % = Total Amount Released ÷ Total PO Amount × 100 (weighted financial progress).</div>
 
+  <div class="section-label">eFMS Complaints — Status <span id="efmsDateLabel" style="font-weight:400; text-transform:none; letter-spacing:0;"></span></div>
+  <div class="kpis" id="efmsKpis"></div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h3>Complaint Funnel — RSO (All Divisions)</h3>
+      <canvas id="chartEfmsFunnel"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Key Stages — Division-wise</h3>
+      <canvas id="chartEfmsDiv"></canvas>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="card-head"><h3>Division-wise eFMS Complaint Status</h3></div>
+    <div class="table-wrap"><table class="pivot" id="tblEfms"></table></div>
+  </div>
+
+  <div class="section-label">eCTS Complaints — Category-wise <span id="ectsDateLabel" style="font-weight:400; text-transform:none; letter-spacing:0;"></span></div>
+  <div class="kpis" id="ectsKpis"></div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h3>Category Distribution — RSO (All Divisions)</h3>
+      <canvas id="chartEctsPie"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Category-wise — Division-wise</h3>
+      <canvas id="chartEctsDiv"></canvas>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="card-head"><h3>Division-wise eCTS Complaint Categories</h3></div>
+    <div class="table-wrap"><table class="pivot" id="tblEcts"></table></div>
+  </div>
+
   <footer>
     <span>Source: live Engineering data feed &middot; updated monthly</span>
     <span id="lastUpdated"></span>
@@ -176,6 +215,9 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
 
 <script>
 const LS_KEY = 'engg_dashboard_csv_url_v1';
+const LS_KEY_COMPLAINTS = 'engg_complaints_csv_url_v1';
+const DEFAULT_COMPLAINTS_URL = ''; // filled in once repo file link is known
+let COMPLAINT_ROWS = [];
 const DEFAULT_CSV_URL = 'https://raw.githubusercontent.com/shivamindianoil-eng/rso-dashboard/refs/heads/main/engg-dashboard-data.csv';
 let ROWS = [];
 let activeFY = 'FY 2025-26';
@@ -313,34 +355,151 @@ document.getElementById('toggleSettings').addEventListener('click', ()=>{
 });
 document.getElementById('resetBtn').addEventListener('click', ()=>{
   localStorage.removeItem(LS_KEY);
+  localStorage.removeItem(LS_KEY_COMPLAINTS);
   document.getElementById('csvUrlInput').value = DEFAULT_CSV_URL;
-  loadFromUrl(DEFAULT_CSV_URL);
+  document.getElementById('csvUrlInputComplaints').value = DEFAULT_COMPLAINTS_URL;
+  loadFromUrl(DEFAULT_CSV_URL, DEFAULT_COMPLAINTS_URL);
 });
 document.getElementById('loadBtn').addEventListener('click', ()=>{
   const url = document.getElementById('csvUrlInput').value.trim();
-  if(!url) return;
+  const url2 = document.getElementById('csvUrlInputComplaints').value.trim();
+  if(!url || !url2) return;
   localStorage.setItem(LS_KEY, url);
-  loadFromUrl(url);
+  localStorage.setItem(LS_KEY_COMPLAINTS, url2);
+  loadFromUrl(url, url2);
 });
+
+function parseComplaintsCSV(text){
+  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
+  COMPLAINT_ROWS = parsed.filter(r => r.Section);
+}
+function getComplaintVal(section, do_, metric){
+  const r = COMPLAINT_ROWS.find(x=>x.Section===section && x.DO===do_ && x.Metric===metric);
+  return r ? num(r.Value) : 0;
+}
+function getComplaintMeta(metric){
+  const r = COMPLAINT_ROWS.find(x=>x.Section==='META' && x.Metric===metric);
+  return r ? r.Value : '—';
+}
+
+const COMPLAINT_DIVS = ['Ajmer','Jaipur','Jodhpur','Udaipur'];
+
+function renderEfms(){
+  document.getElementById('efmsDateLabel').textContent = `— as on ${getComplaintMeta('eFMSAsOfDate')}`;
+  const logged = getComplaintVal('eFMS Complaints','RSO','Complaints Logged');
+  const pendingFO = getComplaintVal('eFMS Complaints','RSO','Pending with FO');
+  const completed = getComplaintVal('eFMS Complaints','RSO','Work Completed & Closed');
+  const pctAlloc = getComplaintVal('eFMS Complaints','RSO','% Allocated & Completed');
+
+  document.getElementById('efmsKpis').innerHTML = [
+    {n:logged, l:'Complaints Logged (RSO)', cls:''},
+    {n:pendingFO, l:'Pending with FO', cls:'bad'},
+    {n:completed, l:'Work Completed & Closed', cls:'good'},
+    {n:pctAlloc, l:'% Allocated & Completed', cls: pctAlloc>=60?'good':'bad', suffix:'%'},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n)}${c.suffix||''}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  const funnelStages = ['Complaints Logged','Rejected by FO','Pending with FO','Proposal Initiated','Approved & Intimated to Vendor','Vendor Acknowledged','Work Completed & Closed','Payment Approved'];
+  const funnelData = funnelStages.map(s=>getComplaintVal('eFMS Complaints','RSO',s));
+  if(charts.efmsFunnel) charts.efmsFunnel.destroy();
+  charts.efmsFunnel = new Chart(document.getElementById('chartEfmsFunnel'), {
+    type:'bar',
+    data:{ labels:funnelStages, datasets:[{ data:funnelData, backgroundColor:['#1e3a8a','#ef4444','#f59e0b','#0ea5e9','#8b5cf6','#06b6d4','#16a34a','#15803d'], borderRadius:4 }] },
+    options:{ indexAxis:'y', responsive:true, plugins:{ legend:{display:false} },
+      scales:{ x:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} }, y:{ grid:{display:false}, ticks:{font:{size:12,weight:'700'}} } } }
+  });
+
+  const keyStages = ['Complaints Logged','Work Completed & Closed','Payment Approved'];
+  const dsDiv = keyStages.map((s,i)=>({
+    label:s, backgroundColor:['#1e3a8a','#16a34a','#ea580c'][i],
+    data: COMPLAINT_DIVS.map(d=>getComplaintVal('eFMS Complaints', d, s))
+  }));
+  if(charts.efmsDiv) charts.efmsDiv.destroy();
+  charts.efmsDiv = new Chart(document.getElementById('chartEfmsDiv'), {
+    type:'bar',
+    data:{ labels:COMPLAINT_DIVS, datasets:dsDiv },
+    options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ font:{family:"'IBM Plex Mono'", size:11}, color:'#0a3d21' } } },
+      scales:{ x:{ grid:{display:false}, ticks:{font:{size:14,weight:'700'}} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+  });
+
+  const allStages = ['Complaints Logged','Rejected by FO','Pending with FO','Proposal Initiated','Approved & Intimated to Vendor','Vendor Acknowledged','Work Completed & Closed','Payment Approved','% Allocated & Completed'];
+  let rows = [...COMPLAINT_DIVS,'RSO'].map(d=>{
+    const vals = allStages.map(s=>getComplaintVal('eFMS Complaints', d, s));
+    const rowClass = d==='RSO' ? ' class="grand"' : '';
+    return `<tr${rowClass}><td class="rowlabel">${d}</td>${vals.map((v,i)=>`<td>${fmt(v)}${i===vals.length-1?'%':''}</td>`).join('')}</tr>`;
+  }).join('');
+  document.getElementById('tblEfms').innerHTML =
+    `<thead><tr><th class="rowlabel">DO</th>${allStages.map(s=>`<th>${s}</th>`).join('')}</tr></thead><tbody>${rows}</tbody>`;
+}
+
+function renderEcts(){
+  document.getElementById('ectsDateLabel').textContent = `— as on ${getComplaintMeta('eCTSAsOfDate')}`;
+  const total = getComplaintVal('eCTS Complaints','RSO','Grand Total');
+  const categories = ['Joint Visit Required (Electrical)','W and M Approval Required','Quotation Approval Requested','Approval of Quotation Awaited','Card Failure','Others (Meter Assembly)','Re-calibration','Suction Failure'];
+  const topCat = categories.reduce((best,c)=> getComplaintVal('eCTS Complaints','RSO',c) > getComplaintVal('eCTS Complaints','RSO',best) ? c : best, categories[0]);
+  const topCatVal = getComplaintVal('eCTS Complaints','RSO',topCat);
+
+  document.getElementById('ectsKpis').innerHTML = [
+    {n:total, l:'Total Complaints (RSO)', cls:''},
+    {n:getComplaintVal('eCTS Complaints','RSO','W and M Approval Required'), l:'W&M Approval Required', cls:'bad'},
+    {n:getComplaintVal('eCTS Complaints','RSO','Quotation Approval Requested'), l:'Quotation Approval Requested', cls:'bad'},
+    {n:topCatVal, l:`Largest Category: ${topCat}`, cls:'good'},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n)}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  const catColors = ['#1e3a8a','#ea580c','#16a34a','#0ea5e9','#ef4444','#8b5cf6','#eab308','#06b6d4'];
+  const catData = categories.map(c=>getComplaintVal('eCTS Complaints','RSO',c));
+  if(charts.ectsPie) charts.ectsPie.destroy();
+  charts.ectsPie = new Chart(document.getElementById('chartEctsPie'), {
+    type:'pie',
+    data:{ labels:categories, datasets:[{ data:catData, backgroundColor:catColors, borderWidth:2, borderColor:'#fff' }] },
+    options:{ responsive:true, plugins:{ legend:{ position:'bottom', labels:{ font:{family:"'IBM Plex Mono'", size:10}, color:'#0a3d21', boxWidth:12 } } } }
+  });
+
+  const dsDiv = categories.map((c,i)=>({
+    label:c, backgroundColor:catColors[i],
+    data: COMPLAINT_DIVS.map(d=>getComplaintVal('eCTS Complaints', d, c))
+  }));
+  if(charts.ectsDiv) charts.ectsDiv.destroy();
+  charts.ectsDiv = new Chart(document.getElementById('chartEctsDiv'), {
+    type:'bar',
+    data:{ labels:COMPLAINT_DIVS, datasets:dsDiv },
+    options:{ responsive:true, plugins:{ legend:{display:false} },
+      scales:{ x:{ stacked:true, grid:{display:false}, ticks:{font:{size:14,weight:'700'}} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+  });
+
+  let rows = [...COMPLAINT_DIVS,'RSO'].map(d=>{
+    const vals = categories.map(c=>getComplaintVal('eCTS Complaints', d, c));
+    const total = getComplaintVal('eCTS Complaints', d, 'Grand Total');
+    const rowClass = d==='RSO' ? ' class="grand"' : '';
+    return `<tr${rowClass}><td class="rowlabel">${d}</td>${vals.map(v=>`<td>${fmt(v)}</td>`).join('')}<td>${fmt(total)}</td></tr>`;
+  }).join('');
+  document.getElementById('tblEcts').innerHTML =
+    `<thead><tr><th class="rowlabel">DO</th>${categories.map(c=>`<th>${c}</th>`).join('')}<th>Total</th></tr></thead><tbody>${rows}</tbody>`;
+}
 
 let autoRefreshTimer = null;
 const AUTO_REFRESH_MS = 30000;
-async function loadFromUrl(url, silent){
+async function fetchCSV(url){
+  const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  return await res.text();
+}
+async function loadFromUrl(url, url2, silent){
   const statusEl = document.getElementById('statusMsg');
-  if(!url){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
+  if(!url || !url2){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
   if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
   try{
-    const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const text = await res.text();
+    const [text, text2] = await Promise.all([fetchCSV(url), fetchCSV(url2)]);
     parseCSV(text);
+    parseComplaintsCSV(text2);
     renderAll();
+    renderEfms();
+    renderEcts();
     const now = new Date().toLocaleTimeString();
     statusEl.textContent = 'Live · auto-refreshing every 30s · last update ' + now; statusEl.className='status ok';
     document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
     document.getElementById('veil').classList.add('hide');
     if(autoRefreshTimer) clearInterval(autoRefreshTimer);
-    autoRefreshTimer = setInterval(()=> loadFromUrl(url, true), AUTO_REFRESH_MS);
+    autoRefreshTimer = setInterval(()=> loadFromUrl(url, url2, true), AUTO_REFRESH_MS);
   }catch(err){
     statusEl.textContent = 'Could not load data: ' + err.message; statusEl.className='status err';
     document.getElementById('veil').classList.add('hide');
@@ -349,9 +508,11 @@ async function loadFromUrl(url, silent){
 
 window.addEventListener('load', ()=>{
   const saved = localStorage.getItem(LS_KEY) || DEFAULT_CSV_URL;
-  if(saved){
-    document.getElementById('csvUrlInput').value = saved;
-    loadFromUrl(saved);
+  const saved2 = localStorage.getItem(LS_KEY_COMPLAINTS) || DEFAULT_COMPLAINTS_URL;
+  document.getElementById('csvUrlInput').value = saved;
+  document.getElementById('csvUrlInputComplaints').value = saved2;
+  if(saved && saved2){
+    loadFromUrl(saved, saved2);
   } else {
     document.getElementById('veil').classList.add('hide');
     document.getElementById('settingsBar').style.display='flex';
