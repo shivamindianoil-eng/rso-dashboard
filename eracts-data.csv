@@ -1,202 +1,30 @@
-Section,DO,Metric,Value
-All Complaints — Orpak,AJMER DO,0-3 Days,6
-All Complaints — Orpak,AJMER DO,3-10 Days,5
-All Complaints — Orpak,AJMER DO,10-30 Days,1
-All Complaints — Orpak,AJMER DO,More than 30 Days,1
-All Complaints — Orpak,AJMER DO,Total,13
-All Complaints — Orpak,Jaipur DO,0-3 Days,5
-All Complaints — Orpak,Jaipur DO,3-10 Days,0
-All Complaints — Orpak,Jaipur DO,10-30 Days,0
-All Complaints — Orpak,Jaipur DO,More than 30 Days,0
-All Complaints — Orpak,Jaipur DO,Total,5
-All Complaints — Orpak,Jodhpur DO,0-3 Days,9
-All Complaints — Orpak,Jodhpur DO,3-10 Days,2
-All Complaints — Orpak,Jodhpur DO,10-30 Days,6
-All Complaints — Orpak,Jodhpur DO,More than 30 Days,2
-All Complaints — Orpak,Jodhpur DO,Total,19
-All Complaints — Orpak,Udaipur DO,0-3 Days,3
-All Complaints — Orpak,Udaipur DO,3-10 Days,4
-All Complaints — Orpak,Udaipur DO,10-30 Days,6
-All Complaints — Orpak,Udaipur DO,More than 30 Days,2
-All Complaints — Orpak,Udaipur DO,Total,15
-All Complaints — Orpak,RSO,0-3 Days,23
-All Complaints — Orpak,RSO,3-10 Days,11
-All Complaints — Orpak,RSO,10-30 Days,13
-All Complaints — Orpak,RSO,More than 30 Days,5
-All Complaints — Orpak,RSO,Total,52
-All Complaints — Atos,AJMER DO,0-3 Days,3
-All Complaints — Atos,AJMER DO,3-10 Days,6
-All Complaints — Atos,AJMER DO,10-30 Days,8
-All Complaints — Atos,AJMER DO,More than 30 Days,0
-All Complaints — Atos,AJMER DO,Total,17
-All Complaints — Atos,Jaipur DO,0-3 Days,5
-All Complaints — Atos,Jaipur DO,3-10 Days,5
-All Complaints — Atos,Jaipur DO,10-30 Days,7
-All Complaints — Atos,Jaipur DO,More than 30 Days,2
-All Complaints — Atos,Jaipur DO,Total,19
-All Complaints — Atos,Jodhpur DO,0-3 Days,3
-All Complaints — Atos,Jodhpur DO,3-10 Days,2
-All Complaints — Atos,Jodhpur DO,10-30 Days,3
-All Complaints — Atos,Jodhpur DO,More than 30 Days,0
-All Complaints — Atos,Jodhpur DO,Total,8
-All Complaints — Atos,Udaipur DO,0-3 Days,3
-All Complaints — Atos,Udaipur DO,3-10 Days,0
-All Complaints — Atos,Udaipur DO,10-30 Days,1
-All Complaints — Atos,Udaipur DO,More than 30 Days,0
-All Complaints — Atos,Udaipur DO,Total,4
-All Complaints — Atos,RSO,0-3 Days,14
-All Complaints — Atos,RSO,3-10 Days,13
-All Complaints — Atos,RSO,10-30 Days,19
-All Complaints — Atos,RSO,More than 30 Days,2
-All Complaints — Atos,RSO,Total,48
-All Complaints — BCT,AJMER DO,0-3 Days,0
-All Complaints — BCT,AJMER DO,3-10 Days,0
-All Complaints — BCT,AJMER DO,10-30 Days,0
-All Complaints — BCT,AJMER DO,More than 30 Days,0
-All Complaints — BCT,AJMER DO,Total,0
-All Complaints — BCT,Jaipur DO,0-3 Days,0
-All Complaints — BCT,Jaipur DO,3-10 Days,0
-All Complaints — BCT,Jaipur DO,10-30 Days,0
-All Complaints — BCT,Jaipur DO,More than 30 Days,0
-All Complaints — BCT,Jaipur DO,Total,0
-All Complaints — BCT,Jodhpur DO,0-3 Days,0
-All Complaints — BCT,Jodhpur DO,3-10 Days,0
-All Complaints — BCT,Jodhpur DO,10-30 Days,0
-All Complaints — BCT,Jodhpur DO,More than 30 Days,0
-All Complaints — BCT,Jodhpur DO,Total,0
-All Complaints — BCT,Udaipur DO,0-3 Days,0
-All Complaints — BCT,Udaipur DO,3-10 Days,0
-All Complaints — BCT,Udaipur DO,10-30 Days,0
-All Complaints — BCT,Udaipur DO,More than 30 Days,0
-All Complaints — BCT,Udaipur DO,Total,0
-All Complaints — BCT,RSO,0-3 Days,0
-All Complaints — BCT,RSO,3-10 Days,0
-All Complaints — BCT,RSO,10-30 Days,0
-All Complaints — BCT,RSO,More than 30 Days,0
-All Complaints — BCT,RSO,Total,0
-Critical Complaints — Orpak,AJMER DO,0-3 Days,3
-Critical Complaints — Orpak,AJMER DO,3-10 Days,4
-Critical Complaints — Orpak,AJMER DO,10-30 Days,1
-Critical Complaints — Orpak,AJMER DO,More than 30 Days,1
-Critical Complaints — Orpak,AJMER DO,Total,9
-Critical Complaints — Orpak,Jaipur DO,0-3 Days,0
-Critical Complaints — Orpak,Jaipur DO,3-10 Days,0
-Critical Complaints — Orpak,Jaipur DO,10-30 Days,0
-Critical Complaints — Orpak,Jaipur DO,More than 30 Days,0
-Critical Complaints — Orpak,Jaipur DO,Total,0
-Critical Complaints — Orpak,Jodhpur DO,0-3 Days,5
-Critical Complaints — Orpak,Jodhpur DO,3-10 Days,0
-Critical Complaints — Orpak,Jodhpur DO,10-30 Days,6
-Critical Complaints — Orpak,Jodhpur DO,More than 30 Days,2
-Critical Complaints — Orpak,Jodhpur DO,Total,13
-Critical Complaints — Orpak,Udaipur DO,0-3 Days,1
-Critical Complaints — Orpak,Udaipur DO,3-10 Days,3
-Critical Complaints — Orpak,Udaipur DO,10-30 Days,4
-Critical Complaints — Orpak,Udaipur DO,More than 30 Days,2
-Critical Complaints — Orpak,Udaipur DO,Total,10
-Critical Complaints — Orpak,RSO,0-3 Days,9
-Critical Complaints — Orpak,RSO,3-10 Days,7
-Critical Complaints — Orpak,RSO,10-30 Days,11
-Critical Complaints — Orpak,RSO,More than 30 Days,5
-Critical Complaints — Orpak,RSO,Total,32
-Critical Complaints — Atos,AJMER DO,0-3 Days,3
-Critical Complaints — Atos,AJMER DO,3-10 Days,6
-Critical Complaints — Atos,AJMER DO,10-30 Days,6
-Critical Complaints — Atos,AJMER DO,More than 30 Days,0
-Critical Complaints — Atos,AJMER DO,Total,15
-Critical Complaints — Atos,Jaipur DO,0-3 Days,1
-Critical Complaints — Atos,Jaipur DO,3-10 Days,2
-Critical Complaints — Atos,Jaipur DO,10-30 Days,5
-Critical Complaints — Atos,Jaipur DO,More than 30 Days,2
-Critical Complaints — Atos,Jaipur DO,Total,10
-Critical Complaints — Atos,Jodhpur DO,0-3 Days,2
-Critical Complaints — Atos,Jodhpur DO,3-10 Days,1
-Critical Complaints — Atos,Jodhpur DO,10-30 Days,2
-Critical Complaints — Atos,Jodhpur DO,More than 30 Days,0
-Critical Complaints — Atos,Jodhpur DO,Total,5
-Critical Complaints — Atos,Udaipur DO,0-3 Days,3
-Critical Complaints — Atos,Udaipur DO,3-10 Days,0
-Critical Complaints — Atos,Udaipur DO,10-30 Days,1
-Critical Complaints — Atos,Udaipur DO,More than 30 Days,0
-Critical Complaints — Atos,Udaipur DO,Total,4
-Critical Complaints — Atos,RSO,0-3 Days,9
-Critical Complaints — Atos,RSO,3-10 Days,9
-Critical Complaints — Atos,RSO,10-30 Days,14
-Critical Complaints — Atos,RSO,More than 30 Days,2
-Critical Complaints — Atos,RSO,Total,34
-Critical Complaints — BCT,AJMER DO,0-3 Days,0
-Critical Complaints — BCT,AJMER DO,3-10 Days,0
-Critical Complaints — BCT,AJMER DO,10-30 Days,0
-Critical Complaints — BCT,AJMER DO,More than 30 Days,0
-Critical Complaints — BCT,AJMER DO,Total,0
-Critical Complaints — BCT,Jaipur DO,0-3 Days,0
-Critical Complaints — BCT,Jaipur DO,3-10 Days,0
-Critical Complaints — BCT,Jaipur DO,10-30 Days,0
-Critical Complaints — BCT,Jaipur DO,More than 30 Days,0
-Critical Complaints — BCT,Jaipur DO,Total,0
-Critical Complaints — BCT,Jodhpur DO,0-3 Days,0
-Critical Complaints — BCT,Jodhpur DO,3-10 Days,0
-Critical Complaints — BCT,Jodhpur DO,10-30 Days,0
-Critical Complaints — BCT,Jodhpur DO,More than 30 Days,0
-Critical Complaints — BCT,Jodhpur DO,Total,0
-Critical Complaints — BCT,Udaipur DO,0-3 Days,0
-Critical Complaints — BCT,Udaipur DO,3-10 Days,0
-Critical Complaints — BCT,Udaipur DO,10-30 Days,0
-Critical Complaints — BCT,Udaipur DO,More than 30 Days,0
-Critical Complaints — BCT,Udaipur DO,Total,0
-Critical Complaints — BCT,RSO,0-3 Days,0
-Critical Complaints — BCT,RSO,3-10 Days,0
-Critical Complaints — BCT,RSO,10-30 Days,0
-Critical Complaints — BCT,RSO,More than 30 Days,0
-Critical Complaints — BCT,RSO,Total,0
-All Complaints — Combined,AJMER DO,0-3 Days,9
-All Complaints — Combined,AJMER DO,3-10 Days,11
-All Complaints — Combined,AJMER DO,10-30 Days,9
-All Complaints — Combined,AJMER DO,More than 30 Days,1
-All Complaints — Combined,AJMER DO,Total,30
-All Complaints — Combined,Jaipur DO,0-3 Days,10
-All Complaints — Combined,Jaipur DO,3-10 Days,5
-All Complaints — Combined,Jaipur DO,10-30 Days,7
-All Complaints — Combined,Jaipur DO,More than 30 Days,2
-All Complaints — Combined,Jaipur DO,Total,24
-All Complaints — Combined,Jodhpur DO,0-3 Days,12
-All Complaints — Combined,Jodhpur DO,3-10 Days,4
-All Complaints — Combined,Jodhpur DO,10-30 Days,9
-All Complaints — Combined,Jodhpur DO,More than 30 Days,2
-All Complaints — Combined,Jodhpur DO,Total,27
-All Complaints — Combined,Udaipur DO,0-3 Days,6
-All Complaints — Combined,Udaipur DO,3-10 Days,4
-All Complaints — Combined,Udaipur DO,10-30 Days,7
-All Complaints — Combined,Udaipur DO,More than 30 Days,2
-All Complaints — Combined,Udaipur DO,Total,19
-All Complaints — Combined,RSO,0-3 Days,37
-All Complaints — Combined,RSO,3-10 Days,24
-All Complaints — Combined,RSO,10-30 Days,32
-All Complaints — Combined,RSO,More than 30 Days,7
-All Complaints — Combined,RSO,Total,100
-Critical Complaints — Combined,AJMER DO,0-3 Days,6
-Critical Complaints — Combined,AJMER DO,3-10 Days,10
-Critical Complaints — Combined,AJMER DO,10-30 Days,7
-Critical Complaints — Combined,AJMER DO,More than 30 Days,1
-Critical Complaints — Combined,AJMER DO,Total,24
-Critical Complaints — Combined,Jaipur DO,0-3 Days,1
-Critical Complaints — Combined,Jaipur DO,3-10 Days,2
-Critical Complaints — Combined,Jaipur DO,10-30 Days,5
-Critical Complaints — Combined,Jaipur DO,More than 30 Days,2
-Critical Complaints — Combined,Jaipur DO,Total,10
-Critical Complaints — Combined,Jodhpur DO,0-3 Days,7
-Critical Complaints — Combined,Jodhpur DO,3-10 Days,1
-Critical Complaints — Combined,Jodhpur DO,10-30 Days,8
-Critical Complaints — Combined,Jodhpur DO,More than 30 Days,2
-Critical Complaints — Combined,Jodhpur DO,Total,18
-Critical Complaints — Combined,Udaipur DO,0-3 Days,4
-Critical Complaints — Combined,Udaipur DO,3-10 Days,3
-Critical Complaints — Combined,Udaipur DO,10-30 Days,5
-Critical Complaints — Combined,Udaipur DO,More than 30 Days,2
-Critical Complaints — Combined,Udaipur DO,Total,14
-Critical Complaints — Combined,RSO,0-3 Days,18
-Critical Complaints — Combined,RSO,3-10 Days,16
-Critical Complaints — Combined,RSO,10-30 Days,25
-Critical Complaints — Combined,RSO,More than 30 Days,7
-Critical Complaints — Combined,RSO,Total,66
-META,,AsOfDate,18-Aug-2026
+﻿,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AUTOMATION ERACTS STATUS  31-08-2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0-3 Days,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Ageing Analysis for Orpak Complaints ,,,,,,,Ageing Analysis for Atos Complaints ,,,,,,,Ageing Analysis for BCT Complaints ,,,,,,,,,,,,,,,,,,3-10 days,,,
+,SO/DO,0-3 Days ,3-10 days ,10-30 Days,More than 30 days ,Total ,,SO/DO,0-3 Days ,3-10 days ,10-30 Days,More than 30 days ,Total ,,SO/DO,0-3 Days ,3-10 days ,10-30 Days,More than 30 days ,Total ,,,,,,,,,,,,,10-30 days,,,
+,AJMER DO,3,1,2,2,8,,AJMER DO,11,8,9,1,29,,AJMER DO,0,0,0,0,0,,,,,,,,,,,,,More than 30,,,
+,Jaipur DO,3,0,0,0,3,,Jaipur DO,12,5,7,5,29,,Jaipur DO,0,0,0,0,0,,,,,,,,,,,,,,,,
+,Jodhpur DO,3,3,3,5,14,,Jodhpur DO,1,2,3,2,8,,Jodhpur DO,0,0,0,0,0,,,,,,,,,,,,,,,,
+,Udaipur DO,7,4,3,4,18,,Udaipur DO,3,0,1,1,5,,Udaipur DO,0,0,0,0,0,,,,,,,,,,,,,,,,
+, RSO,16,8,8,11,43,, RSO,27,15,20,9,71,, RSO,0,0,0,0,0,,,,,,,,,AUTOMATION ERACTS STATUS ,31-08-2026,,,,,,FCC
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,UPS
+,Critical Complaints Orpak,,,,,,,Critical Complaints Atos,,,,,,,Critical Complaints BCT,,,,,,,,,,,,,,,,,,,,,Battery
+,SO/DO,0-3 Days ,3-10 days ,10-30 Days,More than 30 days ,Total ,,SO/DO,0-3 Days ,3-10 days ,10-30 Days,More than 30 days ,Total ,,SO/DO,0-3 Days ,3-10 days ,10-30 Days,More than 30 days ,Total ,,,,,,,,,,,,,,,,ATG
+,AJMER DO,2,1,2,2,7,,AJMER DO,2,7,7,1,17,,AJMER DO,0,0,0,0,0,,,,,,,,,,,,,,,,
+,Jaipur DO,1,0,0,0,1,,Jaipur DO,5,3,5,4,17,,Jaipur DO,0,0,0,0,0,,,,,,,,,,,,,,,,
+,Jodhpur DO,3,3,2,5,13,,Jodhpur DO,1,1,2,1,5,,Jodhpur DO,0,0,0,0,0,,,,,,,,,,,,,,,,
+,Udaipur DO,5,2,3,4,14,,Udaipur DO,3,0,1,1,5,,Udaipur DO,0,0,0,0,0,,,,,,,,,,,,,,,,
+, RSO,11,6,7,11,35,, RSO,11,11,15,7,44,, RSO,0,0,0,0,0,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,Ageing Analysis for All Complaints ,,,,,,,Ageing Analysis for Critical Complaints ,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,SO/DO,0-3 Days ,3-10 days ,10-30 Days,More than 30 days ,Total ,,SO/DO,0-3 Days ,3-10 days ,10-30 Days,More than 30 days ,Total ,,,,,,,,,,,,,,,,,,,
+,,,,,AJMER DO,14,9,11,3,37,,AJMER DO,4,8,9,3,24,,,,,,,,,,,,,,,,,,,
+,,,,,Jaipur DO,15,5,7,5,32,,Jaipur DO,6,3,5,4,18,,,,,,,,,,,,,,,,,,,
+,,,,,Jodhpur DO,4,5,6,7,22,,Jodhpur DO,4,4,4,6,18,,,,,,,,,,,,,,,,,,,
+,,,,,Udaipur DO,10,4,4,5,23,,Udaipur DO,8,2,4,5,19,,,,,,,,,,,,,,,,,,,
+,,,,, RSO,43,23,28,20,114,, RSO,22,17,22,18,79,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
