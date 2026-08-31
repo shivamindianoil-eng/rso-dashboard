@@ -1,67 +1,18 @@
-Section,DO,Metric,Value
-Total Open Critical Leads,AJMER DO,Not Acknowledged,0
-Total Open Critical Leads,AJMER DO,Pending at FO,6
-Total Open Critical Leads,AJMER DO,Pending at DRH,1
-Total Open Critical Leads,AJMER DO,Total,7
-Total Open Critical Leads,Jaipur DO,Not Acknowledged,0
-Total Open Critical Leads,Jaipur DO,Pending at FO,4
-Total Open Critical Leads,Jaipur DO,Pending at DRH,0
-Total Open Critical Leads,Jaipur DO,Total,4
-Total Open Critical Leads,Jodhpur DO,Not Acknowledged,1
-Total Open Critical Leads,Jodhpur DO,Pending at FO,7
-Total Open Critical Leads,Jodhpur DO,Pending at DRH,0
-Total Open Critical Leads,Jodhpur DO,Total,8
-Total Open Critical Leads,Udaipur DO,Not Acknowledged,0
-Total Open Critical Leads,Udaipur DO,Pending at FO,1
-Total Open Critical Leads,Udaipur DO,Pending at DRH,0
-Total Open Critical Leads,Udaipur DO,Total,1
-Total Open Critical Leads,RSO,Not Acknowledged,1
-Total Open Critical Leads,RSO,Pending at FO,18
-Total Open Critical Leads,RSO,Pending at DRH,1
-Total Open Critical Leads,RSO,Total,20
-Total Open Leads,AJMER DO,Not Acknowledged,11
-Total Open Leads,AJMER DO,Pending at FO,182
-Total Open Leads,AJMER DO,Pending at DRH,7
-Total Open Leads,AJMER DO,Total,200
-Total Open Leads,Jaipur DO,Not Acknowledged,5
-Total Open Leads,Jaipur DO,Pending at FO,167
-Total Open Leads,Jaipur DO,Pending at DRH,0
-Total Open Leads,Jaipur DO,Total,172
-Total Open Leads,Jodhpur DO,Not Acknowledged,8
-Total Open Leads,Jodhpur DO,Pending at FO,118
-Total Open Leads,Jodhpur DO,Pending at DRH,7
-Total Open Leads,Jodhpur DO,Total,133
-Total Open Leads,Udaipur DO,Not Acknowledged,9
-Total Open Leads,Udaipur DO,Pending at FO,114
-Total Open Leads,Udaipur DO,Pending at DRH,3
-Total Open Leads,Udaipur DO,Total,126
-Total Open Leads,RSO,Not Acknowledged,33
-Total Open Leads,RSO,Pending at FO,581
-Total Open Leads,RSO,Pending at DRH,17
-Total Open Leads,RSO,Total,631
-Ageing Analysis — Critical Leads,AJMER DO,0-3 Days,0
-Ageing Analysis — Critical Leads,AJMER DO,3-10 Days,0
-Ageing Analysis — Critical Leads,AJMER DO,10-30 Days,2
-Ageing Analysis — Critical Leads,AJMER DO,More than 30 Days,5
-Ageing Analysis — Critical Leads,AJMER DO,Total,7
-Ageing Analysis — Critical Leads,Jaipur DO,0-3 Days,0
-Ageing Analysis — Critical Leads,Jaipur DO,3-10 Days,0
-Ageing Analysis — Critical Leads,Jaipur DO,10-30 Days,3
-Ageing Analysis — Critical Leads,Jaipur DO,More than 30 Days,1
-Ageing Analysis — Critical Leads,Jaipur DO,Total,4
-Ageing Analysis — Critical Leads,Jodhpur DO,0-3 Days,0
-Ageing Analysis — Critical Leads,Jodhpur DO,3-10 Days,1
-Ageing Analysis — Critical Leads,Jodhpur DO,10-30 Days,4
-Ageing Analysis — Critical Leads,Jodhpur DO,More than 30 Days,3
-Ageing Analysis — Critical Leads,Jodhpur DO,Total,8
-Ageing Analysis — Critical Leads,Udaipur DO,0-3 Days,0
-Ageing Analysis — Critical Leads,Udaipur DO,3-10 Days,0
-Ageing Analysis — Critical Leads,Udaipur DO,10-30 Days,1
-Ageing Analysis — Critical Leads,Udaipur DO,More than 30 Days,0
-Ageing Analysis — Critical Leads,Udaipur DO,Total,1
-Ageing Analysis — Critical Leads,RSO,0-3 Days,0
-Ageing Analysis — Critical Leads,RSO,3-10 Days,1
-Ageing Analysis — Critical Leads,RSO,10-30 Days,10
-Ageing Analysis — Critical Leads,RSO,More than 30 Days,9
-Ageing Analysis — Critical Leads,RSO,Total,20
-META,,AsOfDate,14-Aug-2026
+﻿,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+RSO Vishleshan Lead Report dated  31-08-2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RSO Vishleshan Lead Report dated ,31-08-2026,,,,,
+,,,,,,,Total Open Critical Leads,,,,,,,,,,,,,,,,,,,,,,Total Open Leads,,,,,,,,,,,,,
+SO/DO,DU : E09 & E28 Event,,,DU Critical Log Events,,,Not Acknowledged,DU : E09 & E28 Event,,,,,DU Critical Log Events,Pending at FO ,DU : E09 & E28 Event,,,,,DU Critical Log Events,Pending at DRH ,DU : E09 & E28 Event,,,,,DU Critical Log Events,Total ,Not Acknowledged,Pending at FO ,Pending at DRH ,Total ,,,,,,,,,DU : E09 & E28 Event,DU Critical Log Events
+AJMER DO,0,,,2,,,2,0,,,,,5,5,0,,,,,0,0,,,,,,,7,22,168,4,194,,,,,,,,,Not Acknowledged,
+Jaipur DO,0,,,0,,,0,0,,,,,6,6,0,,,,,0,0,,,,,,,6,6,181,4,191,,,,,,,,,In Progress,
+Jodhpur DO,0,,,0,,,0,0,,,,,9,9,0,,,,,0,0,,,,,,,9,9,92,9,110,,,,,,,,,Acceptance Pending At DRH,
+Udaipur DO,0,,,0,,,0,0,,,,,3,3,0,,,,,0,0,,,,,,,3,15,132,2,149,,,,,,,,,0-3 Days,
+ RSO,0,,,2,,,2,0,,,,,23,23,0,,,,,0,0,,,,,,,25,52,573,19,644,,,,,,,,,3-10 days,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,10-30 days,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,More than 30,
+Ageing Analysis for Critical Leads,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SO/DO,DU : E09 & E28 Event Not ACKNOWLEDGED ,DU : E09 & E28 Event IN PROGRESS,DU : E09 & E28 Event Pending at DRH ,DU Critical Log Events,DU Critical Log Events,DU Critical Log Events,0-3 Days ,DU : E09 & E28 Event Not ACKNOWLEDGED ,DU : E09 & E28 Event IN PROGRESS,DU : E09 & E28 Event Pending at DRH ,DU Critical Log Events,DU Critical Log Events,DU Critical Log Events,3-10 days ,DU : E09 & E28 Event,,,,,DU Critical Log Events,10-30 Days,DU : E09 & E28 Event,,,,,DU Critical Log Events,More than 30 days ,Total ,,,,,,,,,,,,,
+AJMER DO,0,0,0,1,0,0,1,0,0,0,1,1,0,2,0,0,0,0,0,0,0,0,0,0,0,4,0,4,7,,,,,,,,,,,,,
+Jaipur DO,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,3,0,3,0,0,0,0,1,0,1,6,,,,,,,,,,,,,
+Jodhpur DO,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,3,0,3,0,0,0,0,4,0,4,9,,,,,,,,,,,,,
+Udaipur DO,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,2,0,2,0,0,0,0,0,0,0,3,,,,,,,,,,,,,
+ RSO,0,0,0,1,0,0,1,0,0,0,1,6,0,7,0,0,0,0,8,0,8,0,0,0,0,9,0,9,25,,,,,,,,,,,,,7554
