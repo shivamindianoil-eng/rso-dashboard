@@ -376,15 +376,29 @@ function ring(pct, color, glow){
 function gaugeData(scope, period){
   const sec = scope==='industry' ? 'Mkt Shr Ind' : 'Mkt Shr PSU';
   const pfx = scope==='industry' ? 'IND' : 'PSU';
+  const paramsInSec = Object.keys(RAW)
+    .filter(k => k.startsWith(sec + '|||'))
+    .map(k => k.split('|||')[1]);
+
+  const absKeys = paramsInSec.filter(p => p.startsWith(`${pfx} Abs Mkt Shr for month of `));
+  const lyKeys  = paramsInSec.filter(p => p.startsWith(`${pfx} Mkt Shr for month of `));
+  const grKeys  = paramsInSec.filter(p => p.startsWith(`${pfx} Mkt Shr Gr. for month of `));
+
   if(period==='month'){
-    const cur = get(sec, `${pfx} Abs Mkt Shr for month of Jul-26`);
-    const ly  = get(sec, `${pfx} Mkt Shr for month of Jul-25`);
-    const gr  = get(sec, `${pfx} Mkt Shr Gr. for month of Jul-26`);
+    const curKey = absKeys.find(p => !p.includes('Apr'));
+    const lyKey  = lyKeys.find(p => !p.includes('Apr'));
+    const grKey  = grKeys.find(p => !p.includes('Apr'));
+    const cur = curKey ? get(sec, curKey) : {ms:null, hsd:null};
+    const ly  = lyKey ? get(sec, lyKey) : {ms:null, hsd:null};
+    const gr  = grKey ? get(sec, grKey) : {ms:null, hsd:null};
     return {ms:{cur:cur.ms, ly:ly.ms, gr:gr.ms}, hsd:{cur:cur.hsd, ly:ly.hsd, gr:gr.hsd}, label:'vs same period LY'};
   } else {
-    const cur = get(sec, `${pfx} Abs Mkt Shr for month of Apr-Jul-26`);
-    const ly  = get(sec, pfx==='IND' ? `${pfx} Mkt Shr for month of Apr Jul-25` : `${pfx} Mkt Shr for month of Apr Jul-25`);
-    const gr  = get(sec, `${pfx} Mkt Shr Gr. for month of Apr Jul-25`);
+    const curKey = absKeys.find(p => p.includes('Apr'));
+    const lyKey  = lyKeys.find(p => p.includes('Apr'));
+    const grKey  = grKeys.find(p => p.includes('Apr'));
+    const cur = curKey ? get(sec, curKey) : {ms:null, hsd:null};
+    const ly  = lyKey ? get(sec, lyKey) : {ms:null, hsd:null};
+    const gr  = grKey ? get(sec, grKey) : {ms:null, hsd:null};
     return {ms:{cur:cur.ms, ly:ly.ms, gr:gr.ms}, hsd:{cur:cur.hsd, ly:ly.hsd, gr:gr.hsd}, label:'vs same period LY'};
   }
 }
