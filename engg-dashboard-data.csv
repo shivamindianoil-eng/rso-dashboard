@@ -1,72 +1,74 @@
 Section,Period,DO,Metric,Value
-Construction Summary,FY 2025-26,Jaipur,Commissioned,14
-Construction Summary,FY 2025-26,Jaipur,Within Time,10
-Construction Summary,FY 2025-26,Jaipur,Delayed,4
-Construction Summary,FY 2025-26,Jaipur,Time Pct,71.4
-Construction Summary,FY 2025-26,Ajmer,Commissioned,14
-Construction Summary,FY 2025-26,Ajmer,Within Time,8
-Construction Summary,FY 2025-26,Ajmer,Delayed,6
-Construction Summary,FY 2025-26,Ajmer,Time Pct,57.1
-Construction Summary,FY 2025-26,Udaipur,Commissioned,7
-Construction Summary,FY 2025-26,Udaipur,Within Time,0
-Construction Summary,FY 2025-26,Udaipur,Delayed,7
-Construction Summary,FY 2025-26,Udaipur,Time Pct,0.0
-Construction Summary,FY 2025-26,Jodhpur,Commissioned,16
-Construction Summary,FY 2025-26,Jodhpur,Within Time,13
-Construction Summary,FY 2025-26,Jodhpur,Delayed,3
-Construction Summary,FY 2025-26,Jodhpur,Time Pct,81.2
-Construction Summary,FY 2025-26,RSO,Commissioned,51
-Construction Summary,FY 2025-26,RSO,Within Time,31
-Construction Summary,FY 2025-26,RSO,Delayed,20
-Construction Summary,FY 2025-26,RSO,Time Pct,60.8
-Construction Summary,FY 2026-27,Jaipur,Commissioned,8
-Construction Summary,FY 2026-27,Jaipur,Within Time,2
-Construction Summary,FY 2026-27,Jaipur,Delayed,6
-Construction Summary,FY 2026-27,Jaipur,Time Pct,25.0
-Construction Summary,FY 2026-27,Ajmer,Commissioned,8
-Construction Summary,FY 2026-27,Ajmer,Within Time,3
-Construction Summary,FY 2026-27,Ajmer,Delayed,5
-Construction Summary,FY 2026-27,Ajmer,Time Pct,37.5
-Construction Summary,FY 2026-27,Udaipur,Commissioned,4
-Construction Summary,FY 2026-27,Udaipur,Within Time,0
-Construction Summary,FY 2026-27,Udaipur,Delayed,4
-Construction Summary,FY 2026-27,Udaipur,Time Pct,0.0
-Construction Summary,FY 2026-27,Jodhpur,Commissioned,11
-Construction Summary,FY 2026-27,Jodhpur,Within Time,1
-Construction Summary,FY 2026-27,Jodhpur,Delayed,10
-Construction Summary,FY 2026-27,Jodhpur,Time Pct,9.1
-Construction Summary,FY 2026-27,RSO,Commissioned,31
-Construction Summary,FY 2026-27,RSO,Within Time,6
-Construction Summary,FY 2026-27,RSO,Delayed,25
-Construction Summary,FY 2026-27,RSO,Time Pct,19.4
-Financial Progress,FY 2025-26,Jaipur,PO Amount,7.49
-Financial Progress,FY 2025-26,Jaipur,Amount Released,5.94
-Financial Progress,FY 2025-26,Jaipur,Financial Progress Pct,79.31
-Financial Progress,FY 2025-26,Ajmer,PO Amount,12.85
-Financial Progress,FY 2025-26,Ajmer,Amount Released,10.03
-Financial Progress,FY 2025-26,Ajmer,Financial Progress Pct,78.08
+Construction Summary,FY 2025-26,Jaipur,Completed,14
+Construction Summary,FY 2025-26,Jaipur,Within MOU,14
+Construction Summary,FY 2025-26,Jaipur,Delayed,0
+Construction Summary,FY 2025-26,Jaipur,Compliance Pct,100.0
+Construction Summary,FY 2025-26,Ajmer,Completed,13
+Construction Summary,FY 2025-26,Ajmer,Within MOU,13
+Construction Summary,FY 2025-26,Ajmer,Delayed,0
+Construction Summary,FY 2025-26,Ajmer,Compliance Pct,100.0
+Construction Summary,FY 2025-26,Udaipur,Completed,6
+Construction Summary,FY 2025-26,Udaipur,Within MOU,6
+Construction Summary,FY 2025-26,Udaipur,Delayed,0
+Construction Summary,FY 2025-26,Udaipur,Compliance Pct,100.0
+Construction Summary,FY 2025-26,Jodhpur,Completed,16
+Construction Summary,FY 2025-26,Jodhpur,Within MOU,16
+Construction Summary,FY 2025-26,Jodhpur,Delayed,0
+Construction Summary,FY 2025-26,Jodhpur,Compliance Pct,100.0
+Construction Summary,FY 2025-26,RSO,Completed,49
+Construction Summary,FY 2025-26,RSO,Within MOU,49
+Construction Summary,FY 2025-26,RSO,Delayed,0
+Construction Summary,FY 2025-26,RSO,Compliance Pct,100.0
+Construction Summary,FY 2026-27,Jaipur,Completed,4
+Construction Summary,FY 2026-27,Jaipur,Within MOU,4
+Construction Summary,FY 2026-27,Jaipur,Delayed,0
+Construction Summary,FY 2026-27,Jaipur,Compliance Pct,100.0
+Construction Summary,FY 2026-27,Ajmer,Completed,5
+Construction Summary,FY 2026-27,Ajmer,Within MOU,5
+Construction Summary,FY 2026-27,Ajmer,Delayed,0
+Construction Summary,FY 2026-27,Ajmer,Compliance Pct,100.0
+Construction Summary,FY 2026-27,Udaipur,Completed,1
+Construction Summary,FY 2026-27,Udaipur,Within MOU,1
+Construction Summary,FY 2026-27,Udaipur,Delayed,0
+Construction Summary,FY 2026-27,Udaipur,Compliance Pct,100.0
+Construction Summary,FY 2026-27,Jodhpur,Completed,7
+Construction Summary,FY 2026-27,Jodhpur,Within MOU,7
+Construction Summary,FY 2026-27,Jodhpur,Delayed,0
+Construction Summary,FY 2026-27,Jodhpur,Compliance Pct,100.0
+Construction Summary,FY 2026-27,RSO,Completed,17
+Construction Summary,FY 2026-27,RSO,Within MOU,17
+Construction Summary,FY 2026-27,RSO,Delayed,0
+Construction Summary,FY 2026-27,RSO,Compliance Pct,100.0
+Financial Progress,FY 2025-26,Jaipur,PO Amount,7.52
+Financial Progress,FY 2025-26,Jaipur,Amount Released,6.32
+Financial Progress,FY 2025-26,Jaipur,Financial Progress Pct,84.1
+Financial Progress,FY 2025-26,Ajmer,PO Amount,12.74
+Financial Progress,FY 2025-26,Ajmer,Amount Released,10.38
+Financial Progress,FY 2025-26,Ajmer,Financial Progress Pct,81.5
 Financial Progress,FY 2025-26,Udaipur,PO Amount,5.33
-Financial Progress,FY 2025-26,Udaipur,Amount Released,3.88
-Financial Progress,FY 2025-26,Udaipur,Financial Progress Pct,72.81
+Financial Progress,FY 2025-26,Udaipur,Amount Released,4.38
+Financial Progress,FY 2025-26,Udaipur,Financial Progress Pct,82.1
 Financial Progress,FY 2025-26,Jodhpur,PO Amount,6.89
-Financial Progress,FY 2025-26,Jodhpur,Amount Released,4.87
-Financial Progress,FY 2025-26,Jodhpur,Financial Progress Pct,70.75
-Financial Progress,FY 2025-26,RSO,PO Amount,32.56
-Financial Progress,FY 2025-26,RSO,Amount Released,24.73
-Financial Progress,FY 2025-26,RSO,Financial Progress Pct,75.95
-Financial Progress,FY 2026-27,Jaipur,PO Amount,3.28
-Financial Progress,FY 2026-27,Jaipur,Amount Released,1.12
-Financial Progress,FY 2026-27,Jaipur,Financial Progress Pct,34.09
-Financial Progress,FY 2026-27,Ajmer,PO Amount,3.17
-Financial Progress,FY 2026-27,Ajmer,Amount Released,1.0
-Financial Progress,FY 2026-27,Ajmer,Financial Progress Pct,31.49
+Financial Progress,FY 2025-26,Jodhpur,Amount Released,5.51
+Financial Progress,FY 2025-26,Jodhpur,Financial Progress Pct,80.0
+Financial Progress,FY 2025-26,RSO,PO Amount,32.48
+Financial Progress,FY 2025-26,RSO,Amount Released,26.59
+Financial Progress,FY 2025-26,RSO,Financial Progress Pct,81.9
+Financial Progress,FY 2026-27,Jaipur,PO Amount,4.06
+Financial Progress,FY 2026-27,Jaipur,Amount Released,1.48
+Financial Progress,FY 2026-27,Jaipur,Financial Progress Pct,36.5
+Financial Progress,FY 2026-27,Ajmer,PO Amount,2.42
+Financial Progress,FY 2026-27,Ajmer,Amount Released,1.26
+Financial Progress,FY 2026-27,Ajmer,Financial Progress Pct,52.0
 Financial Progress,FY 2026-27,Udaipur,PO Amount,3.26
-Financial Progress,FY 2026-27,Udaipur,Amount Released,1.01
-Financial Progress,FY 2026-27,Udaipur,Financial Progress Pct,31.04
-Financial Progress,FY 2026-27,Jodhpur,PO Amount,2.94
-Financial Progress,FY 2026-27,Jodhpur,Amount Released,0.63
-Financial Progress,FY 2026-27,Jodhpur,Financial Progress Pct,21.29
-Financial Progress,FY 2026-27,RSO,PO Amount,12.64
-Financial Progress,FY 2026-27,RSO,Amount Released,3.75
-Financial Progress,FY 2026-27,RSO,Financial Progress Pct,29.67
-META,,,AsOfDate,19-Aug-2026
+Financial Progress,FY 2026-27,Udaipur,Amount Released,1.52
+Financial Progress,FY 2026-27,Udaipur,Financial Progress Pct,46.5
+Financial Progress,FY 2026-27,Jodhpur,PO Amount,3.33
+Financial Progress,FY 2026-27,Jodhpur,Amount Released,1.24
+Financial Progress,FY 2026-27,Jodhpur,Financial Progress Pct,37.2
+Financial Progress,FY 2026-27,RSO,PO Amount,13.07
+Financial Progress,FY 2026-27,RSO,Amount Released,5.5
+Financial Progress,FY 2026-27,RSO,Financial Progress Pct,42.1
+META,,,AsOfDate,31-Aug-2026
+META,,,FY2526WipNote,51 ROs in pipeline as on 01.04.2026 — 49 completed + 2 still WIP
+META,,,FY2627WipNote,32 ROs in pipeline — 17 completed + 15 still WIP. The 100% compliance figure reflects completed ROs only.

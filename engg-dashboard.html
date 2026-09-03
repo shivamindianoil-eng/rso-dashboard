@@ -129,19 +129,19 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
     <button class="fy-tab" data-fy="FY 2026-27">FY 2026-27</button>
   </div>
 
-  <div class="section-label">RO Construction — Commissioning Cohort</div>
+  <div class="section-label">RO Construction — MOU Compliance <span id="constructionWipNote" style="font-weight:400; text-transform:none; letter-spacing:0;"></span></div>
   <div class="kpis" id="constructionKpis"></div>
 
   <div class="charts">
     <div class="chart-card">
-      <h3>ROs Commissioned — Division-wise</h3>
+      <h3>ROs Completed — Division-wise</h3>
       <canvas id="chartConstructionDiv"></canvas>
     </div>
     <div class="chart-card">
-      <h3>Time Performance of Commissioned ROs</h3>
+      <h3>MOU Compliance of Completed ROs</h3>
       <canvas id="chartTimePerf"></canvas>
       <div class="bucket-legend">
-        <span><span class="swatch" style="background:#16a34a"></span>Within Time</span>
+        <span><span class="swatch" style="background:#16a34a"></span>Within MOU</span>
         <span><span class="swatch" style="background:#ea580c"></span>Delayed</span>
       </div>
     </div>
@@ -151,7 +151,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
     <div class="card-head"><h3>Division-wise Construction Summary</h3></div>
     <div class="table-wrap"><table class="pivot" id="tblConstruction"></table></div>
   </div>
-  <div class="note">Within Time = Actual Completion Date on/before Revised Target Date after approved extension.</div>
+  <div class="note">Within MOU = Actual Completion Date on/before Revised Target Date after approved extension. ROs still in progress (WIP) are excluded from these figures until completed.</div>
 
   <div class="section-label">Bill Clearing / Financial Progress</div>
   <div class="kpis" id="financialKpis"></div>
@@ -247,36 +247,39 @@ function getMeta(metric){
 
 function renderConstruction(){
   const kpiData = {
-    commissioned: getVal('Construction Summary', activeFY, 'RSO', 'Commissioned'),
-    withinTime: getVal('Construction Summary', activeFY, 'RSO', 'Within Time'),
+    completed: getVal('Construction Summary', activeFY, 'RSO', 'Completed'),
+    withinMou: getVal('Construction Summary', activeFY, 'RSO', 'Within MOU'),
     delayed: getVal('Construction Summary', activeFY, 'RSO', 'Delayed'),
-    timePct: getVal('Construction Summary', activeFY, 'RSO', 'Time Pct'),
+    compliancePct: getVal('Construction Summary', activeFY, 'RSO', 'Compliance Pct'),
   };
   document.getElementById('constructionKpis').innerHTML = [
-    {n:kpiData.commissioned, l:'ROs Commissioned', cls:'', suffix:''},
-    {n:kpiData.withinTime, l:'Within Time', cls:'good', suffix:''},
+    {n:kpiData.completed, l:'ROs Completed', cls:'', suffix:''},
+    {n:kpiData.withinMou, l:'Within MOU', cls:'good', suffix:''},
     {n:kpiData.delayed, l:'Delayed', cls:'bad', suffix:''},
-    {n:kpiData.timePct, l:'Time Performance', cls: kpiData.timePct>=60?'good':'bad', suffix:'%'},
+    {n:kpiData.compliancePct, l:'Compliance', cls: kpiData.compliancePct>=60?'good':'bad', suffix:'%'},
   ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n, c.suffix?1:0)}${c.suffix}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  const wipKey = activeFY === 'FY 2025-26' ? 'FY2526WipNote' : 'FY2627WipNote';
+  document.getElementById('constructionWipNote').textContent = getMeta(wipKey);
 
   const dos = DO_ORDER.filter(d=>d!=='RSO');
   const DIV_COLORS = ['#0ea5e9','#ea580c','#16a34a','#1e3a8a'];
-  const commissionedData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Commissioned'));
+  const completedData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Completed'));
   if(charts.div) charts.div.destroy();
   charts.div = new Chart(document.getElementById('chartConstructionDiv'), {
     type:'bar',
-    data:{ labels:dos, datasets:[{ label:'Commissioned', data:commissionedData, backgroundColor:DIV_COLORS, borderRadius:4 }] },
+    data:{ labels:dos, datasets:[{ label:'Completed', data:completedData, backgroundColor:DIV_COLORS, borderRadius:4 }] },
     options:{ responsive:true, plugins:{ legend:{display:false}, tooltip:{enabled:true} },
       scales:{ x:{ grid:{display:false}, ticks:{font:{size:15,weight:'700',family:"'Inter'"}, color:'#0f2337'} }, y:{ beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
   });
 
-  const withinData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Within Time'));
+  const withinData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Within MOU'));
   const delayedData = dos.map(d=>getVal('Construction Summary', activeFY, d, 'Delayed'));
   if(charts.time) charts.time.destroy();
   charts.time = new Chart(document.getElementById('chartTimePerf'), {
     type:'bar',
     data:{ labels:dos, datasets:[
-      { label:'Within Time', data:withinData, backgroundColor:'#16a34a' },
+      { label:'Within MOU', data:withinData, backgroundColor:'#16a34a' },
       { label:'Delayed', data:delayedData, backgroundColor:'#ea580c' },
     ]},
     options:{ responsive:true, plugins:{ legend:{display:false} },
@@ -284,16 +287,16 @@ function renderConstruction(){
   });
 
   let rows = DO_ORDER.map(d=>{
-    const c = getVal('Construction Summary', activeFY, d, 'Commissioned');
-    const w = getVal('Construction Summary', activeFY, d, 'Within Time');
+    const c = getVal('Construction Summary', activeFY, d, 'Completed');
+    const w = getVal('Construction Summary', activeFY, d, 'Within MOU');
     const del = getVal('Construction Summary', activeFY, d, 'Delayed');
-    const p = getVal('Construction Summary', activeFY, d, 'Time Pct');
+    const p = getVal('Construction Summary', activeFY, d, 'Compliance Pct');
     const rowClass = d==='RSO' ? ' class="grand"' : '';
     const pctClass = p>=60 ? 'pctgood' : 'pctbad';
     return `<tr${rowClass}><td class="rowlabel">${d==='RSO'?'RSO Total':d}</td><td>${fmt(c)}</td><td>${fmt(w)}</td><td>${fmt(del)}</td><td class="${pctClass}">${fmt(p,1)}%</td></tr>`;
   }).join('');
   document.getElementById('tblConstruction').innerHTML =
-    `<thead><tr><th class="rowlabel">Division</th><th>Commissioned</th><th>Within Time</th><th>Delayed</th><th>Time %</th></tr></thead><tbody>${rows}</tbody>`;
+    `<thead><tr><th class="rowlabel">Division</th><th>Completed</th><th>Within MOU</th><th>Delayed</th><th>Compliance</th></tr></thead><tbody>${rows}</tbody>`;
 }
 
 function renderFinancial(){
