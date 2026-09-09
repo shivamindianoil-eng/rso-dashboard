@@ -1,0 +1,61 @@
+Section,DO,Metric,Value
+Indent Status,Jaipur,MS Target,1600
+Indent Status,Jaipur,MS Indent,1547.5
+Indent Status,Jaipur,MS Under Loading,42
+Indent Status,Jaipur,MS Loading Not Started,350.5
+Indent Status,Jaipur,MS Billed,1155
+Indent Status,Jaipur,MS Gap,52.5
+Indent Status,Jaipur,HSD Target,2200
+Indent Status,Jaipur,HSD Indent,2058.5
+Indent Status,Jaipur,HSD Under Loading,64
+Indent Status,Jaipur,HSD Loading Not Started,482.5
+Indent Status,Jaipur,HSD Billed,1512
+Indent Status,Jaipur,HSD Gap,141.5
+Indent Status,Jodhpur,MS Target,800
+Indent Status,Jodhpur,MS Indent,765
+Indent Status,Jodhpur,MS Under Loading,130
+Indent Status,Jodhpur,MS Loading Not Started,122
+Indent Status,Jodhpur,MS Billed,513
+Indent Status,Jodhpur,MS Gap,35
+Indent Status,Jodhpur,HSD Target,2300
+Indent Status,Jodhpur,HSD Indent,1983
+Indent Status,Jodhpur,HSD Under Loading,276
+Indent Status,Jodhpur,HSD Loading Not Started,314
+Indent Status,Jodhpur,HSD Billed,1393
+Indent Status,Jodhpur,HSD Gap,317
+Indent Status,Udaipur,MS Target,1100
+Indent Status,Udaipur,MS Indent,876.5
+Indent Status,Udaipur,MS Under Loading,79
+Indent Status,Udaipur,MS Loading Not Started,216.5
+Indent Status,Udaipur,MS Billed,581
+Indent Status,Udaipur,MS Gap,223.5
+Indent Status,Udaipur,HSD Target,2000
+Indent Status,Udaipur,HSD Indent,1801.5
+Indent Status,Udaipur,HSD Under Loading,125
+Indent Status,Udaipur,HSD Loading Not Started,473.5
+Indent Status,Udaipur,HSD Billed,1203
+Indent Status,Udaipur,HSD Gap,198.5
+Indent Status,Ajmer,MS Target,1100
+Indent Status,Ajmer,MS Indent,723
+Indent Status,Ajmer,MS Under Loading,36
+Indent Status,Ajmer,MS Loading Not Started,183
+Indent Status,Ajmer,MS Billed,504
+Indent Status,Ajmer,MS Gap,377
+Indent Status,Ajmer,HSD Target,2000
+Indent Status,Ajmer,HSD Indent,1456
+Indent Status,Ajmer,HSD Under Loading,82
+Indent Status,Ajmer,HSD Loading Not Started,264
+Indent Status,Ajmer,HSD Billed,1110
+Indent Status,Ajmer,HSD Gap,544
+Indent Status,RSO,MS Target,4600
+Indent Status,RSO,MS Indent,3912
+Indent Status,RSO,MS Under Loading,287
+Indent Status,RSO,MS Loading Not Started,872
+Indent Status,RSO,MS Billed,2753
+Indent Status,RSO,MS Gap,688
+Indent Status,RSO,HSD Target,8500
+Indent Status,RSO,HSD Indent,7299
+Indent Status,RSO,HSD Under Loading,547
+Indent Status,RSO,HSD Loading Not Started,1534
+Indent Status,RSO,HSD Billed,5218
+Indent Status,RSO,HSD Gap,1201
