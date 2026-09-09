@@ -59,3 +59,43 @@ Indent Status,RSO,HSD Under Loading,547
 Indent Status,RSO,HSD Loading Not Started,1534
 Indent Status,RSO,HSD Billed,5218
 Indent Status,RSO,HSD Gap,1201
+Terminal Status,Jodhpur,MS Indent,951
+Terminal Status,Jodhpur,MS Billed + Under Loading,782
+Terminal Status,Jodhpur,MS Loading Not Started,169
+Terminal Status,Jodhpur,MS Pending Indent %,17.770767613038906
+Terminal Status,Jodhpur,HSD Indent,2483
+Terminal Status,Jodhpur,HSD Billed + Under Loading,2048
+Terminal Status,Jodhpur,HSD Loading Not Started,435
+Terminal Status,Jodhpur,HSD Pending Indent %,17.51913008457511
+Terminal Status,Chittorgarh,MS Indent,973.5
+Terminal Status,Chittorgarh,MS Billed + Under Loading,737
+Terminal Status,Chittorgarh,MS Loading Not Started,236.5
+Terminal Status,Chittorgarh,MS Pending Indent %,24.293785310734464
+Terminal Status,Chittorgarh,HSD Indent,1933.5
+Terminal Status,Chittorgarh,HSD Billed + Under Loading,1473
+Terminal Status,Chittorgarh,HSD Loading Not Started,460.5
+Terminal Status,Chittorgarh,HSD Pending Indent %,23.81691233514352
+Terminal Status,Jaipur,MS Indent,1584.5
+Terminal Status,Jaipur,MS Billed + Under Loading,1221
+Terminal Status,Jaipur,MS Loading Not Started,363.5
+Terminal Status,Jaipur,MS Pending Indent %,22.940990848848216
+Terminal Status,Jaipur,HSD Indent,2413.5
+Terminal Status,Jaipur,HSD Billed + Under Loading,1902
+Terminal Status,Jaipur,HSD Loading Not Started,511.5
+Terminal Status,Jaipur,HSD Pending Indent %,21.193287756370417
+Terminal Status,Bharatpur,MS Indent,360
+Terminal Status,Bharatpur,MS Billed + Under Loading,271
+Terminal Status,Bharatpur,MS Loading Not Started,89
+Terminal Status,Bharatpur,MS Pending Indent %,24.72222222222222
+Terminal Status,Bharatpur,HSD Indent,440
+Terminal Status,Bharatpur,HSD Billed + Under Loading,317
+Terminal Status,Bharatpur,HSD Loading Not Started,123
+Terminal Status,Bharatpur,HSD Pending Indent %,27.954545454545453
+Terminal Status,RSO,MS Indent,3869
+Terminal Status,RSO,MS Billed + Under Loading,3011
+Terminal Status,RSO,MS Loading Not Started,858
+Terminal Status,RSO,MS Pending Indent %,22.17627293874386
+Terminal Status,RSO,HSD Indent,7270
+Terminal Status,RSO,HSD Billed + Under Loading,5740
+Terminal Status,RSO,HSD Loading Not Started,1530
+Terminal Status,RSO,HSD Pending Indent %,21.045392022008254

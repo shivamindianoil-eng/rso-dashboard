@@ -166,7 +166,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
     <div class="tables two" id="phaseXTables"></div>
   </div>
 
-  <div class="section-label">RA MOU / Communication Status <span style="font-weight:400; text-transform:none; letter-spacing:0;">— as on 01-Aug-2026</span></div>
+  <div class="section-label">RA MOU / Communication Status <span id="ramouDateLabel" style="font-weight:400; text-transform:none; letter-spacing:0;"></span></div>
   <div class="table-card" style="margin-bottom:8px;">
     <div class="card-head"><h3>DO Wise — Automated RO Communication Health</h3></div>
     <div class="table-wrap"><table class="pivot" id="tblRaMou"></table></div>
@@ -273,6 +273,7 @@ function getMeta(rows, metric){
 /* ============ PHASE NETWORK ============ */
 function renderNetwork(){
   document.getElementById('networkDate').textContent = getMeta(NETWORK_ROWS, 'AsOfDate');
+  document.getElementById('ramouDateLabel').textContent = `— as on ${getMeta(NETWORK_ROWS, 'AsOfDate')}`;
 
   const dos = ['Ajmer','Jaipur','Jodhpur','Udaipur','RSO'];
   const totalRSO = getVal(NETWORK_ROWS,'Phase Network','RSO','Total');

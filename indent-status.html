@@ -120,7 +120,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
   </div>
   <div class="toggle-settings-row"><button id="toggleSettings">⚙ Data source settings</button></div>
 
-  <div class="section-label">Overview</div>
+  <div class="section-label">Overview — DO Wise</div>
   <div class="kpis" id="kpis"></div>
 
   <div class="charts">
@@ -128,20 +128,18 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
       <h3>MS Indent Pipeline — Division-wise (KL)</h3>
       <canvas id="chartMS"></canvas>
       <div class="bucket-legend">
-        <span><span class="swatch" style="background:#0891b2"></span>Billed</span>
-        <span><span class="swatch" style="background:#38bdf8"></span>Under Loading</span>
-        <span><span class="swatch" style="background:#fbbf24"></span>Loading Not Started</span>
-        <span><span class="swatch" style="background:#ef4444"></span>Gap</span>
+        <span><span class="swatch" style="background:#0e7490"></span>Billed</span>
+        <span><span class="swatch" style="background:#22d3ee"></span>Under Loading</span>
+        <span><span class="swatch" style="background:#cbd5e1"></span>Loading Not Started</span>
       </div>
     </div>
     <div class="chart-card">
       <h3>HSD Indent Pipeline — Division-wise (KL)</h3>
       <canvas id="chartHSD"></canvas>
       <div class="bucket-legend">
-        <span><span class="swatch" style="background:#e11d48"></span>Billed</span>
-        <span><span class="swatch" style="background:#fb7185"></span>Under Loading</span>
-        <span><span class="swatch" style="background:#fbbf24"></span>Loading Not Started</span>
-        <span><span class="swatch" style="background:#7f1d1d"></span>Gap</span>
+        <span><span class="swatch" style="background:#c2410c"></span>Billed</span>
+        <span><span class="swatch" style="background:#fdba74"></span>Under Loading</span>
+        <span><span class="swatch" style="background:#cbd5e1"></span>Loading Not Started</span>
       </div>
     </div>
   </div>
@@ -150,7 +148,35 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
     <div class="card-head"><h3>Division-wise Indent Status</h3></div>
     <div class="table-wrap"><table class="pivot" id="tblIndent"></table></div>
   </div>
-  <div class="note">Target = Indent + Gap  ·  Indent = Under Loading + Loading Not Started + Billed</div>
+  <div class="note">Target = Indent + Gap  ·  Indent = Under Loading + Loading Not Started + Billed  ·  Gap shown in table only</div>
+
+  <div class="section-label">Overview — Terminal Wise</div>
+  <div class="kpis" id="kpisTerminal"></div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h3>MS Indent Pipeline — Terminal-wise (KL)</h3>
+      <canvas id="chartMSTerminal"></canvas>
+      <div class="bucket-legend">
+        <span><span class="swatch" style="background:#0e7490"></span>Billed + Under Loading</span>
+        <span><span class="swatch" style="background:#cbd5e1"></span>Loading Not Started</span>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>HSD Indent Pipeline — Terminal-wise (KL)</h3>
+      <canvas id="chartHSDTerminal"></canvas>
+      <div class="bucket-legend">
+        <span><span class="swatch" style="background:#c2410c"></span>Billed + Under Loading</span>
+        <span><span class="swatch" style="background:#cbd5e1"></span>Loading Not Started</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="card-head"><h3>Terminal-wise Indent Status</h3></div>
+    <div class="table-wrap"><table class="pivot" id="tblTerminal"></table></div>
+  </div>
+  <div class="note">Pending Indent % = Loading Not Started ÷ Indent × 100</div>
 
   <footer>
     <span>Source: live Indent data feed &middot; RSO Indent Report</span>
@@ -167,6 +193,7 @@ const REPO_FILE = 'indent-data.csv';
 let ROWS = [];
 let charts = {};
 const DO_ORDER = ['Jaipur','Jodhpur','Udaipur','Ajmer','RSO'];
+const TERMINAL_ORDER = ['Jodhpur','Chittorgarh','Jaipur','Bharatpur','RSO'];
 
 function fmt(n){ if(n===null||n===undefined||n===''||isNaN(n)) return '—'; return Number(n).toLocaleString('en-IN', {maximumFractionDigits:1}); }
 function num(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
@@ -176,7 +203,11 @@ function parseCSV(text){
   ROWS = parsed.filter(r => r.Section);
 }
 function getVal(do_, metric){
-  const r = ROWS.find(x=>x.DO===do_ && x.Metric===metric);
+  const r = ROWS.find(x=>x.Section==='Indent Status' && x.DO===do_ && x.Metric===metric);
+  return r ? num(r.Value) : 0;
+}
+function getVal2(do_, metric){
+  const r = ROWS.find(x=>x.Section==='Terminal Status' && x.DO===do_ && x.Metric===metric);
   return r ? num(r.Value) : 0;
 }
 
@@ -193,15 +224,13 @@ function renderAll(){
   const msBilled = dos.map(d=>getVal(d,'MS Billed'));
   const msUL = dos.map(d=>getVal(d,'MS Under Loading'));
   const msLNS = dos.map(d=>getVal(d,'MS Loading Not Started'));
-  const msGap = dos.map(d=>getVal(d,'MS Gap'));
   if(charts.ms) charts.ms.destroy();
   charts.ms = new Chart(document.getElementById('chartMS'), {
     type:'bar',
     data:{ labels:dos, datasets:[
-      { label:'Billed', data:msBilled, backgroundColor:'#0891b2' },
-      { label:'Under Loading', data:msUL, backgroundColor:'#38bdf8' },
-      { label:'Loading Not Started', data:msLNS, backgroundColor:'#fbbf24' },
-      { label:'Gap', data:msGap, backgroundColor:'#ef4444' },
+      { label:'Billed', data:msBilled, backgroundColor:'#0e7490' },
+      { label:'Under Loading', data:msUL, backgroundColor:'#22d3ee' },
+      { label:'Loading Not Started', data:msLNS, backgroundColor:'#cbd5e1' },
     ]},
     options:{ responsive:true, plugins:{ legend:{display:false} },
       scales:{ x:{ stacked:true, grid:{display:false}, ticks:{font:{size:14,weight:'700'}, color:'#0f2337'} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
@@ -210,15 +239,13 @@ function renderAll(){
   const hsdBilled = dos.map(d=>getVal(d,'HSD Billed'));
   const hsdUL = dos.map(d=>getVal(d,'HSD Under Loading'));
   const hsdLNS = dos.map(d=>getVal(d,'HSD Loading Not Started'));
-  const hsdGap = dos.map(d=>getVal(d,'HSD Gap'));
   if(charts.hsd) charts.hsd.destroy();
   charts.hsd = new Chart(document.getElementById('chartHSD'), {
     type:'bar',
     data:{ labels:dos, datasets:[
-      { label:'Billed', data:hsdBilled, backgroundColor:'#e11d48' },
-      { label:'Under Loading', data:hsdUL, backgroundColor:'#fb7185' },
-      { label:'Loading Not Started', data:hsdLNS, backgroundColor:'#fbbf24' },
-      { label:'Gap', data:hsdGap, backgroundColor:'#7f1d1d' },
+      { label:'Billed', data:hsdBilled, backgroundColor:'#c2410c' },
+      { label:'Under Loading', data:hsdUL, backgroundColor:'#fdba74' },
+      { label:'Loading Not Started', data:hsdLNS, backgroundColor:'#cbd5e1' },
     ]},
     options:{ responsive:true, plugins:{ legend:{display:false} },
       scales:{ x:{ stacked:true, grid:{display:false}, ticks:{font:{size:14,weight:'700'}, color:'#0f2337'} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
@@ -239,6 +266,59 @@ function renderAll(){
     `<thead>
       <tr><th class="rowlabel">DO</th><th class="group-th" colspan="6">MS</th><th class="group-th" colspan="6">HSD</th></tr>
       <tr><th class="rowlabel"></th>${msCols.map(c=>`<th>${c}</th>`).join('')}${hsdCols.map(c=>`<th>${c}</th>`).join('')}</tr>
+    </thead><tbody>${rows}</tbody>`;
+}
+
+function renderTerminal(){
+  const terms = TERMINAL_ORDER.filter(t=>t!=='RSO');
+
+  document.getElementById('kpisTerminal').innerHTML = [
+    {n:getVal2('RSO','MS Indent'), l:'MS Indent (RSO, KL)', cls:''},
+    {n:getVal2('RSO','MS Pending Indent %'), l:'MS Pending Indent %', cls:'bad', suffix:'%'},
+    {n:getVal2('RSO','HSD Indent'), l:'HSD Indent (RSO, KL)', cls:''},
+    {n:getVal2('RSO','HSD Pending Indent %'), l:'HSD Pending Indent %', cls:'bad', suffix:'%'},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${fmt(c.n)}${c.suffix||''}</div><div class="lbl">${c.l}</div></div>`).join('');
+
+  const msBUL = terms.map(t=>getVal2(t,'MS Billed + Under Loading'));
+  const msLNS = terms.map(t=>getVal2(t,'MS Loading Not Started'));
+  if(charts.msTerm) charts.msTerm.destroy();
+  charts.msTerm = new Chart(document.getElementById('chartMSTerminal'), {
+    type:'bar',
+    data:{ labels:terms, datasets:[
+      { label:'Billed + Under Loading', data:msBUL, backgroundColor:'#0e7490' },
+      { label:'Loading Not Started', data:msLNS, backgroundColor:'#cbd5e1' },
+    ]},
+    options:{ responsive:true, plugins:{ legend:{display:false} },
+      scales:{ x:{ stacked:true, grid:{display:false}, ticks:{font:{size:13,weight:'700'}, color:'#0f2337'} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+  });
+
+  const hsdBUL = terms.map(t=>getVal2(t,'HSD Billed + Under Loading'));
+  const hsdLNS = terms.map(t=>getVal2(t,'HSD Loading Not Started'));
+  if(charts.hsdTerm) charts.hsdTerm.destroy();
+  charts.hsdTerm = new Chart(document.getElementById('chartHSDTerminal'), {
+    type:'bar',
+    data:{ labels:terms, datasets:[
+      { label:'Billed + Under Loading', data:hsdBUL, backgroundColor:'#c2410c' },
+      { label:'Loading Not Started', data:hsdLNS, backgroundColor:'#cbd5e1' },
+    ]},
+    options:{ responsive:true, plugins:{ legend:{display:false} },
+      scales:{ x:{ stacked:true, grid:{display:false}, ticks:{font:{size:13,weight:'700'}, color:'#0f2337'} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+  });
+
+  const cols = ['Indent','Billed + Under Loading','Loading Not Started','Pending Indent %'];
+  let rows = TERMINAL_ORDER.map(t=>{
+    const msVals = cols.map(c=>getVal2(t,'MS '+c));
+    const hsdVals = cols.map(c=>getVal2(t,'HSD '+c));
+    const rowClass = t==='RSO' ? ' class="grand"' : '';
+    return `<tr${rowClass}><td class="rowlabel">${t}</td>` +
+      msVals.map((v,i)=>`<td${i===3?' class="gapbad"':''}>${fmt(v)}${i===3?'%':''}</td>`).join('') +
+      hsdVals.map((v,i)=>`<td${i===3?' class="gapbad"':''}>${fmt(v)}${i===3?'%':''}</td>`).join('') +
+      `</tr>`;
+  }).join('');
+  document.getElementById('tblTerminal').innerHTML =
+    `<thead>
+      <tr><th class="rowlabel">Terminal</th><th class="group-th" colspan="4">MS</th><th class="group-th" colspan="4">HSD</th></tr>
+      <tr><th class="rowlabel"></th>${cols.map(c=>`<th>${c}</th>`).join('')}${cols.map(c=>`<th>${c}</th>`).join('')}</tr>
     </thead><tbody>${rows}</tbody>`;
 }
 
@@ -284,6 +364,7 @@ async function loadFromUrl(url, silent){
     const text = await res.text();
     parseCSV(text);
     renderAll();
+    renderTerminal();
 
     const commitDate = await fetchLastCommitDate();
     document.getElementById('asOfDate').textContent = commitDate || new Date().toLocaleString('en-IN', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
