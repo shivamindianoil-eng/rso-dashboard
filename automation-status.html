@@ -261,6 +261,85 @@ function parseTidyCSV(text){
   return parsed.filter(r => r.Section).map(r => ({...r, DO: normDO(r.DO)}));
 }
 
+function formatDateStr(m){
+  // m = [full, DD, MM, YYYY]
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${m[1]}-${months[parseInt(m[2],10)-1]}-${m[3]}`;
+}
+
+// Parses the raw ERACTS system export (multi-table merged-header layout) directly.
+function parseRawEracts(rows2d){
+  const BUCKETS = ['0-3 Days','3-10 Days','10-30 Days','More than 30 Days','Total'];
+  const DO_ORDER = ['AJMER DO','Jaipur DO','Jodhpur DO','Udaipur DO',' RSO'];
+  const out = [];
+  function add(section, do_, metric, value){
+    const doClean = normDO((do_||'').trim());
+    out.push({Section:section, DO:doClean, Metric:metric, Value:(value===undefined||value===null||value==='')?0:value});
+  }
+  function extractBlock(sectionName, startRow, doCol, valStartCol){
+    for(let i=0;i<DO_ORDER.length;i++){
+      const r = rows2d[startRow+i] || [];
+      const do_ = r[doCol] || '';
+      for(let j=0;j<5;j++){
+        add(sectionName, do_, BUCKETS[j], r[valStartCol+j]);
+      }
+    }
+  }
+  extractBlock('All Complaints — Orpak', 5, 1, 2);
+  extractBlock('All Complaints — Atos', 5, 8, 9);
+  extractBlock('All Complaints — BCT', 5, 15, 16);
+  extractBlock('Critical Complaints — Orpak', 13, 1, 2);
+  extractBlock('Critical Complaints — Atos', 13, 8, 9);
+  extractBlock('Critical Complaints — BCT', 13, 15, 16);
+  extractBlock('All Complaints — Combined', 23, 5, 6);
+  extractBlock('Critical Complaints — Combined', 23, 12, 13);
+
+  const titleRow = (rows2d[1] && rows2d[1][0]) || '';
+  const m = titleRow.match(/(\d{2})-(\d{2})-(\d{4})/);
+  out.push({Section:'META', DO:'', Metric:'AsOfDate', Value: m ? formatDateStr(m) : ''});
+  return out;
+}
+
+// Parses the raw Vishleshan system export (multi-table merged-header layout) directly.
+function parseRawVishleshan(rows2d){
+  const DO_ORDER = ['AJMER DO','Jaipur DO','Jodhpur DO','Udaipur DO',' RSO'];
+  const out = [];
+  function add(section, do_, metric, value){
+    const doClean = normDO((do_||'').trim());
+    out.push({Section:section, DO:doClean, Metric:metric, Value:(value===undefined||value===null||value==='')?0:value});
+  }
+  const labelsCrit = ['Not Acknowledged','Pending at FO','Pending at DRH','Total'];
+  const colsCrit = [7, 14, 21, 28];
+  const colsOpen = [29, 30, 31, 32];
+  for(let i=0;i<DO_ORDER.length;i++){
+    const r = rows2d[4+i] || [];
+    const do_ = r[0] || '';
+    labelsCrit.forEach((lbl,j)=> add('Total Open Critical Leads', do_, lbl, r[colsCrit[j]]));
+    labelsCrit.forEach((lbl,j)=> add('Total Open Leads', do_, lbl, r[colsOpen[j]]));
+  }
+  const BUCKETS = ['0-3 Days','3-10 Days','10-30 Days','More than 30 Days','Total'];
+  const colsAge = [7, 14, 21, 28, 29];
+  for(let i=0;i<DO_ORDER.length;i++){
+    const r = rows2d[13+i] || [];
+    const do_ = r[0] || '';
+    BUCKETS.forEach((b,j)=> add('Ageing Analysis — Critical Leads', do_, b, r[colsAge[j]]));
+  }
+  const titleRow = (rows2d[1] && rows2d[1][0]) || '';
+  const m = titleRow.match(/(\d{2})-(\d{2})-(\d{4})/);
+  out.push({Section:'META', DO:'', Metric:'AsOfDate', Value: m ? formatDateStr(m) : ''});
+  return out;
+}
+
+// Auto-detects tidy vs raw export format and parses accordingly.
+function smartParse(text, rawParser){
+  const headerCheck = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
+  if(headerCheck.length && 'Section' in headerCheck[0] && 'DO' in headerCheck[0]){
+    return headerCheck.filter(r => r.Section).map(r => ({...r, DO: normDO(r.DO)}));
+  }
+  const rows2d = Papa.parse(text.trim(), {skipEmptyLines:false}).data;
+  return rawParser(rows2d);
+}
+
 function getVal(rows, section, do_, metric){
   const r = rows.find(x=>x.Section===section && x.DO===do_ && x.Metric===metric);
   return r ? num(r.Value) : 0;
@@ -541,8 +620,8 @@ async function loadAll(u0, u1, u2, silent){
   try{
     const [t0, t1, t2] = await Promise.all([fetchCSV(u0), fetchCSV(u1), fetchCSV(u2)]);
     NETWORK_ROWS = parseTidyCSV(t0);
-    ERACTS_ROWS = parseTidyCSV(t1);
-    VISH_ROWS = parseTidyCSV(t2);
+    ERACTS_ROWS = smartParse(t1, parseRawEracts);
+    VISH_ROWS = smartParse(t2, parseRawVishleshan);
     renderNetwork();
     renderEracts();
     renderVishleshan();

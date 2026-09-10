@@ -199,8 +199,36 @@ function fmt(n){ if(n===null||n===undefined||n===''||isNaN(n)) return '—'; ret
 function num(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
 
 function parseCSV(text){
-  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
-  ROWS = parsed.filter(r => r.Section);
+  const headerCheck = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
+  if(headerCheck.length && 'Section' in headerCheck[0] && 'DO' in headerCheck[0]){
+    ROWS = headerCheck.filter(r => r.Section);
+    return;
+  }
+  // Raw "Save As CSV" export from the native Indent Report Excel sheet
+  const rows2d = Papa.parse(text.trim(), {skipEmptyLines:false}).data;
+  const out = [];
+  function add(section, do_, metric, value){
+    out.push({Section:section, DO:(do_||'').trim(), Metric:metric, Value:(value===undefined||value===null||value===''||value==='#REF!')?0:value});
+  }
+  const doLabels = ['Target','Indent','Under Loading','Loading Not Started','Billed','Gap'];
+  const doColsMS = [1,2,3,4,5,6];
+  const doColsHSD = [8,9,10,11,12,13];
+  for(let i=5;i<10;i++){
+    const r = rows2d[i] || [];
+    const do_ = r[0];
+    doLabels.forEach((lbl,j)=> add('Indent Status', do_, 'MS '+lbl, r[doColsMS[j]]));
+    doLabels.forEach((lbl,j)=> add('Indent Status', do_, 'HSD '+lbl, r[doColsHSD[j]]));
+  }
+  const termLabels = ['Indent','Billed + Under Loading','Loading Not Started','Pending Indent %'];
+  const termColsMS = [2,3,4,6];
+  const termColsHSD = [9,10,11,13];
+  for(let i=12;i<17;i++){
+    const r = rows2d[i] || [];
+    const term = r[0];
+    termLabels.forEach((lbl,j)=> add('Terminal Status', term, 'MS '+lbl, r[termColsMS[j]]));
+    termLabels.forEach((lbl,j)=> add('Terminal Status', term, 'HSD '+lbl, r[termColsHSD[j]]));
+  }
+  ROWS = out;
 }
 function getVal(do_, metric){
   const r = ROWS.find(x=>x.Section==='Indent Status' && x.DO===do_ && x.Metric===metric);

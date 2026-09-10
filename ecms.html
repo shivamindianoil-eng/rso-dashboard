@@ -213,7 +213,24 @@ function bucketColor(b){ return BUCKET_COLOR[b] || '#94a3b3'; }
 
 function parseCSV(text){
   const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
-  ROWS = parsed.filter(r => r.Officer && r.DO);
+  // Auto-detect: raw ECMS system export has a "PENDING WITH" column instead of "Officer"
+  if(parsed.length && 'PENDING WITH' in parsed[0]){
+    ROWS = parsed.filter(r => r['PENDING WITH']).map(r => ({
+      Officer: r['PENDING WITH'],
+      DO: (r['PENDING WITH OFFICER CURRENT LOCATION']||'').replace(/\s{2,}DO/,' DO').trim(),
+      Designation: r['PENDING WITH OFFICER CURRENT DESIGNATION'],
+      Subject: r['SUBJECT'],
+      PendingSince: r['PENDING SINCE'],
+      PendencyDays: r['PENDENCY IN DAYS'],
+      Unit: r['UNIT'],
+      Initiator: r['INITIATOR'],
+      FinalApprover: r['FINAL_APPROVER'],
+      RefNumber: r['REFERENCE_NUMBER'],
+      Bucket: r['PENDENCY_AGE_BUCKET'],
+    }));
+  } else {
+    ROWS = parsed.filter(r => r.Officer && r.DO);
+  }
 }
 
 function orderedBuckets(){
