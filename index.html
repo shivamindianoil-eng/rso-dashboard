@@ -595,9 +595,9 @@ const RAW_KEYS = {
   salesToday:null, salesDate:'', lyLabel:null, nozzleToday:null,
   baseVolume:null, prevInventory:null, dryVolLabel:null, dryCntLabel:null,
   commSection:'Commissioning Upto July 2026', commA:null, commB:null, commD1:null, commIOC:null, commPSU:null,
-  yts1:'As on 01.04.2026', yts2:'As on 01.08.2026',
-  nil1:'As on 01.04.2026', nil2:'As on 01.08.2026',
-  nfr1:'As on 01.04.2026', nfr2:'As on 01.08.2026',
+  yts1:'As on 01.04.2026', yts2:'As on 01.09.2026',
+  nil1:'As on 01.04.2026', nil2:'As on 01.09.2026',
+  nfr1:'As on 01.04.2026', nfr2:'As on 01.09.2026',
   monthCYLY:'Month CY vs LY', cumCYLY:'Cumulative CY vs LY',
   psuWeekActual:null, psuWeekProrata:null, psuWeekLabel:''
 };
@@ -635,6 +635,19 @@ function detectDynamicKeys(){
   RAW_KEYS.commD1 = cm.find(p=>p.startsWith('D1 Class')) || 'D1 Class IOC Month & Cumulative';
   RAW_KEYS.commIOC = cm.find(p=>p.startsWith('Overall IOC')) || 'Overall IOC Month & Cumulative';
   RAW_KEYS.commPSU = cm.find(p=>p.startsWith('Overall PSU')) || 'Overall PSU Month & Cumulative';
+
+  // YTS / NIL Selling / NFR Store: each section has a fixed FY-start baseline row ("As on 01.04.xxxx")
+  // plus one current-reading row that changes every month. Auto-detect both instead of hardcoding.
+  function detectAsOnPair(sectionName, fallback1, fallback2){
+    const params = (bySection[sectionName] || []).filter(p=>p.startsWith('As on'));
+    if(params.length >= 2){
+      return [params[0], params[params.length-1]];
+    }
+    return [fallback1, fallback2];
+  }
+  [RAW_KEYS.yts1, RAW_KEYS.yts2] = detectAsOnPair('YTS', RAW_KEYS.yts1, RAW_KEYS.yts2);
+  [RAW_KEYS.nil1, RAW_KEYS.nil2] = detectAsOnPair('NIL Selling', RAW_KEYS.nil1, RAW_KEYS.nil2);
+  [RAW_KEYS.nfr1, RAW_KEYS.nfr2] = detectAsOnPair('NFR Store', RAW_KEYS.nfr1, RAW_KEYS.nfr2);
 
   const psuKeys = bySection['Mkt Shr PSU'] || [];
   RAW_KEYS.psuWeekActual = psuKeys.find(p=>/^PSU Mkt Share .* Actual$/.test(p)) || null;
