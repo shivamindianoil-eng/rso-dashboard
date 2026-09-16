@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MOU Performance — Retail (Apr–Jul 26)</title>
+<title>MOU Performance — Retail (Apr–Aug 26)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
   --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
   --text:#0f2337; --text-dim:#0a3d21; --text-dim2:#0d5c30;
   --ms:#7c3aed; --hsd:#db2777; --amber-line:#c47a12;
-  --excellent:#16a34a; --good:#3b82f6; --fair:#eab308; --poor:#ef4444; --na:#94a3b3;
+  --excellent:#16a34a; --verygood:#0d9488; --good:#3b82f6; --fair:#eab308; --poor:#ef4444; --na:#94a3b3;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
 body{
@@ -93,7 +93,7 @@ tbody tr:last-child td{border-bottom:none;}
 .param-cell{max-width:340px; font-weight:500; line-height:1.35;}
 .num-cell{font-family:'IBM Plex Mono',monospace; text-align:right; white-space:nowrap;}
 .badge{display:inline-block; padding:5px 14px; border-radius:20px; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; color:#fff; white-space:nowrap;}
-.badge.excellent{background:var(--excellent);} .badge.good{background:var(--good);} .badge.fair{background:var(--fair);}
+.badge.excellent{background:var(--excellent);} .badge.verygood{background:var(--verygood);} .badge.good{background:var(--good);} .badge.fair{background:var(--fair);}
 .badge.poor{background:var(--poor);} .badge.na{background:var(--na);}
 
 .focus-list{display:flex; flex-direction:column; gap:10px;}
@@ -119,7 +119,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
   <div class="topbar">
     <div>
       <div class="brand-eyebrow">Retail &middot; MOU Performance Review</div>
-      <h1>MOU Performance <span>— Apr–Jul 2026</span></h1>
+      <h1>MOU Performance <span>— Apr–Aug 2026</span></h1>
     </div>
     <div style="text-align:right;">
       <a href="index.html" class="mou-link">← Daily Sales</a>
@@ -128,7 +128,7 @@ footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); fo
       <a href="automation-status.html" class="mou-link" style="background:linear-gradient(90deg,#4338ca,#6366f1);">Automation Status →</a>
       <a href="engg-dashboard.html" class="mou-link" style="background:linear-gradient(90deg,#1e3a8a,#ea580c);">Retail Engineering →</a>
       <a href="indent-status.html" class="mou-link" style="background:linear-gradient(90deg,#0891b2,#e11d48);">Indent Status →</a>
-      <div class="date-badge" style="margin-top:8px;">Period <b>Apr – Jul 2026</b></div>
+      <div class="date-badge" style="margin-top:8px;">Period <b>Apr – Aug 2026</b></div>
     </div>
   </div>
 
@@ -220,12 +220,13 @@ function fmt(n){ if(n===null||n===undefined||isNaN(n)) return '—'; return Numb
 function ratingClass(r){
   const k = (r||'').trim().toLowerCase();
   if(k==='excellent') return 'excellent';
+  if(k==='very good') return 'verygood';
   if(k==='good') return 'good';
   if(k==='fair') return 'fair';
   if(k==='poor') return 'poor';
   return 'na';
 }
-function ratingColorVar(cls){ return {excellent:'var(--excellent)',good:'var(--good)',fair:'var(--fair)',poor:'var(--poor)',na:'var(--na)'}[cls]; }
+function ratingColorVar(cls){ return {excellent:'var(--excellent)',verygood:'var(--verygood)',good:'var(--good)',fair:'var(--fair)',poor:'var(--poor)',na:'var(--na)'}[cls]; }
 
 let overall = {weightage:null, score:null, total:0, applicable:0};
 
@@ -276,8 +277,8 @@ function ring(pct, color){
 }
 
 function renderFocusList(){
-  const severityOrder = {poor:0, fair:1, good:2, na:3};
-  const flagged = ROWS.filter(r => ratingClass(r.rating) !== 'excellent');
+  const severityOrder = {poor:0, fair:1, good:2, verygood:3, na:4};
+  const flagged = ROWS.filter(r => !['excellent','verygood'].includes(ratingClass(r.rating)));
   flagged.sort((a,b)=> severityOrder[ratingClass(a.rating)] - severityOrder[ratingClass(b.rating)]);
   const el = document.getElementById('focusList');
   document.getElementById('focusSub').textContent = `${flagged.length} of ${ROWS.length} parameters below Excellent — sorted worst-first`;
@@ -317,13 +318,13 @@ function renderHero(){
   document.getElementById('scoreApplicable').textContent = overall.applicable;
 
   // criterion distribution
-  const counts = {Excellent:0,Good:0,Fair:0,Poor:0,NA:0};
+  const counts = {Excellent:0,'Very Good':0,Good:0,Fair:0,Poor:0,NA:0};
   ROWS.forEach(r=>{
-    const key = ['Excellent','Good','Fair','Poor'].find(k=>k.toLowerCase()===r.rating.toLowerCase());
+    const key = ['Excellent','Very Good','Good','Fair','Poor'].find(k=>k.toLowerCase()===r.rating.toLowerCase());
     if(key) counts[key]++; else counts.NA++;
   });
   const max = Math.max(...Object.values(counts),1);
-  const colors = {Excellent:'var(--excellent)',Good:'var(--good)',Fair:'var(--fair)',Poor:'var(--poor)',NA:'var(--na)'};
+  const colors = {Excellent:'var(--excellent)','Very Good':'var(--verygood)',Good:'var(--good)',Fair:'var(--fair)',Poor:'var(--poor)',NA:'var(--na)'};
   const cb = document.getElementById('critBars');
   cb.innerHTML = Object.keys(counts).map(k=>`
     <div class="crit-row">
