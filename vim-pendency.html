@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VIM Pendency — RSO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f7f9fb; --panel:#ffffff;
+  --border:rgba(15,35,55,0.10); --border-2:rgba(15,35,55,0.16);
+  --text:#0f2337; --text-dim:#0a3d21; --text-dim2:#0d5c30;
+  --under30:#1e3a8a; --over30:#dc2626; --amber-line:#c47a12;
+  --good:#16a34a; --bad:#dc2626;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:
+    radial-gradient(ellipse 1200px 600px at 15% -10%, rgba(30,58,138,0.05), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 100% 0%, rgba(220,38,38,0.05), transparent 55%),
+    var(--bg);
+  color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; padding:28px 28px 60px;
+}
+.wrap{max-width:1400px; margin:0 auto;}
+
+.mou-link{display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-decoration:none; color:#fff; background:linear-gradient(90deg,#2f6fbf,#5b8fd8); padding:9px 16px; border-radius:8px; margin-bottom:8px; margin-right:6px; transition:.2s;}
+.mou-link:hover{filter:brightness(1.06); transform:translateY(-1px);}
+.mou-link.alt{background:linear-gradient(90deg,#c47a12,#e0a33d);}
+.mou-link.green{background:linear-gradient(90deg,#1f8f6f,#38b08a);}
+.mou-link.teal{background:linear-gradient(90deg,#0f6b57,#159c7c);}
+.mou-link.indigo{background:linear-gradient(90deg,#4338ca,#6366f1);}
+.mou-link.orange{background:linear-gradient(90deg,#1e3a8a,#ea580c);}
+.mou-link.cyan{background:linear-gradient(90deg,#0891b2,#e11d48);}
+
+.topbar{display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid var(--border-2); padding-bottom:20px; margin-bottom:18px; flex-wrap:wrap; gap:16px;}
+.brand-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.18em; color:var(--amber-line); text-transform:uppercase; margin-bottom:8px;}
+h1{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:56px; letter-spacing:.01em; line-height:1;}
+h1 span{color:var(--text-dim2); font-weight:500;}
+.date-badge{font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--text); background:#fff; border:1px solid var(--border-2); padding:8px 14px; border-radius:8px; white-space:nowrap; display:inline-block;}
+.date-badge b{color:var(--amber-line); font-weight:600;}
+
+.settings{display:flex; gap:8px; align-items:center; background:#fff; border:1px solid var(--border-2); border-radius:10px; padding:10px 12px; margin-bottom:14px; flex-wrap:wrap;}
+.settings input{flex:1; min-width:220px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 10px; border-radius:6px;}
+.settings button{background:var(--amber-line); color:#fff; border:none; font-weight:700; font-size:12px; padding:9px 16px; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace;}
+.settings .status{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; color:var(--text-dim2);}
+.settings .status.ok{color:#16a34a;} .settings .status.err{color:#dc2626;}
+.toggle-settings-row{text-align:right; margin-bottom:10px;}
+.toggle-settings-row button{background:none; border:1px solid var(--border-2); color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-size:13.5px; padding:5px 10px; border-radius:6px; cursor:pointer;}
+
+.section-label{font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-dim2); margin:30px 0 12px; display:flex; align-items:center; gap:10px;}
+.section-label::after{content:''; flex:1; height:1px; background:var(--border);}
+
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-bottom:8px;}
+.kpi{background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px 18px; box-shadow:0 2px 10px rgba(15,35,55,.04); position:relative; overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--under30), var(--over30)); opacity:.85;}
+.kpi .num{font-family:'Big Shoulders Display'; font-size:40px; font-weight:700; line-height:1;}
+.kpi .lbl{font-size:13px; font-weight:700; color:var(--text-dim2); text-transform:uppercase; letter-spacing:.03em; margin-top:8px; font-family:'IBM Plex Mono',monospace;}
+.kpi.bad .num{color:var(--bad);} .kpi.good .num{color:var(--good);}
+
+.charts{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0;}
+@media(max-width:920px){.charts{grid-template-columns:1fr;}}
+.chart-card{background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 14px rgba(15,35,55,0.05); padding:18px 20px 12px; position:relative; overflow:hidden;}
+.chart-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--under30), var(--over30)); opacity:.85;}
+.chart-card h3{margin:0 0 14px; font-size:15px; text-transform:uppercase; letter-spacing:.03em; color:var(--text); font-weight:700;}
+.chart-card canvas{max-height:300px;}
+
+.bucket-legend{display:flex; gap:16px; flex-wrap:wrap; font-size:13px; font-weight:700; color:var(--text-dim2); margin:14px 0 4px; font-family:'IBM Plex Mono',monospace;}
+.bucket-legend span{display:inline-flex; align-items:center; gap:6px;}
+.swatch{width:11px; height:11px; border-radius:3px; display:inline-block;}
+
+.table-card{background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 14px rgba(15,35,55,0.05); overflow:hidden; margin-bottom:20px;}
+.table-card .card-head{margin:0; padding:14px 18px; background:linear-gradient(90deg, var(--under30), var(--over30)); color:#fff; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;}
+.table-card .card-head h3{margin:0; font-size:15px; text-transform:uppercase; letter-spacing:.03em; font-weight:700;}
+.table-card .card-head input{font-family:'IBM Plex Mono',monospace; font-size:13px; padding:7px 10px; border-radius:6px; border:none; min-width:200px;}
+.table-wrap{overflow:auto; max-height:640px;}
+table.pivot{border-collapse:collapse; width:100%; font-size:14px;}
+table.pivot th, table.pivot td{border-bottom:1px solid var(--border); padding:11px 14px; text-align:right; white-space:nowrap; font-family:'IBM Plex Mono',monospace;}
+table.pivot th{background:#f2f5f8; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--text-dim); position:sticky; top:0; cursor:pointer; user-select:none;}
+table.pivot th:hover{background:#e8ecf0;}
+table.pivot td.rowlabel, table.pivot th.rowlabel{text-align:left; font-weight:700; font-family:'Inter',sans-serif;}
+table.pivot tbody tr:nth-child(even) td:not(.rowlabel){background:#fafbfc;}
+table.pivot tr.grand td{font-weight:700; background:#fef2f2 !important; border-top:2px solid var(--over30);}
+td.amt-over{color:var(--over30); font-weight:700;}
+td.amt-under{color:var(--under30);}
+
+.note{font-size:13px; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; font-weight:700; margin-top:6px; margin-bottom:24px;}
+
+footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:14px; font-weight:700; color:var(--text-dim2); font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+.loading-veil{position:fixed; inset:0; background:var(--bg); z-index:50; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; font-family:'IBM Plex Mono',monospace; color:var(--text-dim); transition:opacity .4s;}
+.loading-veil.hide{opacity:0; pointer-events:none;}
+.spinner{width:34px;height:34px;border:3px solid var(--border-2); border-top-color:var(--amber-line); border-radius:50%; animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="loading-veil" id="veil"><div class="spinner"></div><div>Loading live data…</div></div>
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <div class="brand-eyebrow">Rajasthan State Office &middot; VIM Pendency</div>
+      <h1>VIM Pendency <span>— Retail Sales</span></h1>
+    </div>
+    <div style="text-align:right;">
+      <a href="index.html" class="mou-link alt">← Daily Sales</a>
+      <a href="mou.html" class="mou-link green">MOU Performance →</a>
+      <a href="retail-folder.html" class="mou-link">DO Wise →</a>
+      <a href="ecms.html" class="mou-link teal">ECMS Status →</a>
+      <a href="automation-status.html" class="mou-link indigo">Automation Status →</a>
+      <a href="engg-dashboard.html" class="mou-link orange">Retail Engineering →</a>
+      <a href="indent-status.html" class="mou-link cyan">Indent Status →</a>
+      <div class="date-badge" style="margin-top:8px;">Updated <b id="asOfDate">—</b></div>
+    </div>
+  </div>
+
+  <div class="settings" id="settingsBar" style="display:none;">
+    <input type="text" id="csvUrlInput" placeholder="Paste your VIM Pendency data CSV raw link here…">
+    <button id="loadBtn">Load &amp; Save</button>
+    <button id="resetBtn" style="background:#e8ecef; color:var(--text-dim);">Reset to Default</button>
+    <span class="status" id="statusMsg">Not connected</span>
+  </div>
+  <div class="toggle-settings-row"><button id="toggleSettings">⚙ Data source settings</button></div>
+
+  <div class="section-label">Overview</div>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h3>Pendency by Division (Count)</h3>
+      <canvas id="chartDoCount"></canvas>
+      <div class="bucket-legend">
+        <span><span class="swatch" style="background:#1e3a8a"></span>Less than 30 days</span>
+        <span><span class="swatch" style="background:#dc2626"></span>More than 30 days</span>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Pendency by Division (Amount, ₹)</h3>
+      <canvas id="chartDoAmount"></canvas>
+      <div class="bucket-legend">
+        <span><span class="swatch" style="background:#1e3a8a"></span>Less than 30 days</span>
+        <span><span class="swatch" style="background:#dc2626"></span>More than 30 days</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="card-head"><h3>Division-wise Summary</h3></div>
+    <div class="table-wrap"><table class="pivot" id="tblDo"></table></div>
+  </div>
+
+  <div class="section-label">User-wise Detail</div>
+  <div class="table-card">
+    <div class="card-head">
+      <h3>All Pending Owners</h3>
+      <input type="text" id="userSearch" placeholder="Search by name…">
+    </div>
+    <div class="table-wrap"><table class="pivot" id="tblUser"></table></div>
+  </div>
+  <div class="note">Click any column header to sort. Amounts in ₹.</div>
+
+  <footer>
+    <span>Source: live VIM Pendency data feed (Finance) &middot; Retail Sales only</span>
+    <span id="lastUpdated"></span>
+  </footer>
+</div>
+
+<script>
+const LS_KEY = 'vim_pendency_csv_url_v1';
+const DEFAULT_CSV_URL = 'https://cdn.jsdelivr.net/gh/shivamindianoil-eng/rso-dashboard@main/vim-pendency-data.csv';
+let RECORDS = [];
+let charts = {};
+const DO_ORDER = ['Ajmer','Jaipur','Jodhpur','Udaipur','RSO','Other'];
+
+function fmt(n){ if(n===null||n===undefined||n===''||isNaN(n)) return '—'; return Number(n).toLocaleString('en-IN', {maximumFractionDigits:0}); }
+function fmtAmt(n){ return '₹'+fmt(n); }
+function num(v){ const n = parseFloat(String(v).replace(/,/g,'')); return isNaN(n) ? 0 : n; }
+
+// Maps a raw Location string to one of RSO's divisions, or 'Other' for anything outside Rajasthan.
+function mapLocationToDO(loc){
+  const l = (loc||'').trim().toLowerCase();
+  if(l.includes('ajmer')) return 'Ajmer';
+  if(l.includes('jaipur')) return 'Jaipur';
+  if(l.includes('jodhpur')) return 'Jodhpur';
+  if(l.includes('udaipur')) return 'Udaipur';
+  if(l.includes('rajasthan state office')) return 'RSO';
+  return 'Other';
+}
+function isUnder30(bucket){
+  return (bucket||'').trim().toLowerCase().startsWith('less');
+}
+
+function parseCSV(text){
+  const parsed = Papa.parse(text.trim(), {skipEmptyLines:true, header:true}).data;
+  RECORDS = parsed
+    .filter(r => r['Department'] && String(r['Department']).trim().toLowerCase() === 'retail sales')
+    .filter(r => r['Document ID'])
+    .map(r => ({
+      docId: r['Document ID'],
+      location: r['Location'] || '',
+      doGroup: mapLocationToDO(r['Location']),
+      firstName: (r['First Name']||'').trim(),
+      lastName: (r['Last Name']||'').trim(),
+      amount: num(r['amount']),
+      bucket: (r['ageing since creation']||'').trim(),
+      under30: isUnder30(r['ageing since creation']),
+    }));
+}
+
+function renderKPIs(){
+  const total = RECORDS.length;
+  const totalAmt = RECORDS.reduce((s,r)=>s+r.amount,0);
+  const under = RECORDS.filter(r=>r.under30);
+  const over = RECORDS.filter(r=>!r.under30);
+  document.getElementById('kpis').innerHTML = [
+    {n:total, l:'Total Pending Items', cls:''},
+    {n:totalAmt, l:'Total Pending Amount', cls:'bad', amt:true},
+    {n:under.length, l:'< 30 Days (Count)', cls:''},
+    {n:under.reduce((s,r)=>s+r.amount,0), l:'< 30 Days (Amount)', cls:'', amt:true},
+    {n:over.length, l:'> 30 Days (Count)', cls:'bad'},
+    {n:over.reduce((s,r)=>s+r.amount,0), l:'> 30 Days (Amount)', cls:'bad', amt:true},
+  ].map(c=>`<div class="kpi ${c.cls}"><div class="num">${c.amt?fmtAmt(c.n):fmt(c.n)}</div><div class="lbl">${c.l}</div></div>`).join('');
+}
+
+function renderCharts(){
+  const dos = DO_ORDER.filter(d=>RECORDS.some(r=>r.doGroup===d));
+  const underCount = dos.map(d=>RECORDS.filter(r=>r.doGroup===d && r.under30).length);
+  const overCount = dos.map(d=>RECORDS.filter(r=>r.doGroup===d && !r.under30).length);
+  const underAmt = dos.map(d=>RECORDS.filter(r=>r.doGroup===d && r.under30).reduce((s,r)=>s+r.amount,0));
+  const overAmt = dos.map(d=>RECORDS.filter(r=>r.doGroup===d && !r.under30).reduce((s,r)=>s+r.amount,0));
+
+  if(charts.doCount) charts.doCount.destroy();
+  charts.doCount = new Chart(document.getElementById('chartDoCount'), {
+    type:'bar',
+    data:{ labels:dos, datasets:[
+      { label:'< 30 days', data:underCount, backgroundColor:'#1e3a8a' },
+      { label:'> 30 days', data:overCount, backgroundColor:'#dc2626' },
+    ]},
+    options:{ responsive:true, plugins:{ legend:{display:false} },
+      scales:{ x:{ stacked:true, grid:{display:false}, ticks:{font:{size:14,weight:'700'}, color:'#0f2337'} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+  });
+
+  if(charts.doAmount) charts.doAmount.destroy();
+  charts.doAmount = new Chart(document.getElementById('chartDoAmount'), {
+    type:'bar',
+    data:{ labels:dos, datasets:[
+      { label:'< 30 days', data:underAmt, backgroundColor:'#1e3a8a' },
+      { label:'> 30 days', data:overAmt, backgroundColor:'#dc2626' },
+    ]},
+    options:{ responsive:true, plugins:{ legend:{display:false} },
+      scales:{ x:{ stacked:true, grid:{display:false}, ticks:{font:{size:14,weight:'700'}, color:'#0f2337'} }, y:{ stacked:true, beginAtZero:true, grid:{color:'rgba(15,35,55,0.06)'} } } }
+  });
+}
+
+function renderDoTable(){
+  const dos = DO_ORDER.filter(d=>RECORDS.some(r=>r.doGroup===d));
+  let rows = dos.map(d=>{
+    const recs = RECORDS.filter(r=>r.doGroup===d);
+    const under = recs.filter(r=>r.under30);
+    const over = recs.filter(r=>!r.under30);
+    return `<tr>
+      <td class="rowlabel">${d}</td>
+      <td class="amt-under">${fmt(under.length)}</td>
+      <td class="amt-under">${fmtAmt(under.reduce((s,r)=>s+r.amount,0))}</td>
+      <td class="amt-over">${fmt(over.length)}</td>
+      <td class="amt-over">${fmtAmt(over.reduce((s,r)=>s+r.amount,0))}</td>
+      <td>${fmt(recs.length)}</td>
+      <td>${fmtAmt(recs.reduce((s,r)=>s+r.amount,0))}</td>
+    </tr>`;
+  }).join('');
+  const under = RECORDS.filter(r=>r.under30), over = RECORDS.filter(r=>!r.under30);
+  rows += `<tr class="grand">
+    <td class="rowlabel">RSO Total</td>
+    <td>${fmt(under.length)}</td>
+    <td>${fmtAmt(under.reduce((s,r)=>s+r.amount,0))}</td>
+    <td>${fmt(over.length)}</td>
+    <td>${fmtAmt(over.reduce((s,r)=>s+r.amount,0))}</td>
+    <td>${fmt(RECORDS.length)}</td>
+    <td>${fmtAmt(RECORDS.reduce((s,r)=>s+r.amount,0))}</td>
+  </tr>`;
+  document.getElementById('tblDo').innerHTML =
+    `<thead><tr><th class="rowlabel">Division</th><th>&lt;30 Count</th><th>&lt;30 Amount</th><th>&gt;30 Count</th><th>&gt;30 Amount</th><th>Total Count</th><th>Total Amount</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+let userSortKey = 'totalAmt', userSortDir = -1;
+function buildUserRows(){
+  const byUser = {};
+  RECORDS.forEach(r=>{
+    const key = `${r.firstName} ${r.lastName}`.trim() || '(Unknown)';
+    if(!byUser[key]) byUser[key] = {name:key, doGroup:r.doGroup, underCount:0, underAmt:0, overCount:0, overAmt:0};
+    if(r.under30){ byUser[key].underCount++; byUser[key].underAmt += r.amount; }
+    else { byUser[key].overCount++; byUser[key].overAmt += r.amount; }
+  });
+  return Object.values(byUser).map(u => ({...u, totalCount:u.underCount+u.overCount, totalAmt:u.underAmt+u.overAmt}));
+}
+function renderUserTable(){
+  let users = buildUserRows();
+  const q = (document.getElementById('userSearch').value||'').toLowerCase();
+  if(q) users = users.filter(u=>u.name.toLowerCase().includes(q));
+  users.sort((a,b)=> (a[userSortKey]>b[userSortKey]?1:-1) * userSortDir);
+  const rows = users.map(u=>`<tr>
+    <td class="rowlabel">${u.name}</td>
+    <td class="rowlabel">${u.doGroup}</td>
+    <td class="amt-under">${fmt(u.underCount)}</td>
+    <td class="amt-under">${fmtAmt(u.underAmt)}</td>
+    <td class="amt-over">${fmt(u.overCount)}</td>
+    <td class="amt-over">${fmtAmt(u.overAmt)}</td>
+    <td>${fmt(u.totalCount)}</td>
+    <td>${fmtAmt(u.totalAmt)}</td>
+  </tr>`).join('');
+  document.getElementById('tblUser').innerHTML =
+    `<thead><tr>
+      <th class="rowlabel" data-key="name">Owner</th>
+      <th class="rowlabel" data-key="doGroup">Division</th>
+      <th data-key="underCount">&lt;30 Count</th>
+      <th data-key="underAmt">&lt;30 Amount</th>
+      <th data-key="overCount">&gt;30 Count</th>
+      <th data-key="overAmt">&gt;30 Amount</th>
+      <th data-key="totalCount">Total Count</th>
+      <th data-key="totalAmt">Total Amount</th>
+    </tr></thead><tbody>${rows}</tbody>`;
+  document.querySelectorAll('#tblUser th[data-key]').forEach(th=>{
+    th.addEventListener('click', ()=>{
+      const key = th.dataset.key;
+      if(userSortKey === key) userSortDir *= -1; else { userSortKey = key; userSortDir = -1; }
+      renderUserTable();
+    });
+  });
+}
+document.getElementById('userSearch').addEventListener('input', renderUserTable);
+
+function renderAll(){
+  renderKPIs();
+  renderCharts();
+  renderDoTable();
+  renderUserTable();
+}
+
+document.getElementById('toggleSettings').addEventListener('click', ()=>{
+  const bar = document.getElementById('settingsBar');
+  bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(LS_KEY);
+  document.getElementById('csvUrlInput').value = DEFAULT_CSV_URL;
+  loadFromUrl(DEFAULT_CSV_URL);
+});
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const url = document.getElementById('csvUrlInput').value.trim();
+  if(!url) return;
+  localStorage.setItem(LS_KEY, url);
+  loadFromUrl(url);
+});
+
+let autoRefreshTimer = null;
+const AUTO_REFRESH_MS = 30000;
+async function loadFromUrl(url, silent){
+  const statusEl = document.getElementById('statusMsg');
+  if(!url){ document.getElementById('veil').classList.add('hide'); document.getElementById('settingsBar').style.display='flex'; return; }
+  if(!silent){ statusEl.textContent = 'Loading…'; statusEl.className='status'; }
+  try{
+    const res = await fetch(url + (url.includes('?')?'&':'?') + '_ts=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    parseCSV(text);
+    renderAll();
+    document.getElementById('asOfDate').textContent = new Date().toLocaleString('en-IN', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
+    const now = new Date().toLocaleTimeString();
+    statusEl.textContent = 'Live · auto-refreshing every 30s · last checked ' + now; statusEl.className='status ok';
+    document.getElementById('lastUpdated').textContent = 'Refreshed ' + new Date().toLocaleString();
+    document.getElementById('veil').classList.add('hide');
+    if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(()=> loadFromUrl(url, true), AUTO_REFRESH_MS);
+  }catch(err){
+    statusEl.textContent = 'Could not load data: ' + err.message; statusEl.className='status err';
+    document.getElementById('veil').classList.add('hide');
+  }
+}
+
+window.addEventListener('load', ()=>{
+  const saved = localStorage.getItem(LS_KEY) || DEFAULT_CSV_URL;
+  if(saved){
+    document.getElementById('csvUrlInput').value = saved;
+    loadFromUrl(saved);
+  } else {
+    document.getElementById('veil').classList.add('hide');
+    document.getElementById('settingsBar').style.display='flex';
+  }
+});
+</script>
+</body>
+</html>
