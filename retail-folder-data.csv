@@ -1,278 +1,263 @@
 Section,Period,DO,Metric,Value
-PSU Commissioning,Aug'26,Ajmer,IOC RO,0
-PSU Commissioning,Aug'26,Ajmer,IOC KSK,0
-PSU Commissioning,Aug'26,Ajmer,IOC Total,0
-PSU Commissioning,Aug'26,Ajmer,BPC RO,0
-PSU Commissioning,Aug'26,Ajmer,BPC KSK,0
-PSU Commissioning,Aug'26,Ajmer,BPC Total,0
-PSU Commissioning,Aug'26,Ajmer,HPC RO,0
-PSU Commissioning,Aug'26,Ajmer,HPC KSK,0
-PSU Commissioning,Aug'26,Ajmer,HPC Total,0
-PSU Commissioning,Aug'26,Ajmer,Total RO,0
-PSU Commissioning,Aug'26,Ajmer,Total KSK,0
-PSU Commissioning,Aug'26,Ajmer,Total Total,0
-PSU Commissioning,Aug'26,Ajmer,%IOC Comm RO,0
-PSU Commissioning,Aug'26,Ajmer,%IOC Comm KSK,0
-PSU Commissioning,Aug'26,Ajmer,%IOC Comm Total,0
-PSU Commissioning,Aug'26,Ajmer,Class A,0
-PSU Commissioning,Aug'26,Ajmer,Class B,0
-PSU Commissioning,Aug'26,Ajmer,Class D1,0
-PSU Commissioning,Aug'26,Jaipur,IOC RO,0
-PSU Commissioning,Aug'26,Jaipur,IOC KSK,0
-PSU Commissioning,Aug'26,Jaipur,IOC Total,0
-PSU Commissioning,Aug'26,Jaipur,BPC RO,0
-PSU Commissioning,Aug'26,Jaipur,BPC KSK,0
-PSU Commissioning,Aug'26,Jaipur,BPC Total,0
-PSU Commissioning,Aug'26,Jaipur,HPC RO,0
-PSU Commissioning,Aug'26,Jaipur,HPC KSK,0
-PSU Commissioning,Aug'26,Jaipur,HPC Total,0
-PSU Commissioning,Aug'26,Jaipur,Total RO,0
-PSU Commissioning,Aug'26,Jaipur,Total KSK,0
-PSU Commissioning,Aug'26,Jaipur,Total Total,0
-PSU Commissioning,Aug'26,Jaipur,%IOC Comm RO,0
-PSU Commissioning,Aug'26,Jaipur,%IOC Comm KSK,0
-PSU Commissioning,Aug'26,Jaipur,%IOC Comm Total,0
-PSU Commissioning,Aug'26,Jaipur,Class A,0
-PSU Commissioning,Aug'26,Jaipur,Class B,0
-PSU Commissioning,Aug'26,Jaipur,Class D1,0
-PSU Commissioning,Aug'26,Jodhpur,IOC RO,1
-PSU Commissioning,Aug'26,Jodhpur,IOC KSK,0
-PSU Commissioning,Aug'26,Jodhpur,IOC Total,1
-PSU Commissioning,Aug'26,Jodhpur,BPC RO,0
-PSU Commissioning,Aug'26,Jodhpur,BPC KSK,0
-PSU Commissioning,Aug'26,Jodhpur,BPC Total,0
-PSU Commissioning,Aug'26,Jodhpur,HPC RO,0
-PSU Commissioning,Aug'26,Jodhpur,HPC KSK,0
-PSU Commissioning,Aug'26,Jodhpur,HPC Total,0
-PSU Commissioning,Aug'26,Jodhpur,Total RO,1
-PSU Commissioning,Aug'26,Jodhpur,Total KSK,0
-PSU Commissioning,Aug'26,Jodhpur,Total Total,1
-PSU Commissioning,Aug'26,Jodhpur,%IOC Comm RO,100.0
-PSU Commissioning,Aug'26,Jodhpur,%IOC Comm KSK,0
-PSU Commissioning,Aug'26,Jodhpur,%IOC Comm Total,100.0
-PSU Commissioning,Aug'26,Jodhpur,Class A,0
-PSU Commissioning,Aug'26,Jodhpur,Class B,0
-PSU Commissioning,Aug'26,Jodhpur,Class D1,1
-PSU Commissioning,Aug'26,Udaipur,IOC RO,0
-PSU Commissioning,Aug'26,Udaipur,IOC KSK,0
-PSU Commissioning,Aug'26,Udaipur,IOC Total,0
-PSU Commissioning,Aug'26,Udaipur,BPC RO,0
-PSU Commissioning,Aug'26,Udaipur,BPC KSK,0
-PSU Commissioning,Aug'26,Udaipur,BPC Total,0
-PSU Commissioning,Aug'26,Udaipur,HPC RO,0
-PSU Commissioning,Aug'26,Udaipur,HPC KSK,0
-PSU Commissioning,Aug'26,Udaipur,HPC Total,0
-PSU Commissioning,Aug'26,Udaipur,Total RO,0
-PSU Commissioning,Aug'26,Udaipur,Total KSK,0
-PSU Commissioning,Aug'26,Udaipur,Total Total,0
-PSU Commissioning,Aug'26,Udaipur,%IOC Comm RO,0
-PSU Commissioning,Aug'26,Udaipur,%IOC Comm KSK,0
-PSU Commissioning,Aug'26,Udaipur,%IOC Comm Total,0
-PSU Commissioning,Aug'26,Udaipur,Class A,0
-PSU Commissioning,Aug'26,Udaipur,Class B,0
-PSU Commissioning,Aug'26,Udaipur,Class D1,0
-PSU Commissioning,Aug'26,RSO,IOC RO,1
-PSU Commissioning,Aug'26,RSO,IOC KSK,0
-PSU Commissioning,Aug'26,RSO,IOC Total,1
-PSU Commissioning,Aug'26,RSO,BPC RO,0
-PSU Commissioning,Aug'26,RSO,BPC KSK,0
-PSU Commissioning,Aug'26,RSO,BPC Total,0
-PSU Commissioning,Aug'26,RSO,HPC RO,0
-PSU Commissioning,Aug'26,RSO,HPC KSK,0
-PSU Commissioning,Aug'26,RSO,HPC Total,0
-PSU Commissioning,Aug'26,RSO,Total RO,1
-PSU Commissioning,Aug'26,RSO,Total KSK,0
-PSU Commissioning,Aug'26,RSO,Total Total,1
-PSU Commissioning,Aug'26,RSO,%IOC Comm RO,100.0
-PSU Commissioning,Aug'26,RSO,%IOC Comm KSK,0
-PSU Commissioning,Aug'26,RSO,%IOC Comm Total,100.0
-PSU Commissioning,Aug'26,RSO,Class A,0
-PSU Commissioning,Aug'26,RSO,Class B,0
-PSU Commissioning,Aug'26,RSO,Class D1,1
-PSU Commissioning,Apr-Aug'26,Ajmer,IOC RO,6
-PSU Commissioning,Apr-Aug'26,Ajmer,IOC KSK,2
-PSU Commissioning,Apr-Aug'26,Ajmer,IOC Total,8
-PSU Commissioning,Apr-Aug'26,Ajmer,BPC RO,6
-PSU Commissioning,Apr-Aug'26,Ajmer,BPC KSK,0
-PSU Commissioning,Apr-Aug'26,Ajmer,BPC Total,6
-PSU Commissioning,Apr-Aug'26,Ajmer,HPC RO,0
-PSU Commissioning,Apr-Aug'26,Ajmer,HPC KSK,0
-PSU Commissioning,Apr-Aug'26,Ajmer,HPC Total,0
-PSU Commissioning,Apr-Aug'26,Ajmer,Total RO,12
-PSU Commissioning,Apr-Aug'26,Ajmer,Total KSK,2
-PSU Commissioning,Apr-Aug'26,Ajmer,Total Total,14
-PSU Commissioning,Apr-Aug'26,Ajmer,%IOC Comm RO,50.0
-PSU Commissioning,Apr-Aug'26,Ajmer,%IOC Comm KSK,100.0
-PSU Commissioning,Apr-Aug'26,Ajmer,%IOC Comm Total,57.1
-PSU Commissioning,Apr-Aug'26,Ajmer,Class A,0
-PSU Commissioning,Apr-Aug'26,Ajmer,Class B,0
-PSU Commissioning,Apr-Aug'26,Ajmer,Class D1,4
-PSU Commissioning,Apr-Aug'26,Jaipur,IOC RO,7
-PSU Commissioning,Apr-Aug'26,Jaipur,IOC KSK,1
-PSU Commissioning,Apr-Aug'26,Jaipur,IOC Total,8
-PSU Commissioning,Apr-Aug'26,Jaipur,BPC RO,5
-PSU Commissioning,Apr-Aug'26,Jaipur,BPC KSK,1
-PSU Commissioning,Apr-Aug'26,Jaipur,BPC Total,6
-PSU Commissioning,Apr-Aug'26,Jaipur,HPC RO,4
-PSU Commissioning,Apr-Aug'26,Jaipur,HPC KSK,0
-PSU Commissioning,Apr-Aug'26,Jaipur,HPC Total,4
-PSU Commissioning,Apr-Aug'26,Jaipur,Total RO,16
-PSU Commissioning,Apr-Aug'26,Jaipur,Total KSK,2
-PSU Commissioning,Apr-Aug'26,Jaipur,Total Total,18
-PSU Commissioning,Apr-Aug'26,Jaipur,%IOC Comm RO,43.8
-PSU Commissioning,Apr-Aug'26,Jaipur,%IOC Comm KSK,50.0
-PSU Commissioning,Apr-Aug'26,Jaipur,%IOC Comm Total,44.4
-PSU Commissioning,Apr-Aug'26,Jaipur,Class A,0
-PSU Commissioning,Apr-Aug'26,Jaipur,Class B,0
-PSU Commissioning,Apr-Aug'26,Jaipur,Class D1,2
-PSU Commissioning,Apr-Aug'26,Jodhpur,IOC RO,12
-PSU Commissioning,Apr-Aug'26,Jodhpur,IOC KSK,0
-PSU Commissioning,Apr-Aug'26,Jodhpur,IOC Total,12
-PSU Commissioning,Apr-Aug'26,Jodhpur,BPC RO,3
-PSU Commissioning,Apr-Aug'26,Jodhpur,BPC KSK,1
-PSU Commissioning,Apr-Aug'26,Jodhpur,BPC Total,4
-PSU Commissioning,Apr-Aug'26,Jodhpur,HPC RO,1
-PSU Commissioning,Apr-Aug'26,Jodhpur,HPC KSK,0
-PSU Commissioning,Apr-Aug'26,Jodhpur,HPC Total,1
-PSU Commissioning,Apr-Aug'26,Jodhpur,Total RO,16
-PSU Commissioning,Apr-Aug'26,Jodhpur,Total KSK,1
-PSU Commissioning,Apr-Aug'26,Jodhpur,Total Total,17
-PSU Commissioning,Apr-Aug'26,Jodhpur,%IOC Comm RO,75.0
-PSU Commissioning,Apr-Aug'26,Jodhpur,%IOC Comm KSK,0.0
-PSU Commissioning,Apr-Aug'26,Jodhpur,%IOC Comm Total,70.6
-PSU Commissioning,Apr-Aug'26,Jodhpur,Class A,0
-PSU Commissioning,Apr-Aug'26,Jodhpur,Class B,1
-PSU Commissioning,Apr-Aug'26,Jodhpur,Class D1,9
-PSU Commissioning,Apr-Aug'26,Udaipur,IOC RO,3
-PSU Commissioning,Apr-Aug'26,Udaipur,IOC KSK,1
-PSU Commissioning,Apr-Aug'26,Udaipur,IOC Total,4
-PSU Commissioning,Apr-Aug'26,Udaipur,BPC RO,4
-PSU Commissioning,Apr-Aug'26,Udaipur,BPC KSK,0
-PSU Commissioning,Apr-Aug'26,Udaipur,BPC Total,4
-PSU Commissioning,Apr-Aug'26,Udaipur,HPC RO,1
-PSU Commissioning,Apr-Aug'26,Udaipur,HPC KSK,1
-PSU Commissioning,Apr-Aug'26,Udaipur,HPC Total,2
-PSU Commissioning,Apr-Aug'26,Udaipur,Total RO,8
-PSU Commissioning,Apr-Aug'26,Udaipur,Total KSK,2
-PSU Commissioning,Apr-Aug'26,Udaipur,Total Total,10
-PSU Commissioning,Apr-Aug'26,Udaipur,%IOC Comm RO,37.5
-PSU Commissioning,Apr-Aug'26,Udaipur,%IOC Comm KSK,50.0
-PSU Commissioning,Apr-Aug'26,Udaipur,%IOC Comm Total,40.0
-PSU Commissioning,Apr-Aug'26,Udaipur,Class A,0
-PSU Commissioning,Apr-Aug'26,Udaipur,Class B,0
-PSU Commissioning,Apr-Aug'26,Udaipur,Class D1,1
-PSU Commissioning,Apr-Aug'26,RSO,IOC RO,28
-PSU Commissioning,Apr-Aug'26,RSO,IOC KSK,4
-PSU Commissioning,Apr-Aug'26,RSO,IOC Total,32
-PSU Commissioning,Apr-Aug'26,RSO,BPC RO,18
-PSU Commissioning,Apr-Aug'26,RSO,BPC KSK,2
-PSU Commissioning,Apr-Aug'26,RSO,BPC Total,20
-PSU Commissioning,Apr-Aug'26,RSO,HPC RO,6
-PSU Commissioning,Apr-Aug'26,RSO,HPC KSK,1
-PSU Commissioning,Apr-Aug'26,RSO,HPC Total,7
-PSU Commissioning,Apr-Aug'26,RSO,Total RO,52
-PSU Commissioning,Apr-Aug'26,RSO,Total KSK,7
-PSU Commissioning,Apr-Aug'26,RSO,Total Total,59
-PSU Commissioning,Apr-Aug'26,RSO,%IOC Comm RO,53.8
-PSU Commissioning,Apr-Aug'26,RSO,%IOC Comm KSK,57.1
-PSU Commissioning,Apr-Aug'26,RSO,%IOC Comm Total,54.2
-PSU Commissioning,Apr-Aug'26,RSO,Class A,0
-PSU Commissioning,Apr-Aug'26,RSO,Class B,1
-PSU Commissioning,Apr-Aug'26,RSO,Class D1,16
-Sep 2026 Plan,,Ajmer,Target RO,4
-Sep 2026 Plan,,Ajmer,Target KSK,0
-Sep 2026 Plan,,Ajmer,Target Total,4
-Sep 2026 Plan,,Ajmer,Target A,0
-Sep 2026 Plan,,Ajmer,Target B,1
-Sep 2026 Plan,,Ajmer,Target D1,1
-Sep 2026 Plan,,Ajmer,DM NOC RO,2
-Sep 2026 Plan,,Ajmer,DM NOC KSK,0
-Sep 2026 Plan,,Ajmer,DM NOC Total,2
-Sep 2026 Plan,,Jaipur,Target RO,5
-Sep 2026 Plan,,Jaipur,Target KSK,1
-Sep 2026 Plan,,Jaipur,Target Total,6
-Sep 2026 Plan,,Jaipur,Target A,1
-Sep 2026 Plan,,Jaipur,Target B,0
-Sep 2026 Plan,,Jaipur,Target D1,2
-Sep 2026 Plan,,Jaipur,DM NOC RO,1
-Sep 2026 Plan,,Jaipur,DM NOC KSK,1
-Sep 2026 Plan,,Jaipur,DM NOC Total,2
-Sep 2026 Plan,,Jodhpur,Target RO,4
-Sep 2026 Plan,,Jodhpur,Target KSK,0
-Sep 2026 Plan,,Jodhpur,Target Total,4
-Sep 2026 Plan,,Jodhpur,Target A,0
-Sep 2026 Plan,,Jodhpur,Target B,0
-Sep 2026 Plan,,Jodhpur,Target D1,1
-Sep 2026 Plan,,Jodhpur,DM NOC RO,1
-Sep 2026 Plan,,Jodhpur,DM NOC KSK,0
-Sep 2026 Plan,,Jodhpur,DM NOC Total,1
-Sep 2026 Plan,,Udaipur,Target RO,2
-Sep 2026 Plan,,Udaipur,Target KSK,1
-Sep 2026 Plan,,Udaipur,Target Total,3
-Sep 2026 Plan,,Udaipur,Target A,0
-Sep 2026 Plan,,Udaipur,Target B,0
-Sep 2026 Plan,,Udaipur,Target D1,1
-Sep 2026 Plan,,Udaipur,DM NOC RO,1
-Sep 2026 Plan,,Udaipur,DM NOC KSK,0
-Sep 2026 Plan,,Udaipur,DM NOC Total,1
-Sep 2026 Plan,,RSO,Target RO,15
-Sep 2026 Plan,,RSO,Target KSK,2
-Sep 2026 Plan,,RSO,Target Total,17
-Sep 2026 Plan,,RSO,Target A,1
-Sep 2026 Plan,,RSO,Target B,1
-Sep 2026 Plan,,RSO,Target D1,5
-Sep 2026 Plan,,RSO,DM NOC RO,5
-Sep 2026 Plan,,RSO,DM NOC KSK,1
-Sep 2026 Plan,,RSO,DM NOC Total,6
-Pending LOI — Ageing,,Ajmer,0-6 Months,8
-Pending LOI — Ageing,,Ajmer,6M-1Y,9
-Pending LOI — Ageing,,Ajmer,1Y-2Y,13
-Pending LOI — Ageing,,Ajmer,2Y-3Y,79
-Pending LOI — Ageing,,Ajmer,3-5Y,35
-Pending LOI — Ageing,,Ajmer,5Y+,63
+PSU Commissioning,Sep'26,Ajmer,IOC RO,0
+PSU Commissioning,Sep'26,Ajmer,IOC KSK,0
+PSU Commissioning,Sep'26,Ajmer,IOC Total,0
+PSU Commissioning,Sep'26,Ajmer,BPC RO,0
+PSU Commissioning,Sep'26,Ajmer,BPC KSK,0
+PSU Commissioning,Sep'26,Ajmer,BPC Total,0
+PSU Commissioning,Sep'26,Ajmer,HPC RO,1
+PSU Commissioning,Sep'26,Ajmer,HPC KSK,1
+PSU Commissioning,Sep'26,Ajmer,HPC Total,2
+PSU Commissioning,Sep'26,Ajmer,Total RO,1
+PSU Commissioning,Sep'26,Ajmer,Total KSK,1
+PSU Commissioning,Sep'26,Ajmer,Total Total,2
+PSU Commissioning,Sep'26,Ajmer,%IOC Comm RO,0.0
+PSU Commissioning,Sep'26,Ajmer,%IOC Comm KSK,0.0
+PSU Commissioning,Sep'26,Ajmer,%IOC Comm Total,0.0
+PSU Commissioning,Sep'26,Ajmer,Class A,0
+PSU Commissioning,Sep'26,Ajmer,Class B,0
+PSU Commissioning,Sep'26,Ajmer,Class D1,0
+PSU Commissioning,Sep'26,Jaipur,IOC RO,0
+PSU Commissioning,Sep'26,Jaipur,IOC KSK,0
+PSU Commissioning,Sep'26,Jaipur,IOC Total,0
+PSU Commissioning,Sep'26,Jaipur,BPC RO,0
+PSU Commissioning,Sep'26,Jaipur,BPC KSK,0
+PSU Commissioning,Sep'26,Jaipur,BPC Total,0
+PSU Commissioning,Sep'26,Jaipur,HPC RO,0
+PSU Commissioning,Sep'26,Jaipur,HPC KSK,1
+PSU Commissioning,Sep'26,Jaipur,HPC Total,1
+PSU Commissioning,Sep'26,Jaipur,Total RO,0
+PSU Commissioning,Sep'26,Jaipur,Total KSK,1
+PSU Commissioning,Sep'26,Jaipur,Total Total,1
+PSU Commissioning,Sep'26,Jaipur,%IOC Comm RO,0
+PSU Commissioning,Sep'26,Jaipur,%IOC Comm KSK,0.0
+PSU Commissioning,Sep'26,Jaipur,%IOC Comm Total,0.0
+PSU Commissioning,Sep'26,Jaipur,Class A,0
+PSU Commissioning,Sep'26,Jaipur,Class B,0
+PSU Commissioning,Sep'26,Jaipur,Class D1,0
+PSU Commissioning,Sep'26,Jodhpur,IOC RO,2
+PSU Commissioning,Sep'26,Jodhpur,IOC KSK,0
+PSU Commissioning,Sep'26,Jodhpur,IOC Total,2
+PSU Commissioning,Sep'26,Jodhpur,BPC RO,0
+PSU Commissioning,Sep'26,Jodhpur,BPC KSK,0
+PSU Commissioning,Sep'26,Jodhpur,BPC Total,0
+PSU Commissioning,Sep'26,Jodhpur,HPC RO,0
+PSU Commissioning,Sep'26,Jodhpur,HPC KSK,0
+PSU Commissioning,Sep'26,Jodhpur,HPC Total,0
+PSU Commissioning,Sep'26,Jodhpur,Total RO,2
+PSU Commissioning,Sep'26,Jodhpur,Total KSK,0
+PSU Commissioning,Sep'26,Jodhpur,Total Total,2
+PSU Commissioning,Sep'26,Jodhpur,%IOC Comm RO,100.0
+PSU Commissioning,Sep'26,Jodhpur,%IOC Comm KSK,0
+PSU Commissioning,Sep'26,Jodhpur,%IOC Comm Total,100.0
+PSU Commissioning,Sep'26,Jodhpur,Class A,0
+PSU Commissioning,Sep'26,Jodhpur,Class B,0
+PSU Commissioning,Sep'26,Jodhpur,Class D1,0
+PSU Commissioning,Sep'26,Udaipur,IOC RO,1
+PSU Commissioning,Sep'26,Udaipur,IOC KSK,1
+PSU Commissioning,Sep'26,Udaipur,IOC Total,2
+PSU Commissioning,Sep'26,Udaipur,BPC RO,0
+PSU Commissioning,Sep'26,Udaipur,BPC KSK,0
+PSU Commissioning,Sep'26,Udaipur,BPC Total,0
+PSU Commissioning,Sep'26,Udaipur,HPC RO,0
+PSU Commissioning,Sep'26,Udaipur,HPC KSK,1
+PSU Commissioning,Sep'26,Udaipur,HPC Total,1
+PSU Commissioning,Sep'26,Udaipur,Total RO,1
+PSU Commissioning,Sep'26,Udaipur,Total KSK,2
+PSU Commissioning,Sep'26,Udaipur,Total Total,3
+PSU Commissioning,Sep'26,Udaipur,%IOC Comm RO,100.0
+PSU Commissioning,Sep'26,Udaipur,%IOC Comm KSK,50.0
+PSU Commissioning,Sep'26,Udaipur,%IOC Comm Total,66.7
+PSU Commissioning,Sep'26,Udaipur,Class A,0
+PSU Commissioning,Sep'26,Udaipur,Class B,0
+PSU Commissioning,Sep'26,Udaipur,Class D1,1
+PSU Commissioning,Sep'26,RSO,IOC RO,3
+PSU Commissioning,Sep'26,RSO,IOC KSK,1
+PSU Commissioning,Sep'26,RSO,IOC Total,4
+PSU Commissioning,Sep'26,RSO,BPC RO,0
+PSU Commissioning,Sep'26,RSO,BPC KSK,0
+PSU Commissioning,Sep'26,RSO,BPC Total,0
+PSU Commissioning,Sep'26,RSO,HPC RO,1
+PSU Commissioning,Sep'26,RSO,HPC KSK,3
+PSU Commissioning,Sep'26,RSO,HPC Total,4
+PSU Commissioning,Sep'26,RSO,Total RO,4
+PSU Commissioning,Sep'26,RSO,Total KSK,4
+PSU Commissioning,Sep'26,RSO,Total Total,8
+PSU Commissioning,Sep'26,RSO,%IOC Comm RO,75.0
+PSU Commissioning,Sep'26,RSO,%IOC Comm KSK,25.0
+PSU Commissioning,Sep'26,RSO,%IOC Comm Total,50.0
+PSU Commissioning,Sep'26,RSO,Class A,0
+PSU Commissioning,Sep'26,RSO,Class B,0
+PSU Commissioning,Sep'26,RSO,Class D1,1
+PSU Commissioning,Apr-Sep'26,Ajmer,IOC RO,6
+PSU Commissioning,Apr-Sep'26,Ajmer,IOC KSK,2
+PSU Commissioning,Apr-Sep'26,Ajmer,IOC Total,8
+PSU Commissioning,Apr-Sep'26,Ajmer,BPC RO,6
+PSU Commissioning,Apr-Sep'26,Ajmer,BPC KSK,0
+PSU Commissioning,Apr-Sep'26,Ajmer,BPC Total,6
+PSU Commissioning,Apr-Sep'26,Ajmer,HPC RO,1
+PSU Commissioning,Apr-Sep'26,Ajmer,HPC KSK,1
+PSU Commissioning,Apr-Sep'26,Ajmer,HPC Total,2
+PSU Commissioning,Apr-Sep'26,Ajmer,Total RO,13
+PSU Commissioning,Apr-Sep'26,Ajmer,Total KSK,3
+PSU Commissioning,Apr-Sep'26,Ajmer,Total Total,16
+PSU Commissioning,Apr-Sep'26,Ajmer,%IOC Comm RO,46.2
+PSU Commissioning,Apr-Sep'26,Ajmer,%IOC Comm KSK,66.7
+PSU Commissioning,Apr-Sep'26,Ajmer,%IOC Comm Total,50.0
+PSU Commissioning,Apr-Sep'26,Ajmer,Class A,0
+PSU Commissioning,Apr-Sep'26,Ajmer,Class B,0
+PSU Commissioning,Apr-Sep'26,Ajmer,Class D1,4
+PSU Commissioning,Apr-Sep'26,Jaipur,IOC RO,7
+PSU Commissioning,Apr-Sep'26,Jaipur,IOC KSK,1
+PSU Commissioning,Apr-Sep'26,Jaipur,IOC Total,8
+PSU Commissioning,Apr-Sep'26,Jaipur,BPC RO,5
+PSU Commissioning,Apr-Sep'26,Jaipur,BPC KSK,1
+PSU Commissioning,Apr-Sep'26,Jaipur,BPC Total,6
+PSU Commissioning,Apr-Sep'26,Jaipur,HPC RO,4
+PSU Commissioning,Apr-Sep'26,Jaipur,HPC KSK,1
+PSU Commissioning,Apr-Sep'26,Jaipur,HPC Total,5
+PSU Commissioning,Apr-Sep'26,Jaipur,Total RO,16
+PSU Commissioning,Apr-Sep'26,Jaipur,Total KSK,3
+PSU Commissioning,Apr-Sep'26,Jaipur,Total Total,19
+PSU Commissioning,Apr-Sep'26,Jaipur,%IOC Comm RO,43.8
+PSU Commissioning,Apr-Sep'26,Jaipur,%IOC Comm KSK,33.3
+PSU Commissioning,Apr-Sep'26,Jaipur,%IOC Comm Total,42.1
+PSU Commissioning,Apr-Sep'26,Jaipur,Class A,0
+PSU Commissioning,Apr-Sep'26,Jaipur,Class B,0
+PSU Commissioning,Apr-Sep'26,Jaipur,Class D1,2
+PSU Commissioning,Apr-Sep'26,Jodhpur,IOC RO,14
+PSU Commissioning,Apr-Sep'26,Jodhpur,IOC KSK,0
+PSU Commissioning,Apr-Sep'26,Jodhpur,IOC Total,14
+PSU Commissioning,Apr-Sep'26,Jodhpur,BPC RO,3
+PSU Commissioning,Apr-Sep'26,Jodhpur,BPC KSK,1
+PSU Commissioning,Apr-Sep'26,Jodhpur,BPC Total,4
+PSU Commissioning,Apr-Sep'26,Jodhpur,HPC RO,1
+PSU Commissioning,Apr-Sep'26,Jodhpur,HPC KSK,0
+PSU Commissioning,Apr-Sep'26,Jodhpur,HPC Total,1
+PSU Commissioning,Apr-Sep'26,Jodhpur,Total RO,18
+PSU Commissioning,Apr-Sep'26,Jodhpur,Total KSK,1
+PSU Commissioning,Apr-Sep'26,Jodhpur,Total Total,19
+PSU Commissioning,Apr-Sep'26,Jodhpur,%IOC Comm RO,77.8
+PSU Commissioning,Apr-Sep'26,Jodhpur,%IOC Comm KSK,0.0
+PSU Commissioning,Apr-Sep'26,Jodhpur,%IOC Comm Total,73.7
+PSU Commissioning,Apr-Sep'26,Jodhpur,Class A,0
+PSU Commissioning,Apr-Sep'26,Jodhpur,Class B,1
+PSU Commissioning,Apr-Sep'26,Jodhpur,Class D1,9
+PSU Commissioning,Apr-Sep'26,Udaipur,IOC RO,4
+PSU Commissioning,Apr-Sep'26,Udaipur,IOC KSK,2
+PSU Commissioning,Apr-Sep'26,Udaipur,IOC Total,6
+PSU Commissioning,Apr-Sep'26,Udaipur,BPC RO,4
+PSU Commissioning,Apr-Sep'26,Udaipur,BPC KSK,0
+PSU Commissioning,Apr-Sep'26,Udaipur,BPC Total,4
+PSU Commissioning,Apr-Sep'26,Udaipur,HPC RO,1
+PSU Commissioning,Apr-Sep'26,Udaipur,HPC KSK,2
+PSU Commissioning,Apr-Sep'26,Udaipur,HPC Total,3
+PSU Commissioning,Apr-Sep'26,Udaipur,Total RO,9
+PSU Commissioning,Apr-Sep'26,Udaipur,Total KSK,4
+PSU Commissioning,Apr-Sep'26,Udaipur,Total Total,13
+PSU Commissioning,Apr-Sep'26,Udaipur,%IOC Comm RO,44.4
+PSU Commissioning,Apr-Sep'26,Udaipur,%IOC Comm KSK,50.0
+PSU Commissioning,Apr-Sep'26,Udaipur,%IOC Comm Total,46.2
+PSU Commissioning,Apr-Sep'26,Udaipur,Class A,0
+PSU Commissioning,Apr-Sep'26,Udaipur,Class B,0
+PSU Commissioning,Apr-Sep'26,Udaipur,Class D1,2
+PSU Commissioning,Apr-Sep'26,RSO,IOC RO,31
+PSU Commissioning,Apr-Sep'26,RSO,IOC KSK,5
+PSU Commissioning,Apr-Sep'26,RSO,IOC Total,36
+PSU Commissioning,Apr-Sep'26,RSO,BPC RO,18
+PSU Commissioning,Apr-Sep'26,RSO,BPC KSK,2
+PSU Commissioning,Apr-Sep'26,RSO,BPC Total,20
+PSU Commissioning,Apr-Sep'26,RSO,HPC RO,7
+PSU Commissioning,Apr-Sep'26,RSO,HPC KSK,4
+PSU Commissioning,Apr-Sep'26,RSO,HPC Total,11
+PSU Commissioning,Apr-Sep'26,RSO,Total RO,56
+PSU Commissioning,Apr-Sep'26,RSO,Total KSK,11
+PSU Commissioning,Apr-Sep'26,RSO,Total Total,67
+PSU Commissioning,Apr-Sep'26,RSO,%IOC Comm RO,55.4
+PSU Commissioning,Apr-Sep'26,RSO,%IOC Comm KSK,45.5
+PSU Commissioning,Apr-Sep'26,RSO,%IOC Comm Total,53.7
+PSU Commissioning,Apr-Sep'26,RSO,Class A,0
+PSU Commissioning,Apr-Sep'26,RSO,Class B,1
+PSU Commissioning,Apr-Sep'26,RSO,Class D1,17
+Oct 2026 Plan,,Ajmer,Target RO,4
+Oct 2026 Plan,,Ajmer,Target KSK,0
+Oct 2026 Plan,,Ajmer,Target Total,4
+Oct 2026 Plan,,Ajmer,Target A,0
+Oct 2026 Plan,,Ajmer,Target B,1
+Oct 2026 Plan,,Ajmer,Target D1,1
+Oct 2026 Plan,,Jaipur,Target RO,5
+Oct 2026 Plan,,Jaipur,Target KSK,0
+Oct 2026 Plan,,Jaipur,Target Total,5
+Oct 2026 Plan,,Jaipur,Target A,0
+Oct 2026 Plan,,Jaipur,Target B,0
+Oct 2026 Plan,,Jaipur,Target D1,2
+Oct 2026 Plan,,Jodhpur,Target RO,2
+Oct 2026 Plan,,Jodhpur,Target KSK,1
+Oct 2026 Plan,,Jodhpur,Target Total,3
+Oct 2026 Plan,,Jodhpur,Target A,0
+Oct 2026 Plan,,Jodhpur,Target B,0
+Oct 2026 Plan,,Jodhpur,Target D1,1
+Oct 2026 Plan,,Udaipur,Target RO,2
+Oct 2026 Plan,,Udaipur,Target KSK,0
+Oct 2026 Plan,,Udaipur,Target Total,2
+Oct 2026 Plan,,Udaipur,Target A,0
+Oct 2026 Plan,,Udaipur,Target B,0
+Oct 2026 Plan,,Udaipur,Target D1,1
+Oct 2026 Plan,,RSO,Target RO,13
+Oct 2026 Plan,,RSO,Target KSK,1
+Oct 2026 Plan,,RSO,Target Total,14
+Oct 2026 Plan,,RSO,Target A,0
+Oct 2026 Plan,,RSO,Target B,1
+Oct 2026 Plan,,RSO,Target D1,5
+Pending LOI — Ageing,,Ajmer,0-6 Months,11
+Pending LOI — Ageing,,Ajmer,6M-1Y,7
+Pending LOI — Ageing,,Ajmer,1Y-2Y,15
+Pending LOI — Ageing,,Ajmer,2Y-3Y,77
+Pending LOI — Ageing,,Ajmer,3-5Y,30
+Pending LOI — Ageing,,Ajmer,5Y+,67
 Pending LOI — Ageing,,Ajmer,Grand Total,207
-Pending LOI — Ageing,,Jaipur,0-6 Months,12
+Pending LOI — Ageing,,Jaipur,0-6 Months,15
 Pending LOI — Ageing,,Jaipur,6M-1Y,25
-Pending LOI — Ageing,,Jaipur,1Y-2Y,21
-Pending LOI — Ageing,,Jaipur,2Y-3Y,82
-Pending LOI — Ageing,,Jaipur,3-5Y,77
-Pending LOI — Ageing,,Jaipur,5Y+,107
-Pending LOI — Ageing,,Jaipur,Grand Total,324
-Pending LOI — Ageing,,Jodhpur,0-6 Months,8
-Pending LOI — Ageing,,Jodhpur,6M-1Y,13
+Pending LOI — Ageing,,Jaipur,1Y-2Y,14
+Pending LOI — Ageing,,Jaipur,2Y-3Y,86
+Pending LOI — Ageing,,Jaipur,3-5Y,73
+Pending LOI — Ageing,,Jaipur,5Y+,114
+Pending LOI — Ageing,,Jaipur,Grand Total,327
+Pending LOI — Ageing,,Jodhpur,0-6 Months,11
+Pending LOI — Ageing,,Jodhpur,6M-1Y,10
 Pending LOI — Ageing,,Jodhpur,1Y-2Y,11
 Pending LOI — Ageing,,Jodhpur,2Y-3Y,58
 Pending LOI — Ageing,,Jodhpur,3-5Y,11
 Pending LOI — Ageing,,Jodhpur,5Y+,25
 Pending LOI — Ageing,,Jodhpur,Grand Total,126
 Pending LOI — Ageing,,Udaipur,0-6 Months,1
-Pending LOI — Ageing,,Udaipur,6M-1Y,5
-Pending LOI — Ageing,,Udaipur,1Y-2Y,14
-Pending LOI — Ageing,,Udaipur,2Y-3Y,40
-Pending LOI — Ageing,,Udaipur,3-5Y,19
-Pending LOI — Ageing,,Udaipur,5Y+,68
-Pending LOI — Ageing,,Udaipur,Grand Total,147
-Pending LOI — Ageing,,RSO,0-6 Months,29
-Pending LOI — Ageing,,RSO,6M-1Y,52
-Pending LOI — Ageing,,RSO,1Y-2Y,59
-Pending LOI — Ageing,,RSO,2Y-3Y,259
-Pending LOI — Ageing,,RSO,3-5Y,142
-Pending LOI — Ageing,,RSO,5Y+,263
-Pending LOI — Ageing,,RSO,Grand Total,804
+Pending LOI — Ageing,,Udaipur,6M-1Y,4
+Pending LOI — Ageing,,Udaipur,1Y-2Y,13
+Pending LOI — Ageing,,Udaipur,2Y-3Y,42
+Pending LOI — Ageing,,Udaipur,3-5Y,17
+Pending LOI — Ageing,,Udaipur,5Y+,69
+Pending LOI — Ageing,,Udaipur,Grand Total,146
+Pending LOI — Ageing,,RSO,0-6 Months,38
+Pending LOI — Ageing,,RSO,6M-1Y,46
+Pending LOI — Ageing,,RSO,1Y-2Y,53
+Pending LOI — Ageing,,RSO,2Y-3Y,263
+Pending LOI — Ageing,,RSO,3-5Y,131
+Pending LOI — Ageing,,RSO,5Y+,275
+Pending LOI — Ageing,,RSO,Grand Total,806
 Pending LOI — By Class,,Ajmer,Class A,0
-Pending LOI — By Class,,Ajmer,Class B,13
-Pending LOI — By Class,,Ajmer,Class C,35
-Pending LOI — By Class,,Ajmer,Class D1,56
-Pending LOI — By Class,,Ajmer,Class D2,59
-Pending LOI — By Class,,Ajmer,Class E,44
+Pending LOI — By Class,,Ajmer,Class B,14
+Pending LOI — By Class,,Ajmer,Class C,31
+Pending LOI — By Class,,Ajmer,Class D1,59
+Pending LOI — By Class,,Ajmer,Class D2,58
+Pending LOI — By Class,,Ajmer,Class E,45
 Pending LOI — By Class,,Ajmer,Grand Total,207
 Pending LOI — By Class,,Jaipur,Class A,12
 Pending LOI — By Class,,Jaipur,Class B,33
-Pending LOI — By Class,,Jaipur,Class C,46
+Pending LOI — By Class,,Jaipur,Class C,45
 Pending LOI — By Class,,Jaipur,Class D1,58
-Pending LOI — By Class,,Jaipur,Class D2,82
-Pending LOI — By Class,,Jaipur,Class E,93
-Pending LOI — By Class,,Jaipur,Grand Total,324
+Pending LOI — By Class,,Jaipur,Class D2,84
+Pending LOI — By Class,,Jaipur,Class E,95
+Pending LOI — By Class,,Jaipur,Grand Total,327
 Pending LOI — By Class,,Jodhpur,Class A,0
 Pending LOI — By Class,,Jodhpur,Class B,22
 Pending LOI — By Class,,Jodhpur,Class C,7
@@ -282,108 +267,103 @@ Pending LOI — By Class,,Jodhpur,Class E,29
 Pending LOI — By Class,,Jodhpur,Grand Total,126
 Pending LOI — By Class,,Udaipur,Class A,0
 Pending LOI — By Class,,Udaipur,Class B,9
-Pending LOI — By Class,,Udaipur,Class C,43
+Pending LOI — By Class,,Udaipur,Class C,42
 Pending LOI — By Class,,Udaipur,Class D1,44
 Pending LOI — By Class,,Udaipur,Class D2,16
 Pending LOI — By Class,,Udaipur,Class E,35
-Pending LOI — By Class,,Udaipur,Grand Total,147
+Pending LOI — By Class,,Udaipur,Grand Total,146
 Pending LOI — By Class,,RSO,Class A,12
-Pending LOI — By Class,,RSO,Class B,77
-Pending LOI — By Class,,RSO,Class C,131
-Pending LOI — By Class,,RSO,Class D1,194
-Pending LOI — By Class,,RSO,Class D2,189
-Pending LOI — By Class,,RSO,Class E,201
-Pending LOI — By Class,,RSO,Grand Total,804
-NRO — Ageing Analysis,,Ajmer,YTS as on 01.09.26,4
-NRO — Ageing Analysis,,Ajmer,0-3 Months,3
+Pending LOI — By Class,,RSO,Class B,78
+Pending LOI — By Class,,RSO,Class C,125
+Pending LOI — By Class,,RSO,Class D1,197
+Pending LOI — By Class,,RSO,Class D2,190
+Pending LOI — By Class,,RSO,Class E,204
+Pending LOI — By Class,,RSO,Grand Total,806
+NRO — Ageing Analysis,,Ajmer,YTS as on 01.10.26,3
+NRO — Ageing Analysis,,Ajmer,0-3 Months,2
 NRO — Ageing Analysis,,Ajmer,3-6 Months,1
 NRO — Ageing Analysis,,Ajmer,6-12 Months,0
 NRO — Ageing Analysis,,Ajmer,More than 1 Year,0
-NRO — Ageing Analysis,,Jaipur,YTS as on 01.09.26,9
-NRO — Ageing Analysis,,Jaipur,0-3 Months,4
+NRO — Ageing Analysis,,Jaipur,YTS as on 01.10.26,6
+NRO — Ageing Analysis,,Jaipur,0-3 Months,3
 NRO — Ageing Analysis,,Jaipur,3-6 Months,0
-NRO — Ageing Analysis,,Jaipur,6-12 Months,5
+NRO — Ageing Analysis,,Jaipur,6-12 Months,3
 NRO — Ageing Analysis,,Jaipur,More than 1 Year,0
-NRO — Ageing Analysis,,Jodhpur,YTS as on 01.09.26,15
+NRO — Ageing Analysis,,Jodhpur,YTS as on 01.10.26,13
 NRO — Ageing Analysis,,Jodhpur,0-3 Months,8
-NRO — Ageing Analysis,,Jodhpur,3-6 Months,5
-NRO — Ageing Analysis,,Jodhpur,6-12 Months,2
+NRO — Ageing Analysis,,Jodhpur,3-6 Months,4
+NRO — Ageing Analysis,,Jodhpur,6-12 Months,1
 NRO — Ageing Analysis,,Jodhpur,More than 1 Year,0
-NRO — Ageing Analysis,,Udaipur,YTS as on 01.09.26,8
-NRO — Ageing Analysis,,Udaipur,0-3 Months,1
-NRO — Ageing Analysis,,Udaipur,3-6 Months,3
-NRO — Ageing Analysis,,Udaipur,6-12 Months,2
-NRO — Ageing Analysis,,Udaipur,More than 1 Year,2
-NRO — Ageing Analysis,,RSO,YTS as on 01.09.26,36
+NRO — Ageing Analysis,,Udaipur,YTS as on 01.10.26,7
+NRO — Ageing Analysis,,Udaipur,0-3 Months,3
+NRO — Ageing Analysis,,Udaipur,3-6 Months,2
+NRO — Ageing Analysis,,Udaipur,6-12 Months,1
+NRO — Ageing Analysis,,Udaipur,More than 1 Year,1
+NRO — Ageing Analysis,,RSO,YTS as on 01.10.26,29
 NRO — Ageing Analysis,,RSO,0-3 Months,16
-NRO — Ageing Analysis,,RSO,3-6 Months,9
-NRO — Ageing Analysis,,RSO,6-12 Months,9
-NRO — Ageing Analysis,,RSO,More than 1 Year,2
-NRO — Month-wise Commitment,,Ajmer,YTS as on 01.09.26,4
-NRO — Month-wise Commitment,,Ajmer,Sep'26,2
+NRO — Ageing Analysis,,RSO,3-6 Months,7
+NRO — Ageing Analysis,,RSO,6-12 Months,5
+NRO — Ageing Analysis,,RSO,More than 1 Year,1
+NRO — Month-wise Commitment,,Ajmer,YTS as on 01.10.26,3
 NRO — Month-wise Commitment,,Ajmer,Oct'26,2
 NRO — Month-wise Commitment,,Ajmer,Nov'26,0
-NRO — Month-wise Commitment,,Ajmer,Dec'26,0
-NRO — Month-wise Commitment,,Jaipur,YTS as on 01.09.26,9
-NRO — Month-wise Commitment,,Jaipur,Sep'26,5
-NRO — Month-wise Commitment,,Jaipur,Oct'26,2
+NRO — Month-wise Commitment,,Ajmer,Dec'26,1
+NRO — Month-wise Commitment,,Jaipur,YTS as on 01.10.26,6
+NRO — Month-wise Commitment,,Jaipur,Oct'26,4
 NRO — Month-wise Commitment,,Jaipur,Nov'26,2
 NRO — Month-wise Commitment,,Jaipur,Dec'26,0
-NRO — Month-wise Commitment,,Jodhpur,YTS as on 01.09.26,15
-NRO — Month-wise Commitment,,Jodhpur,Sep'26,4
-NRO — Month-wise Commitment,,Jodhpur,Oct'26,10
-NRO — Month-wise Commitment,,Jodhpur,Nov'26,1
-NRO — Month-wise Commitment,,Jodhpur,Dec'26,0
-NRO — Month-wise Commitment,,Udaipur,YTS as on 01.09.26,8
-NRO — Month-wise Commitment,,Udaipur,Sep'26,2
-NRO — Month-wise Commitment,,Udaipur,Oct'26,4
+NRO — Month-wise Commitment,,Jodhpur,YTS as on 01.10.26,13
+NRO — Month-wise Commitment,,Jodhpur,Oct'26,5
+NRO — Month-wise Commitment,,Jodhpur,Nov'26,5
+NRO — Month-wise Commitment,,Jodhpur,Dec'26,3
+NRO — Month-wise Commitment,,Udaipur,YTS as on 01.10.26,7
+NRO — Month-wise Commitment,,Udaipur,Oct'26,3
 NRO — Month-wise Commitment,,Udaipur,Nov'26,2
-NRO — Month-wise Commitment,,Udaipur,Dec'26,0
-NRO — Month-wise Commitment,,RSO,YTS as on 01.09.26,36
-NRO — Month-wise Commitment,,RSO,Sep'26,13
-NRO — Month-wise Commitment,,RSO,Oct'26,18
-NRO — Month-wise Commitment,,RSO,Nov'26,5
-NRO — Month-wise Commitment,,RSO,Dec'26,0
-NFR Facilities Status,,Ajmer,Facilities to be Updated,293
+NRO — Month-wise Commitment,,Udaipur,Dec'26,2
+NRO — Month-wise Commitment,,RSO,YTS as on 01.10.26,29
+NRO — Month-wise Commitment,,RSO,Oct'26,14
+NRO — Month-wise Commitment,,RSO,Nov'26,9
+NRO — Month-wise Commitment,,RSO,Dec'26,6
+NFR Facilities Status,,Ajmer,Facilities to be Updated,301
 NFR Facilities Status,,Ajmer,Facility via HO Contracts,171
-NFR Facilities Status,,Ajmer,Facility via SO Contracts,122
-NFR Facilities Status,,Ajmer,SO Contracts Approved,119
-NFR Facilities Status,,Ajmer,% Updation by SOs,97.5
-NFR Facilities Status,,Ajmer,Revenue by SO (Lac),435.87
-NFR Facilities Status,,Ajmer,Revenue by HO (Lac),403.67
-NFR Facilities Status,,Ajmer,Total Revenue (Lac),840
-NFR Facilities Status,,Jaipur,Facilities to be Updated,285
+NFR Facilities Status,,Ajmer,Facility via SO Contracts,130
+NFR Facilities Status,,Ajmer,SO Contracts Approved,124
+NFR Facilities Status,,Ajmer,% Updation by SOs,95.4
+NFR Facilities Status,,Ajmer,Revenue by SO (Lac),
+NFR Facilities Status,,Ajmer,Revenue by HO (Lac),
+NFR Facilities Status,,Ajmer,Total Revenue (Lac),
+NFR Facilities Status,,Jaipur,Facilities to be Updated,305
 NFR Facilities Status,,Jaipur,Facility via HO Contracts,20
-NFR Facilities Status,,Jaipur,Facility via SO Contracts,265
-NFR Facilities Status,,Jaipur,SO Contracts Approved,261
-NFR Facilities Status,,Jaipur,% Updation by SOs,98.5
+NFR Facilities Status,,Jaipur,Facility via SO Contracts,285
+NFR Facilities Status,,Jaipur,SO Contracts Approved,231
+NFR Facilities Status,,Jaipur,% Updation by SOs,81.1
 NFR Facilities Status,,Jaipur,Revenue by SO (Lac),
 NFR Facilities Status,,Jaipur,Revenue by HO (Lac),
 NFR Facilities Status,,Jaipur,Total Revenue (Lac),
 NFR Facilities Status,,Jodhpur,Facilities to be Updated,254
 NFR Facilities Status,,Jodhpur,Facility via HO Contracts,0
 NFR Facilities Status,,Jodhpur,Facility via SO Contracts,254
-NFR Facilities Status,,Jodhpur,SO Contracts Approved,262
-NFR Facilities Status,,Jodhpur,% Updation by SOs,100
+NFR Facilities Status,,Jodhpur,SO Contracts Approved,248
+NFR Facilities Status,,Jodhpur,% Updation by SOs,97.6
 NFR Facilities Status,,Jodhpur,Revenue by SO (Lac),
 NFR Facilities Status,,Jodhpur,Revenue by HO (Lac),
 NFR Facilities Status,,Jodhpur,Total Revenue (Lac),
-NFR Facilities Status,,Udaipur,Facilities to be Updated,332
+NFR Facilities Status,,Udaipur,Facilities to be Updated,335
 NFR Facilities Status,,Udaipur,Facility via HO Contracts,76
-NFR Facilities Status,,Udaipur,Facility via SO Contracts,256
-NFR Facilities Status,,Udaipur,SO Contracts Approved,254
-NFR Facilities Status,,Udaipur,% Updation by SOs,99.2
+NFR Facilities Status,,Udaipur,Facility via SO Contracts,259
+NFR Facilities Status,,Udaipur,SO Contracts Approved,244
+NFR Facilities Status,,Udaipur,% Updation by SOs,94.2
 NFR Facilities Status,,Udaipur,Revenue by SO (Lac),
 NFR Facilities Status,,Udaipur,Revenue by HO (Lac),
 NFR Facilities Status,,Udaipur,Total Revenue (Lac),
-NFR Facilities Status,,RSO,Facilities to be Updated,1164
+NFR Facilities Status,,RSO,Facilities to be Updated,1195
 NFR Facilities Status,,RSO,Facility via HO Contracts,267
-NFR Facilities Status,,RSO,Facility via SO Contracts,897
-NFR Facilities Status,,RSO,SO Contracts Approved,896
-NFR Facilities Status,,RSO,% Updation by SOs,99.09
-NFR Facilities Status,,RSO,Revenue by SO (Lac),435.87
-NFR Facilities Status,,RSO,Revenue by HO (Lac),403.67
-NFR Facilities Status,,RSO,Total Revenue (Lac),840
+NFR Facilities Status,,RSO,Facility via SO Contracts,928
+NFR Facilities Status,,RSO,SO Contracts Approved,847
+NFR Facilities Status,,RSO,% Updation by SOs,91.3
+NFR Facilities Status,,RSO,Revenue by SO (Lac),494.30
+NFR Facilities Status,,RSO,Revenue by HO (Lac),471.38
+NFR Facilities Status,,RSO,Total Revenue (Lac),966
 EVCS Commissioning (FAME-II),,Ajmer,Target 2024-25,59
 EVCS Commissioning (FAME-II),,Ajmer,PESO CA Applied,59
 EVCS Commissioning (FAME-II),,Ajmer,% PESO Applied vs MOU,100
@@ -463,376 +443,376 @@ DAR 24-25,,Ajmer,Approved,609
 DAR 24-25,,Ajmer,Returned/Rejected,0
 DAR 24-25,,Ajmer,Escalated to DO Mgr/DRSH,0
 DAR 24-25,,Ajmer,In Draft,0
-DAR 24-25,,Ajmer,Not Initiated,8
+DAR 24-25,,Ajmer,Not Initiated,3
 DAR 24-25,,Ajmer,Pending Approval,4
-DAR 24-25,,Ajmer,Grand Total,621
-DAR 24-25,,Jaipur,Approved,724
+DAR 24-25,,Ajmer,Grand Total,616
+DAR 24-25,,Jaipur,Approved,725
 DAR 24-25,,Jaipur,Returned/Rejected,0
 DAR 24-25,,Jaipur,Escalated to DO Mgr/DRSH,5
 DAR 24-25,,Jaipur,In Draft,1
-DAR 24-25,,Jaipur,Not Initiated,35
-DAR 24-25,,Jaipur,Pending Approval,18
-DAR 24-25,,Jaipur,Grand Total,783
-DAR 24-25,,Jodhpur,Approved,670
+DAR 24-25,,Jaipur,Not Initiated,17
+DAR 24-25,,Jaipur,Pending Approval,19
+DAR 24-25,,Jaipur,Grand Total,767
+DAR 24-25,,Jodhpur,Approved,669
 DAR 24-25,,Jodhpur,Returned/Rejected,0
 DAR 24-25,,Jodhpur,Escalated to DO Mgr/DRSH,0
 DAR 24-25,,Jodhpur,In Draft,0
-DAR 24-25,,Jodhpur,Not Initiated,12
+DAR 24-25,,Jodhpur,Not Initiated,7
 DAR 24-25,,Jodhpur,Pending Approval,4
-DAR 24-25,,Jodhpur,Grand Total,686
+DAR 24-25,,Jodhpur,Grand Total,680
 DAR 24-25,,Udaipur,Approved,569
-DAR 24-25,,Udaipur,Returned/Rejected,1
+DAR 24-25,,Udaipur,Returned/Rejected,0
 DAR 24-25,,Udaipur,Escalated to DO Mgr/DRSH,14
 DAR 24-25,,Udaipur,In Draft,1
-DAR 24-25,,Udaipur,Not Initiated,18
-DAR 24-25,,Udaipur,Pending Approval,5
-DAR 24-25,,Udaipur,Grand Total,608
+DAR 24-25,,Udaipur,Not Initiated,6
+DAR 24-25,,Udaipur,Pending Approval,4
+DAR 24-25,,Udaipur,Grand Total,594
 DAR 24-25,,RSO,Approved,2572
-DAR 24-25,,RSO,Returned/Rejected,1
+DAR 24-25,,RSO,Returned/Rejected,0
 DAR 24-25,,RSO,Escalated to DO Mgr/DRSH,19
 DAR 24-25,,RSO,In Draft,2
-DAR 24-25,,RSO,Not Initiated,73
+DAR 24-25,,RSO,Not Initiated,33
 DAR 24-25,,RSO,Pending Approval,31
-DAR 24-25,,RSO,Grand Total,2698
-Xtrapower Volume & Conversion,Aug'26,Ajmer,XP Volume CY (TKL),8.3
-Xtrapower Volume & Conversion,Aug'26,Ajmer,XP Volume LY (TKL),6.6
-Xtrapower Volume & Conversion,Aug'26,Ajmer,XP +/- (TKL),1.7
-Xtrapower Volume & Conversion,Aug'26,Ajmer,XP % Growth,25.5
-Xtrapower Volume & Conversion,Aug'26,Ajmer,HSD Volume CY (TKL),39
-Xtrapower Volume & Conversion,Aug'26,Ajmer,HSD Volume LY (TKL),32
-Xtrapower Volume & Conversion,Aug'26,Ajmer,HSD +/- (TKL),7.5
-Xtrapower Volume & Conversion,Aug'26,Ajmer,HSD % Growth,23.5
-Xtrapower Volume & Conversion,Aug'26,Ajmer,XP Conv% CY,21.2
-Xtrapower Volume & Conversion,Aug'26,Ajmer,XP Conv% LY,20.9
-Xtrapower Volume & Conversion,Aug'26,Ajmer,XP Conv +/- pp,0.3
-Xtrapower Volume & Conversion,Aug'26,Jaipur,XP Volume CY (TKL),7.0
-Xtrapower Volume & Conversion,Aug'26,Jaipur,XP Volume LY (TKL),4.7
-Xtrapower Volume & Conversion,Aug'26,Jaipur,XP +/- (TKL),2.3
-Xtrapower Volume & Conversion,Aug'26,Jaipur,XP % Growth,47.6
-Xtrapower Volume & Conversion,Aug'26,Jaipur,HSD Volume CY (TKL),51
-Xtrapower Volume & Conversion,Aug'26,Jaipur,HSD Volume LY (TKL),44
-Xtrapower Volume & Conversion,Aug'26,Jaipur,HSD +/- (TKL),7.1
-Xtrapower Volume & Conversion,Aug'26,Jaipur,HSD % Growth,15.9
-Xtrapower Volume & Conversion,Aug'26,Jaipur,XP Conv% CY,13.7
-Xtrapower Volume & Conversion,Aug'26,Jaipur,XP Conv% LY,10.7
-Xtrapower Volume & Conversion,Aug'26,Jaipur,XP Conv +/- pp,2.9
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,XP Volume CY (TKL),6.8
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,XP Volume LY (TKL),4.9
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,XP +/- (TKL),1.9
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,XP % Growth,39.9
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,HSD Volume CY (TKL),56
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,HSD Volume LY (TKL),45
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,HSD +/- (TKL),10.7
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,HSD % Growth,23.8
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,XP Conv% CY,12.3
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,XP Conv% LY,10.9
-Xtrapower Volume & Conversion,Aug'26,Jodhpur,XP Conv +/- pp,1.4
-Xtrapower Volume & Conversion,Aug'26,Udaipur,XP Volume CY (TKL),10.2
-Xtrapower Volume & Conversion,Aug'26,Udaipur,XP Volume LY (TKL),7.3
-Xtrapower Volume & Conversion,Aug'26,Udaipur,XP +/- (TKL),2.9
-Xtrapower Volume & Conversion,Aug'26,Udaipur,XP % Growth,39.9
-Xtrapower Volume & Conversion,Aug'26,Udaipur,HSD Volume CY (TKL),43
-Xtrapower Volume & Conversion,Aug'26,Udaipur,HSD Volume LY (TKL),34
-Xtrapower Volume & Conversion,Aug'26,Udaipur,HSD +/- (TKL),9.0
-Xtrapower Volume & Conversion,Aug'26,Udaipur,HSD % Growth,26.6
-Xtrapower Volume & Conversion,Aug'26,Udaipur,XP Conv% CY,23.8
-Xtrapower Volume & Conversion,Aug'26,Udaipur,XP Conv% LY,21.5
-Xtrapower Volume & Conversion,Aug'26,Udaipur,XP Conv +/- pp,2.3
-Xtrapower Volume & Conversion,Aug'26,RSO,XP Volume CY (TKL),32.3
-Xtrapower Volume & Conversion,Aug'26,RSO,XP Volume LY (TKL),23.5
-Xtrapower Volume & Conversion,Aug'26,RSO,XP +/- (TKL),8.8
-Xtrapower Volume & Conversion,Aug'26,RSO,XP % Growth,37.4
-Xtrapower Volume & Conversion,Aug'26,RSO,HSD Volume CY (TKL),189
-Xtrapower Volume & Conversion,Aug'26,RSO,HSD Volume LY (TKL),155
-Xtrapower Volume & Conversion,Aug'26,RSO,HSD +/- (TKL),34.2
-Xtrapower Volume & Conversion,Aug'26,RSO,HSD % Growth,22.1
-Xtrapower Volume & Conversion,Aug'26,RSO,XP Conv% CY,17.1
-Xtrapower Volume & Conversion,Aug'26,RSO,XP Conv% LY,15.2
-Xtrapower Volume & Conversion,Aug'26,RSO,XP Conv +/- pp,1.9
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,XP Volume CY (TKL),43.3
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,XP Volume LY (TKL),33.2
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,XP +/- (TKL),10.1
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,XP % Growth,30.4
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,HSD Volume CY (TKL),272
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,HSD Volume LY (TKL),215
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,HSD +/- (TKL),57.1
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,HSD % Growth,26.5
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,XP Conv% CY,15.9
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,XP Conv% LY,15.4
-Xtrapower Volume & Conversion,Apr-Aug'26,Ajmer,XP Conv +/- pp,0.5
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,XP Volume CY (TKL),35.8
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,XP Volume LY (TKL),24.3
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,XP +/- (TKL),11.5
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,XP % Growth,47.5
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,HSD Volume CY (TKL),313
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,HSD Volume LY (TKL),260
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,HSD +/- (TKL),52.7
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,HSD % Growth,20.3
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,XP Conv% CY,11.5
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,XP Conv% LY,9.3
-Xtrapower Volume & Conversion,Apr-Aug'26,Jaipur,XP Conv +/- pp,2.1
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,XP Volume CY (TKL),31.5
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,XP Volume LY (TKL),22.1
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,XP +/- (TKL),9.4
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,XP % Growth,42.5
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,HSD Volume CY (TKL),356
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,HSD Volume LY (TKL),287
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,HSD +/- (TKL),69.1
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,HSD % Growth,24.1
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,XP Conv% CY,8.9
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,XP Conv% LY,7.7
-Xtrapower Volume & Conversion,Apr-Aug'26,Jodhpur,XP Conv +/- pp,1.1
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,XP Volume CY (TKL),51.2
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,XP Volume LY (TKL),35.0
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,XP +/- (TKL),16.2
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,XP % Growth,46.1
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,HSD Volume CY (TKL),272
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,HSD Volume LY (TKL),210
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,HSD +/- (TKL),61.8
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,HSD % Growth,29.4
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,XP Conv% CY,18.8
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,XP Conv% LY,16.7
-Xtrapower Volume & Conversion,Apr-Aug'26,Udaipur,XP Conv +/- pp,2.2
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,XP Volume CY (TKL),161.8
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,XP Volume LY (TKL),114.6
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,XP +/- (TKL),47.2
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,XP % Growth,41.2
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,HSD Volume CY (TKL),1212
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,HSD Volume LY (TKL),972
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,HSD +/- (TKL),240.6
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,HSD % Growth,24.8
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,XP Conv% CY,13.3
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,XP Conv% LY,11.8
-Xtrapower Volume & Conversion,Apr-Aug'26,RSO,XP Conv +/- pp,1.6
-FO Inspection,Apr-Aug'26,Ajmer,Total RO,688
-FO Inspection,Apr-Aug'26,Ajmer,Target for Month,573
-FO Inspection,Apr-Aug'26,Ajmer,Done,717
-FO Inspection,Apr-Aug'26,Ajmer,% Done,125
-FO Inspection,Apr-Aug'26,Jaipur,Total RO,827
-FO Inspection,Apr-Aug'26,Jaipur,Target for Month,689
-FO Inspection,Apr-Aug'26,Jaipur,Done,841
-FO Inspection,Apr-Aug'26,Jaipur,% Done,122
-FO Inspection,Apr-Aug'26,Jodhpur,Total RO,735
-FO Inspection,Apr-Aug'26,Jodhpur,Target for Month,613
-FO Inspection,Apr-Aug'26,Jodhpur,Done,761
-FO Inspection,Apr-Aug'26,Jodhpur,% Done,124
-FO Inspection,Apr-Aug'26,Udaipur,Total RO,650
-FO Inspection,Apr-Aug'26,Udaipur,Target for Month,542
-FO Inspection,Apr-Aug'26,Udaipur,Done,627
-FO Inspection,Apr-Aug'26,Udaipur,% Done,116
-FO Inspection,Apr-Aug'26,RSO,Total RO,2900
-FO Inspection,Apr-Aug'26,RSO,Target for Month,2417
-FO Inspection,Apr-Aug'26,RSO,Done,2946
-FO Inspection,Apr-Aug'26,RSO,% Done,122
-Lubricant Sales (KL),Aug'26,Ajmer,Target Aug'26,51.7
-Lubricant Sales (KL),Aug'26,Ajmer,LY Aug'25,47
-Lubricant Sales (KL),Aug'26,Ajmer,Achievement Aug'26,53.9
-Lubricant Sales (KL),Aug'26,Ajmer,% Achv over Base (Month),14.7
-Lubricant Sales (KL),Aug'26,Ajmer,Cum. 25-26 (Apr-Aug),175
-Lubricant Sales (KL),Aug'26,Ajmer,Cum. 26-27 (Apr-Aug),219.5
-Lubricant Sales (KL),Aug'26,Ajmer,% Cum. Achv over Base,25.4
-Lubricant Sales (KL),Aug'26,Jaipur,Target Aug'26,88
-Lubricant Sales (KL),Aug'26,Jaipur,LY Aug'25,80
-Lubricant Sales (KL),Aug'26,Jaipur,Achievement Aug'26,88.5
-Lubricant Sales (KL),Aug'26,Jaipur,% Achv over Base (Month),10.6
-Lubricant Sales (KL),Aug'26,Jaipur,Cum. 25-26 (Apr-Aug),222
-Lubricant Sales (KL),Aug'26,Jaipur,Cum. 26-27 (Apr-Aug),258.7
-Lubricant Sales (KL),Aug'26,Jaipur,% Cum. Achv over Base,16.5
-Lubricant Sales (KL),Aug'26,Jodhpur,Target Aug'26,77
-Lubricant Sales (KL),Aug'26,Jodhpur,LY Aug'25,70
-Lubricant Sales (KL),Aug'26,Jodhpur,Achievement Aug'26,76.2
-Lubricant Sales (KL),Aug'26,Jodhpur,% Achv over Base (Month),8.9
-Lubricant Sales (KL),Aug'26,Jodhpur,Cum. 25-26 (Apr-Aug),206
-Lubricant Sales (KL),Aug'26,Jodhpur,Cum. 26-27 (Apr-Aug),337.9
-Lubricant Sales (KL),Aug'26,Jodhpur,% Cum. Achv over Base,64.0
-Lubricant Sales (KL),Aug'26,Udaipur,Target Aug'26,58.3
-Lubricant Sales (KL),Aug'26,Udaipur,LY Aug'25,53
-Lubricant Sales (KL),Aug'26,Udaipur,Achievement Aug'26,64.2
-Lubricant Sales (KL),Aug'26,Udaipur,% Achv over Base (Month),21.1
-Lubricant Sales (KL),Aug'26,Udaipur,Cum. 25-26 (Apr-Aug),198
-Lubricant Sales (KL),Aug'26,Udaipur,Cum. 26-27 (Apr-Aug),230.1
-Lubricant Sales (KL),Aug'26,Udaipur,% Cum. Achv over Base,16.2
-Lubricant Sales (KL),Aug'26,RSO,Target Aug'26,275
-Lubricant Sales (KL),Aug'26,RSO,LY Aug'25,250
-Lubricant Sales (KL),Aug'26,RSO,Achievement Aug'26,282.8
-Lubricant Sales (KL),Aug'26,RSO,% Achv over Base (Month),13.1
-Lubricant Sales (KL),Aug'26,RSO,Cum. 25-26 (Apr-Aug),801
-Lubricant Sales (KL),Aug'26,RSO,Cum. 26-27 (Apr-Aug),1046.2
-Lubricant Sales (KL),Aug'26,RSO,% Cum. Achv over Base,30.6
-NIL Selling ROs — Action Taken,Apr-Aug'26,Ajmer,As on 01.04.26,3
-NIL Selling ROs — Action Taken,Apr-Aug'26,Ajmer,Revived,3
-NIL Selling ROs — Action Taken,Apr-Aug'26,Ajmer,Terminated,0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Ajmer,Balance,0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Ajmer,Added (Apr-Aug),5
-NIL Selling ROs — Action Taken,Apr-Aug'26,Ajmer,Terminated (Apr-Aug),0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Ajmer,No Facility at Site (SRH Approval),0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Ajmer,NIL Selling as on 01.09.26,5
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jaipur,As on 01.04.26,23
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jaipur,Revived,8
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jaipur,Terminated,1
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jaipur,Balance,14
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jaipur,Added (Apr-Aug),12
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jaipur,Terminated (Apr-Aug),1
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jaipur,No Facility at Site (SRH Approval),2
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jaipur,NIL Selling as on 01.09.26,26
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jodhpur,As on 01.04.26,10
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jodhpur,Revived,10
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jodhpur,Terminated,0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jodhpur,Balance,0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jodhpur,Added (Apr-Aug),10
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jodhpur,Terminated (Apr-Aug),0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jodhpur,No Facility at Site (SRH Approval),0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Jodhpur,NIL Selling as on 01.09.26,10
-NIL Selling ROs — Action Taken,Apr-Aug'26,Udaipur,As on 01.04.26,14
-NIL Selling ROs — Action Taken,Apr-Aug'26,Udaipur,Revived,10
-NIL Selling ROs — Action Taken,Apr-Aug'26,Udaipur,Terminated,0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Udaipur,Balance,4
-NIL Selling ROs — Action Taken,Apr-Aug'26,Udaipur,Added (Apr-Aug),13
-NIL Selling ROs — Action Taken,Apr-Aug'26,Udaipur,Terminated (Apr-Aug),0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Udaipur,No Facility at Site (SRH Approval),0
-NIL Selling ROs — Action Taken,Apr-Aug'26,Udaipur,NIL Selling as on 01.09.26,17
-NIL Selling ROs — Action Taken,Apr-Aug'26,RSO,As on 01.04.26,50
-NIL Selling ROs — Action Taken,Apr-Aug'26,RSO,Revived,31
-NIL Selling ROs — Action Taken,Apr-Aug'26,RSO,Terminated,1
-NIL Selling ROs — Action Taken,Apr-Aug'26,RSO,Balance,18
-NIL Selling ROs — Action Taken,Apr-Aug'26,RSO,Added (Apr-Aug),40
-NIL Selling ROs — Action Taken,Apr-Aug'26,RSO,Terminated (Apr-Aug),1
-NIL Selling ROs — Action Taken,Apr-Aug'26,RSO,No Facility at Site (SRH Approval),0
-NIL Selling ROs — Action Taken,Apr-Aug'26,RSO,NIL Selling as on 01.09.26,58
-NIL Selling ROs — Ageing,,Ajmer,<6 Months,1
+DAR 24-25,,RSO,Grand Total,2657
+Xtrapower Volume & Conversion,Sep'26,Ajmer,XP Volume CY (TKL),9.0
+Xtrapower Volume & Conversion,Sep'26,Ajmer,XP Volume LY (TKL),7.7
+Xtrapower Volume & Conversion,Sep'26,Ajmer,XP +/- (TKL),1.3
+Xtrapower Volume & Conversion,Sep'26,Ajmer,XP % Growth,16.6
+Xtrapower Volume & Conversion,Sep'26,Ajmer,HSD Volume CY (TKL),46
+Xtrapower Volume & Conversion,Sep'26,Ajmer,HSD Volume LY (TKL),40
+Xtrapower Volume & Conversion,Sep'26,Ajmer,HSD +/- (TKL),6.0
+Xtrapower Volume & Conversion,Sep'26,Ajmer,HSD % Growth,15.1
+Xtrapower Volume & Conversion,Sep'26,Ajmer,XP Conv% CY,19.5
+Xtrapower Volume & Conversion,Sep'26,Ajmer,XP Conv% LY,19.2
+Xtrapower Volume & Conversion,Sep'26,Ajmer,XP Conv +/- pp,0.3
+Xtrapower Volume & Conversion,Sep'26,Jaipur,XP Volume CY (TKL),8.2
+Xtrapower Volume & Conversion,Sep'26,Jaipur,XP Volume LY (TKL),5.6
+Xtrapower Volume & Conversion,Sep'26,Jaipur,XP +/- (TKL),2.6
+Xtrapower Volume & Conversion,Sep'26,Jaipur,XP % Growth,46.7
+Xtrapower Volume & Conversion,Sep'26,Jaipur,HSD Volume CY (TKL),61
+Xtrapower Volume & Conversion,Sep'26,Jaipur,HSD Volume LY (TKL),55
+Xtrapower Volume & Conversion,Sep'26,Jaipur,HSD +/- (TKL),6.3
+Xtrapower Volume & Conversion,Sep'26,Jaipur,HSD % Growth,11.4
+Xtrapower Volume & Conversion,Sep'26,Jaipur,XP Conv% CY,13.5
+Xtrapower Volume & Conversion,Sep'26,Jaipur,XP Conv% LY,10.3
+Xtrapower Volume & Conversion,Sep'26,Jaipur,XP Conv +/- pp,3.3
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,XP Volume CY (TKL),7.3
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,XP Volume LY (TKL),5.9
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,XP +/- (TKL),1.4
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,XP % Growth,24.2
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,HSD Volume CY (TKL),58
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,HSD Volume LY (TKL),49
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,HSD +/- (TKL),8.7
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,HSD % Growth,17.7
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,XP Conv% CY,12.7
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,XP Conv% LY,12.0
+Xtrapower Volume & Conversion,Sep'26,Jodhpur,XP Conv +/- pp,0.7
+Xtrapower Volume & Conversion,Sep'26,Udaipur,XP Volume CY (TKL),10.2
+Xtrapower Volume & Conversion,Sep'26,Udaipur,XP Volume LY (TKL),7.8
+Xtrapower Volume & Conversion,Sep'26,Udaipur,XP +/- (TKL),2.4
+Xtrapower Volume & Conversion,Sep'26,Udaipur,XP % Growth,31.1
+Xtrapower Volume & Conversion,Sep'26,Udaipur,HSD Volume CY (TKL),44
+Xtrapower Volume & Conversion,Sep'26,Udaipur,HSD Volume LY (TKL),37
+Xtrapower Volume & Conversion,Sep'26,Udaipur,HSD +/- (TKL),7.1
+Xtrapower Volume & Conversion,Sep'26,Udaipur,HSD % Growth,19.2
+Xtrapower Volume & Conversion,Sep'26,Udaipur,XP Conv% CY,23.1
+Xtrapower Volume & Conversion,Sep'26,Udaipur,XP Conv% LY,21.0
+Xtrapower Volume & Conversion,Sep'26,Udaipur,XP Conv +/- pp,2.1
+Xtrapower Volume & Conversion,Sep'26,RSO,XP Volume CY (TKL),34.7
+Xtrapower Volume & Conversion,Sep'26,RSO,XP Volume LY (TKL),27.0
+Xtrapower Volume & Conversion,Sep'26,RSO,XP +/- (TKL),7.7
+Xtrapower Volume & Conversion,Sep'26,RSO,XP % Growth,28.7
+Xtrapower Volume & Conversion,Sep'26,RSO,HSD Volume CY (TKL),209
+Xtrapower Volume & Conversion,Sep'26,RSO,HSD Volume LY (TKL),181
+Xtrapower Volume & Conversion,Sep'26,RSO,HSD +/- (TKL),28.0
+Xtrapower Volume & Conversion,Sep'26,RSO,HSD % Growth,15.5
+Xtrapower Volume & Conversion,Sep'26,RSO,XP Conv% CY,16.6
+Xtrapower Volume & Conversion,Sep'26,RSO,XP Conv% LY,14.9
+Xtrapower Volume & Conversion,Sep'26,RSO,XP Conv +/- pp,1.7
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,XP Volume CY (TKL),52.2
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,XP Volume LY (TKL),40.9
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,XP +/- (TKL),11.3
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,XP % Growth,27.8
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,HSD Volume CY (TKL),318
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,HSD Volume LY (TKL),255
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,HSD +/- (TKL),63.0
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,HSD % Growth,24.7
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,XP Conv% CY,16.4
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,XP Conv% LY,16.0
+Xtrapower Volume & Conversion,Apr-Sep'26,Ajmer,XP Conv +/- pp,0.4
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,XP Volume CY (TKL),44.1
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,XP Volume LY (TKL),29.9
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,XP +/- (TKL),14.2
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,XP % Growth,47.4
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,HSD Volume CY (TKL),374
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,HSD Volume LY (TKL),315
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,HSD +/- (TKL),59.0
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,HSD % Growth,18.7
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,XP Conv% CY,11.8
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,XP Conv% LY,9.5
+Xtrapower Volume & Conversion,Apr-Sep'26,Jaipur,XP Conv +/- pp,2.3
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,XP Volume CY (TKL),38.9
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,XP Volume LY (TKL),28.0
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,XP +/- (TKL),10.8
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,XP % Growth,38.7
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,HSD Volume CY (TKL),413
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,HSD Volume LY (TKL),336
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,HSD +/- (TKL),77.8
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,HSD % Growth,23.2
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,XP Conv% CY,9.4
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,XP Conv% LY,8.3
+Xtrapower Volume & Conversion,Apr-Sep'26,Jodhpur,XP Conv +/- pp,1.0
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,XP Volume CY (TKL),61.4
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,XP Volume LY (TKL),42.8
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,XP +/- (TKL),18.6
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,XP % Growth,43.4
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,HSD Volume CY (TKL),316
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,HSD Volume LY (TKL),247
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,HSD +/- (TKL),68.8
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,HSD % Growth,27.9
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,XP Conv% CY,19.4
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,XP Conv% LY,17.3
+Xtrapower Volume & Conversion,Apr-Sep'26,Udaipur,XP Conv +/- pp,2.1
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,XP Volume CY (TKL),196.6
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,XP Volume LY (TKL),141.6
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,XP +/- (TKL),54.9
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,XP % Growth,38.8
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,HSD Volume CY (TKL),1421
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,HSD Volume LY (TKL),1152
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,HSD +/- (TKL),268.6
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,HSD % Growth,23.3
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,XP Conv% CY,13.8
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,XP Conv% LY,12.3
+Xtrapower Volume & Conversion,Apr-Sep'26,RSO,XP Conv +/- pp,1.5
+FO Inspection,Apr-Sep'26,Ajmer,Total RO,688
+FO Inspection,Apr-Sep'26,Ajmer,Target for Month,688
+FO Inspection,Apr-Sep'26,Ajmer,Done,771
+FO Inspection,Apr-Sep'26,Ajmer,% Done,112
+FO Inspection,Apr-Sep'26,Jaipur,Total RO,827
+FO Inspection,Apr-Sep'26,Jaipur,Target for Month,827
+FO Inspection,Apr-Sep'26,Jaipur,Done,928
+FO Inspection,Apr-Sep'26,Jaipur,% Done,112
+FO Inspection,Apr-Sep'26,Jodhpur,Total RO,735
+FO Inspection,Apr-Sep'26,Jodhpur,Target for Month,735
+FO Inspection,Apr-Sep'26,Jodhpur,Done,859
+FO Inspection,Apr-Sep'26,Jodhpur,% Done,117
+FO Inspection,Apr-Sep'26,Udaipur,Total RO,650
+FO Inspection,Apr-Sep'26,Udaipur,Target for Month,650
+FO Inspection,Apr-Sep'26,Udaipur,Done,732
+FO Inspection,Apr-Sep'26,Udaipur,% Done,113
+FO Inspection,Apr-Sep'26,RSO,Total RO,2900
+FO Inspection,Apr-Sep'26,RSO,Target for Month,2900
+FO Inspection,Apr-Sep'26,RSO,Done,3290
+FO Inspection,Apr-Sep'26,RSO,% Done,113
+Lubricant Sales (KL),Sep'26,Ajmer,Target Sep'26,106.7
+Lubricant Sales (KL),Sep'26,Ajmer,LY Sep'25,97
+Lubricant Sales (KL),Sep'26,Ajmer,Achievement Sep'26,79
+Lubricant Sales (KL),Sep'26,Ajmer,% Achv over Base (Month),-18.7
+Lubricant Sales (KL),Sep'26,Ajmer,Cum. 25-26 (Apr-Sep),272
+Lubricant Sales (KL),Sep'26,Ajmer,Cum. 26-27 (Apr-Sep),298
+Lubricant Sales (KL),Sep'26,Ajmer,% Cum. Achv over Base,9.7
+Lubricant Sales (KL),Sep'26,Jaipur,Target Sep'26,66
+Lubricant Sales (KL),Sep'26,Jaipur,LY Sep'25,60
+Lubricant Sales (KL),Sep'26,Jaipur,Achievement Sep'26,54
+Lubricant Sales (KL),Sep'26,Jaipur,% Achv over Base (Month),-9.5
+Lubricant Sales (KL),Sep'26,Jaipur,Cum. 25-26 (Apr-Sep),282
+Lubricant Sales (KL),Sep'26,Jaipur,Cum. 26-27 (Apr-Sep),313
+Lubricant Sales (KL),Sep'26,Jaipur,% Cum. Achv over Base,11.0
+Lubricant Sales (KL),Sep'26,Jodhpur,Target Sep'26,79.2
+Lubricant Sales (KL),Sep'26,Jodhpur,LY Sep'25,72
+Lubricant Sales (KL),Sep'26,Jodhpur,Achievement Sep'26,73
+Lubricant Sales (KL),Sep'26,Jodhpur,% Achv over Base (Month),0.8
+Lubricant Sales (KL),Sep'26,Jodhpur,Cum. 25-26 (Apr-Sep),278
+Lubricant Sales (KL),Sep'26,Jodhpur,Cum. 26-27 (Apr-Sep),411
+Lubricant Sales (KL),Sep'26,Jodhpur,% Cum. Achv over Base,47.7
+Lubricant Sales (KL),Sep'26,Udaipur,Target Sep'26,99
+Lubricant Sales (KL),Sep'26,Udaipur,LY Sep'25,90
+Lubricant Sales (KL),Sep'26,Udaipur,Achievement Sep'26,68
+Lubricant Sales (KL),Sep'26,Udaipur,% Achv over Base (Month),-24.6
+Lubricant Sales (KL),Sep'26,Udaipur,Cum. 25-26 (Apr-Sep),288
+Lubricant Sales (KL),Sep'26,Udaipur,Cum. 26-27 (Apr-Sep),298
+Lubricant Sales (KL),Sep'26,Udaipur,% Cum. Achv over Base,3.5
+Lubricant Sales (KL),Sep'26,RSO,Target Sep'26,351
+Lubricant Sales (KL),Sep'26,RSO,LY Sep'25,319
+Lubricant Sales (KL),Sep'26,RSO,Achievement Sep'26,274
+Lubricant Sales (KL),Sep'26,RSO,% Achv over Base (Month),-14.2
+Lubricant Sales (KL),Sep'26,RSO,Cum. 25-26 (Apr-Sep),1120
+Lubricant Sales (KL),Sep'26,RSO,Cum. 26-27 (Apr-Sep),1320
+Lubricant Sales (KL),Sep'26,RSO,% Cum. Achv over Base,17.8
+NIL Selling ROs — Action Taken,Apr-Sep'26,Ajmer,As on 01.04.26,3
+NIL Selling ROs — Action Taken,Apr-Sep'26,Ajmer,Revived,4
+NIL Selling ROs — Action Taken,Apr-Sep'26,Ajmer,Terminated,0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Ajmer,Balance,-1
+NIL Selling ROs — Action Taken,Apr-Sep'26,Ajmer,Added (Apr-Sep),5
+NIL Selling ROs — Action Taken,Apr-Sep'26,Ajmer,Terminated (Apr-Sep),0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Ajmer,No Facility at Site (SRH Approval),0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Ajmer,NIL Selling as on 01.10.26,4
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jaipur,As on 01.04.26,23
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jaipur,Revived,10
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jaipur,Terminated,1
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jaipur,Balance,12
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jaipur,Added (Apr-Sep),12
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jaipur,Terminated (Apr-Sep),1
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jaipur,No Facility at Site (SRH Approval),2
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jaipur,NIL Selling as on 01.10.26,24
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jodhpur,As on 01.04.26,10
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jodhpur,Revived,10
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jodhpur,Terminated,0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jodhpur,Balance,0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jodhpur,Added (Apr-Sep),11
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jodhpur,Terminated (Apr-Sep),0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jodhpur,No Facility at Site (SRH Approval),0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Jodhpur,NIL Selling as on 01.10.26,11
+NIL Selling ROs — Action Taken,Apr-Sep'26,Udaipur,As on 01.04.26,14
+NIL Selling ROs — Action Taken,Apr-Sep'26,Udaipur,Revived,15
+NIL Selling ROs — Action Taken,Apr-Sep'26,Udaipur,Terminated,0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Udaipur,Balance,-1
+NIL Selling ROs — Action Taken,Apr-Sep'26,Udaipur,Added (Apr-Sep),16
+NIL Selling ROs — Action Taken,Apr-Sep'26,Udaipur,Terminated (Apr-Sep),0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Udaipur,No Facility at Site (SRH Approval),0
+NIL Selling ROs — Action Taken,Apr-Sep'26,Udaipur,NIL Selling as on 01.10.26,15
+NIL Selling ROs — Action Taken,Apr-Sep'26,RSO,As on 01.04.26,50
+NIL Selling ROs — Action Taken,Apr-Sep'26,RSO,Revived,39
+NIL Selling ROs — Action Taken,Apr-Sep'26,RSO,Terminated,1
+NIL Selling ROs — Action Taken,Apr-Sep'26,RSO,Balance,10
+NIL Selling ROs — Action Taken,Apr-Sep'26,RSO,Added (Apr-Sep),44
+NIL Selling ROs — Action Taken,Apr-Sep'26,RSO,Terminated (Apr-Sep),1
+NIL Selling ROs — Action Taken,Apr-Sep'26,RSO,No Facility at Site (SRH Approval),2
+NIL Selling ROs — Action Taken,Apr-Sep'26,RSO,NIL Selling as on 01.10.26,54
+NIL Selling ROs — Ageing,,Ajmer,<6 Months,0
 NIL Selling ROs — Ageing,,Ajmer,6M-1Y,2
 NIL Selling ROs — Ageing,,Ajmer,1-5 Years,2
 NIL Selling ROs — Ageing,,Ajmer,>5 Years,0
-NIL Selling ROs — Ageing,,Ajmer,Grand Total,5
+NIL Selling ROs — Ageing,,Ajmer,Grand Total,4
 NIL Selling ROs — Ageing,,Jaipur,<6 Months,4
 NIL Selling ROs — Ageing,,Jaipur,6M-1Y,3
-NIL Selling ROs — Ageing,,Jaipur,1-5 Years,10
+NIL Selling ROs — Ageing,,Jaipur,1-5 Years,8
 NIL Selling ROs — Ageing,,Jaipur,>5 Years,9
-NIL Selling ROs — Ageing,,Jaipur,Grand Total,26
-NIL Selling ROs — Ageing,,Jodhpur,<6 Months,0
+NIL Selling ROs — Ageing,,Jaipur,Grand Total,24
+NIL Selling ROs — Ageing,,Jodhpur,<6 Months,1
 NIL Selling ROs — Ageing,,Jodhpur,6M-1Y,3
 NIL Selling ROs — Ageing,,Jodhpur,1-5 Years,7
 NIL Selling ROs — Ageing,,Jodhpur,>5 Years,0
-NIL Selling ROs — Ageing,,Jodhpur,Grand Total,10
-NIL Selling ROs — Ageing,,Udaipur,<6 Months,3
-NIL Selling ROs — Ageing,,Udaipur,6M-1Y,6
-NIL Selling ROs — Ageing,,Udaipur,1-5 Years,7
+NIL Selling ROs — Ageing,,Jodhpur,Grand Total,11
+NIL Selling ROs — Ageing,,Udaipur,<6 Months,4
+NIL Selling ROs — Ageing,,Udaipur,6M-1Y,5
+NIL Selling ROs — Ageing,,Udaipur,1-5 Years,5
 NIL Selling ROs — Ageing,,Udaipur,>5 Years,1
-NIL Selling ROs — Ageing,,Udaipur,Grand Total,17
-NIL Selling ROs — Ageing,,RSO,<6 Months,8
-NIL Selling ROs — Ageing,,RSO,6M-1Y,14
-NIL Selling ROs — Ageing,,RSO,1-5 Years,26
+NIL Selling ROs — Ageing,,Udaipur,Grand Total,15
+NIL Selling ROs — Ageing,,RSO,<6 Months,9
+NIL Selling ROs — Ageing,,RSO,6M-1Y,13
+NIL Selling ROs — Ageing,,RSO,1-5 Years,22
 NIL Selling ROs — Ageing,,RSO,>5 Years,10
-NIL Selling ROs — Ageing,,RSO,Grand Total,58
-NIL Selling ROs — Resolution Status,,Ajmer,Revival,4
+NIL Selling ROs — Ageing,,RSO,Grand Total,54
+NIL Selling ROs — Resolution Status,,Ajmer,Revival,3
 NIL Selling ROs — Resolution Status,,Ajmer,Sub-judice,1
 NIL Selling ROs — Resolution Status,,Ajmer,Termination,0
-NIL Selling ROs — Resolution Status,,Ajmer,Grand Total,5
-NIL Selling ROs — Resolution Status,,Jaipur,Revival,11
+NIL Selling ROs — Resolution Status,,Ajmer,Grand Total,4
+NIL Selling ROs — Resolution Status,,Jaipur,Revival,9
 NIL Selling ROs — Resolution Status,,Jaipur,Sub-judice,2
 NIL Selling ROs — Resolution Status,,Jaipur,Termination,13
-NIL Selling ROs — Resolution Status,,Jaipur,Grand Total,26
-NIL Selling ROs — Resolution Status,,Jodhpur,Revival,4
+NIL Selling ROs — Resolution Status,,Jaipur,Grand Total,24
+NIL Selling ROs — Resolution Status,,Jodhpur,Revival,5
 NIL Selling ROs — Resolution Status,,Jodhpur,Sub-judice,2
 NIL Selling ROs — Resolution Status,,Jodhpur,Termination,4
-NIL Selling ROs — Resolution Status,,Jodhpur,Grand Total,10
-NIL Selling ROs — Resolution Status,,Udaipur,Revival,13
+NIL Selling ROs — Resolution Status,,Jodhpur,Grand Total,11
+NIL Selling ROs — Resolution Status,,Udaipur,Revival,11
 NIL Selling ROs — Resolution Status,,Udaipur,Sub-judice,0
 NIL Selling ROs — Resolution Status,,Udaipur,Termination,4
-NIL Selling ROs — Resolution Status,,Udaipur,Grand Total,17
-NIL Selling ROs — Resolution Status,,RSO,Revival,32
+NIL Selling ROs — Resolution Status,,Udaipur,Grand Total,15
+NIL Selling ROs — Resolution Status,,RSO,Revival,28
 NIL Selling ROs — Resolution Status,,RSO,Sub-judice,5
 NIL Selling ROs — Resolution Status,,RSO,Termination,21
-NIL Selling ROs — Resolution Status,,RSO,Grand Total,58
-Oil Co Market Share,,IOC,RO Count,2931
-Oil Co Market Share,,IOC,Physical Participation,38.9
-Oil Co Market Share,,IOC,MKT Share HSD(R),40.4
-Oil Co Market Share,,IOC,MKT Share Total,39.6
-Oil Co Market Share,,IOC,NW Effec,101.7
-Oil Co Market Share,,IOC,MS Sales TKL,417
-Oil Co Market Share,,IOC,MS PPT,36
-Oil Co Market Share,,IOC,HSD Sales TKL,1026
-Oil Co Market Share,,IOC,HSD PPT,87
-Oil Co Market Share,,IOC,MS+HSD Sales TKL,1443
-Oil Co Market Share,,IOC,MS+HSD PPT,123
+NIL Selling ROs — Resolution Status,,RSO,Grand Total,54
+Oil Co Market Share,,IOC,RO Count,2936
+Oil Co Market Share,,IOC,Physical Participation,39.0
+Oil Co Market Share,,IOC,MKT Share HSD(R),40.3
+Oil Co Market Share,,IOC,MKT Share Total,39.7
+Oil Co Market Share,,IOC,NW Effec,101.9
+Oil Co Market Share,,IOC,MS Sales TKL,622
+Oil Co Market Share,,IOC,MS PPT,35
+Oil Co Market Share,,IOC,HSD Sales TKL,1423
+Oil Co Market Share,,IOC,HSD PPT,81
+Oil Co Market Share,,IOC,MS+HSD Sales TKL,2046
+Oil Co Market Share,,IOC,MS+HSD PPT,116
 Oil Co Market Share,,BPC,RO Count,1571
-Oil Co Market Share,,BPC,Physical Participation,20.9
-Oil Co Market Share,,BPC,MKT Share HSD(R),23.2
-Oil Co Market Share,,BPC,MKT Share Total,23.9
-Oil Co Market Share,,BPC,NW Effec,114.4
-Oil Co Market Share,,BPC,MS Sales TKL,285
+Oil Co Market Share,,BPC,Physical Participation,20.8
+Oil Co Market Share,,BPC,MKT Share HSD(R),23.9
+Oil Co Market Share,,BPC,MKT Share Total,24.6
+Oil Co Market Share,,BPC,NW Effec,117.8
+Oil Co Market Share,,BPC,MS Sales TKL,427
 Oil Co Market Share,,BPC,MS PPT,45
-Oil Co Market Share,,BPC,HSD Sales TKL,589
-Oil Co Market Share,,BPC,HSD PPT,94
-Oil Co Market Share,,BPC,MS+HSD Sales TKL,874
-Oil Co Market Share,,BPC,MS+HSD PPT,139
-Oil Co Market Share,,HPC,RO Count,1920
+Oil Co Market Share,,BPC,HSD Sales TKL,844
+Oil Co Market Share,,BPC,HSD PPT,90
+Oil Co Market Share,,BPC,MS+HSD Sales TKL,1271
+Oil Co Market Share,,BPC,MS+HSD PPT,135
+Oil Co Market Share,,HPC,RO Count,1924
 Oil Co Market Share,,HPC,Physical Participation,25.5
-Oil Co Market Share,,HPC,MKT Share HSD(R),27.9
-Oil Co Market Share,,HPC,MKT Share Total,27.8
-Oil Co Market Share,,HPC,NW Effec,109.0
-Oil Co Market Share,,HPC,MS Sales TKL,305
-Oil Co Market Share,,HPC,MS PPT,40
-Oil Co Market Share,,HPC,HSD Sales TKL,709
-Oil Co Market Share,,HPC,HSD PPT,92
-Oil Co Market Share,,HPC,MS+HSD Sales TKL,1015
-Oil Co Market Share,,HPC,MS+HSD PPT,132
-Oil Co Market Share,,PSU Total,RO Count,6422
+Oil Co Market Share,,HPC,MKT Share HSD(R),28.2
+Oil Co Market Share,,HPC,MKT Share Total,28.1
+Oil Co Market Share,,HPC,NW Effec,110.1
+Oil Co Market Share,,HPC,MS Sales TKL,455
+Oil Co Market Share,,HPC,MS PPT,39
+Oil Co Market Share,,HPC,HSD Sales TKL,995
+Oil Co Market Share,,HPC,HSD PPT,86
+Oil Co Market Share,,HPC,MS+HSD Sales TKL,1450
+Oil Co Market Share,,HPC,MS+HSD PPT,126
+Oil Co Market Share,,PSU Total,RO Count,6431
 Oil Co Market Share,,PSU Total,Physical Participation,85.3
-Oil Co Market Share,,PSU Total,MKT Share HSD(R),91.5
-Oil Co Market Share,,PSU Total,MKT Share Total,91.3
-Oil Co Market Share,,PSU Total,NW Effec,107.0
-Oil Co Market Share,,PSU Total,MS Sales TKL,1008
+Oil Co Market Share,,PSU Total,MKT Share HSD(R),92.5
+Oil Co Market Share,,PSU Total,MKT Share Total,92.4
+Oil Co Market Share,,PSU Total,NW Effec,108.2
+Oil Co Market Share,,PSU Total,MS Sales TKL,1504
 Oil Co Market Share,,PSU Total,MS PPT,39
-Oil Co Market Share,,PSU Total,HSD Sales TKL,2324
-Oil Co Market Share,,PSU Total,HSD PPT,90
-Oil Co Market Share,,PSU Total,MS+HSD Sales TKL,3331
-Oil Co Market Share,,PSU Total,MS+HSD PPT,130
+Oil Co Market Share,,PSU Total,HSD Sales TKL,3262
+Oil Co Market Share,,PSU Total,HSD PPT,85
+Oil Co Market Share,,PSU Total,MS+HSD Sales TKL,4767
+Oil Co Market Share,,PSU Total,MS+HSD PPT,124
 Oil Co Market Share,,RIL,RO Count,135
 Oil Co Market Share,,RIL,Physical Participation,1.8
-Oil Co Market Share,,RIL,MKT Share HSD(R),2.8
-Oil Co Market Share,,RIL,MKT Share Total,2.7
-Oil Co Market Share,,RIL,NW Effec,150.5
-Oil Co Market Share,,RIL,MS Sales TKL,28
-Oil Co Market Share,,RIL,MS PPT,52
-Oil Co Market Share,,RIL,HSD Sales TKL,70
-Oil Co Market Share,,RIL,HSD PPT,130
-Oil Co Market Share,,RIL,MS+HSD Sales TKL,98
-Oil Co Market Share,,RIL,MS+HSD PPT,182
+Oil Co Market Share,,RIL,MKT Share HSD(R),2.5
+Oil Co Market Share,,RIL,MKT Share Total,2.4
+Oil Co Market Share,,RIL,NW Effec,132.3
+Oil Co Market Share,,RIL,MS Sales TKL,35
+Oil Co Market Share,,RIL,MS PPT,44
+Oil Co Market Share,,RIL,HSD Sales TKL,86
+Oil Co Market Share,,RIL,HSD PPT,107
+Oil Co Market Share,,RIL,MS+HSD Sales TKL,122
+Oil Co Market Share,,RIL,MS+HSD PPT,150
 Oil Co Market Share,,NEL,RO Count,970
 Oil Co Market Share,,NEL,Physical Participation,12.9
-Oil Co Market Share,,NEL,MKT Share HSD(R),5.8
-Oil Co Market Share,,NEL,MKT Share Total,6.0
-Oil Co Market Share,,NEL,NW Effec,46.6
-Oil Co Market Share,,NEL,MS Sales TKL,75
-Oil Co Market Share,,NEL,MS PPT,19
-Oil Co Market Share,,NEL,HSD Sales TKL,146
-Oil Co Market Share,,NEL,HSD PPT,38
-Oil Co Market Share,,NEL,MS+HSD Sales TKL,221
-Oil Co Market Share,,NEL,MS+HSD PPT,57
+Oil Co Market Share,,NEL,MKT Share HSD(R),5.1
+Oil Co Market Share,,NEL,MKT Share Total,5.3
+Oil Co Market Share,,NEL,NW Effec,41.1
+Oil Co Market Share,,NEL,MS Sales TKL,95
+Oil Co Market Share,,NEL,MS PPT,16
+Oil Co Market Share,,NEL,HSD Sales TKL,179
+Oil Co Market Share,,NEL,HSD PPT,31
+Oil Co Market Share,,NEL,MS+HSD Sales TKL,274
+Oil Co Market Share,,NEL,MS+HSD PPT,47
 Oil Co Market Share,,PVT Total,RO Count,1105
 Oil Co Market Share,,PVT Total,Physical Participation,14.7
-Oil Co Market Share,,PVT Total,MKT Share HSD(R),8.5
-Oil Co Market Share,,PVT Total,MKT Share Total,8.7
-Oil Co Market Share,,PVT Total,NW Effec,59.3
-Oil Co Market Share,,PVT Total,MS Sales TKL,103
-Oil Co Market Share,,PVT Total,MS PPT,23
-Oil Co Market Share,,PVT Total,HSD Sales TKL,216
-Oil Co Market Share,,PVT Total,HSD PPT,49
-Oil Co Market Share,,PVT Total,MS+HSD Sales TKL,319
-Oil Co Market Share,,PVT Total,MS+HSD PPT,72
-Oil Co Market Share,,Industry Total,RO Count,7527
+Oil Co Market Share,,PVT Total,MKT Share HSD(R),7.5
+Oil Co Market Share,,PVT Total,MKT Share Total,7.7
+Oil Co Market Share,,PVT Total,NW Effec,52.2
+Oil Co Market Share,,PVT Total,MS Sales TKL,130
+Oil Co Market Share,,PVT Total,MS PPT,20
+Oil Co Market Share,,PVT Total,HSD Sales TKL,266
+Oil Co Market Share,,PVT Total,HSD PPT,40
+Oil Co Market Share,,PVT Total,MS+HSD Sales TKL,396
+Oil Co Market Share,,PVT Total,MS+HSD PPT,60
+Oil Co Market Share,,Industry Total,RO Count,7536
 Oil Co Market Share,,Industry Total,Physical Participation,100.0
 Oil Co Market Share,,Industry Total,MKT Share HSD(R),100
 Oil Co Market Share,,Industry Total,MKT Share Total,100
 Oil Co Market Share,,Industry Total,NW Effec,100.0
-Oil Co Market Share,,Industry Total,MS Sales TKL,1111
-Oil Co Market Share,,Industry Total,MS PPT,37
-Oil Co Market Share,,Industry Total,HSD Sales TKL,2540
-Oil Co Market Share,,Industry Total,HSD PPT,84
-Oil Co Market Share,,Industry Total,MS+HSD Sales TKL,3650
-Oil Co Market Share,,Industry Total,MS+HSD PPT,121
-META,,,OilCoAsOfDate,01-Aug-2026
+Oil Co Market Share,,Industry Total,MS Sales TKL,1635
+Oil Co Market Share,,Industry Total,MS PPT,36
+Oil Co Market Share,,Industry Total,HSD Sales TKL,3528
+Oil Co Market Share,,Industry Total,HSD PPT,78
+Oil Co Market Share,,Industry Total,MS+HSD Sales TKL,5163
+Oil Co Market Share,,Industry Total,MS+HSD PPT,114
+META,,,OilCoAsOfDate,01-Oct-2026
 RO-KSK Site Class Breakup,,Ajmer,RO - A Site,215
 RO-KSK Site Class Breakup,,Ajmer,RO - B Site,259
 RO-KSK Site Class Breakup,,Ajmer,RO - Total,474
